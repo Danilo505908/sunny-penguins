@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
   padding: 20px 0;
 }
 .footer-desc {
@@ -18,4 +18,125 @@
   height: 24%;
   background-color: #41d1ff;
   transition: 200ms ease;
+}
+ */
+.footer {
+  background: #060307;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  font-family: "IBM Plex Sans", sans-serif;
+  color: #fff;
+
+}
+ .nav-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+ }
+ .nav-box::after {
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 1px;
+  background:  rgba(255, 255, 255, 0.2);
+
+
+ }
+ .footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  
+  margin-bottom: 48px;
+ }
+
+ .socials-box {
+  display: flex;
+ 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  
+  margin-top: 32px;
+  margin-bottom: 32px;
+ }
+ .footer-socials-item {
+  display: inline-flex;
+  gap: 32px;
+}
+.footer-socials-icon {
+  fill: fff;
+}
+.copyright {
+  
+font-weight: 400;
+font-size: 16px;
+
+line-height: 1.5;
+
+}
+@media screen and (min-width: 768px) {
+  .footer {
+    padding: 80px 32px;
+  }
+  .footer-nav {
+    flex-direction: row;
+  }
+  .socials-box {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    
+     
+  }
+  .footer-socials {
+    margin-left: auto;
+    
+  }
+  .footer-socials-item {
+    gap: 24px; 
+  }
+
+  .copyright {
+    text-align: left;
+    
+  }
+ 
+}
+@media screen and (min-width: 1440px) {
+  .footer {
+    padding: 80px 64px;
+  
+  }
+  .footer-nav {
+    flex-direction: row;
+    gap: 32px;
+   
+  }
+  .socials-box {
+    flex-direction: row-reverse;
+    gap: 24px;
+    justify-content: space-between;
+    margin-left: auto;
+  }
+  .footer-socials-item {
+    gap: 24px; 
+  }
+  .copyright {
+    text-align: start;
+    
+  }
 }

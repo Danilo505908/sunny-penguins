@@ -78,6 +78,9 @@
   display: inline-flex;
   gap: 32px;
 }
+.footer-socials-icon {
+  fill: fff;
+}
 .copyright {
   
 font-weight: 400;

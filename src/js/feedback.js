@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -9,17 +8,19 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const BASE_URL = 'https://sound-wave.b.goit.study/api/feedbacks';
-
-
 const container = document.querySelector('.swiper-wrapper');
 const loader = document.getElementById('loader');
 
-export async function fetchFeedbacks() {
-  try {
-    const { data }  = await axios.get(BASE_URL);
-    console.log('API response:', data); 
+let pageCounter = Number(localStorage.getItem('feedbackPage')) || 1;
 
-    return data.data; 
+export async function fetchFeedbacks(page = 1, limit = 10) {
+  loader.style.display = 'block';
+
+  try {
+    const { data } = await axios.get(BASE_URL, {
+      params: { page, limit },
+    });
+    return data.data;
   } catch (error) {
     console.error('Error fetching feedbacks:', error);
     iziToast.error({
@@ -27,6 +28,8 @@ export async function fetchFeedbacks() {
       message: 'Failed to load feedbacks',
     });
     return [];
+  } finally {
+    loader.style.display = 'none';
   }
 }
 
@@ -43,28 +46,24 @@ function createSlide(feedback) {
             </svg>`
           ).join('')}
         </div>
-        <p class="feedback-text">"${feedback.descr}"</p>
-        <p class="feedback-author">${feedback.name}</p>
+        <p class="message-text">"${feedback.descr}"</p>
+        <p class="message-person">${feedback.name}</p>
       </div>
     </div>
   `;
 }
 
 async function renderFeedbacks() {
-  const feedbacks = await fetchFeedbacks();
+  const feedbacks = await fetchFeedbacks(pageCounter, 10);
 
   if (!feedbacks.length) {
     container.insertAdjacentHTML('beforeend', '<p>No feedbacks found.</p>');
     return;
   }
 
-  const slidesMarkup = feedbacks
-    .slice(0, 10)
-    .map(createSlide)
-    .join('');
-  container.innerHTML = slidesMarkup;
+  container.innerHTML = feedbacks.map(createSlide).join('');
 
-  new Swiper('.swiper', {
+  const swiper = new Swiper('.swiper', {
     modules: [Navigation, Pagination],
     slidesPerView: 1,
     navigation: {
@@ -75,14 +74,38 @@ async function renderFeedbacks() {
       el: '.swiper-pagination',
       clickable: true,
       renderBullet: (index, className) => {
-        if (index === 0) return `<span class="${className}">First</span>`;
-        if (index === feedbacks.length - 1) return `<span class="${className}">Last</span>`;
-        return `<span class="${className}">•</span>`;
+        // Повертаємо HTML тільки для перших 3 крапок
+        if (index < 3) {
+          return `<span class="${className}"></span>`;
+        }
+        return '';
       },
     },
   });
+
+  swiper.on('slideChange', function () {
+    const activeSlide = swiper.activeIndex + 1;
+    let bulletIndex = 0;
+
+    if (activeSlide >= 1 && activeSlide <= 4) bulletIndex = 0;
+    else if (activeSlide >= 5 && activeSlide <= 9) bulletIndex = 1;
+    else bulletIndex = 2;
+
+    document
+      .querySelectorAll('.swiper-pagination-bullet')
+      .forEach(b => b.classList.remove('swiper-pagination-bullet-active'));
+
+    const bullets = document.querySelectorAll('.swiper-pagination-bullet');
+    if (bullets[bulletIndex]) {
+      bullets[bulletIndex].classList.add('swiper-pagination-bullet-active');
+    }
+  });
+
+  pageCounter++;
+  if (pageCounter > 70) {
+    pageCounter = 1;
+  }
+  localStorage.setItem('feedbackPage', pageCounter);
 }
 
 renderFeedbacks();
-  
-  

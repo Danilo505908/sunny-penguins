@@ -1,4 +1,4 @@
-.header {
+/* .header {
   padding: 20px 0;
 }
 .nav {
@@ -41,4 +41,134 @@
 }
 .nav-link.active::after {
   background: #747bff;
+} */
+
+/* Хедер */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  background: #0f172a;
+  z-index: 1000;
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo_header {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Мобільне меню */
+.nav_header {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100vh;
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease;
+  z-index: 1050;
+}
+
+.nav_header.open {
+  left: 0;
+}
+
+.close_header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.icon_header {
+  width: 24px;
+  height: 24px;
+  fill: #fff !important;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav_header ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav_header li {
+  margin: 1rem 0;
+}
+
+.nav_header a {
+  text-decoration: none;
+  font-size: 24px;
+  color: #fff;
+}
+
+.burger_header {
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1100;
+}
+@media (max-width: 767px) {
+  .burger_header {
+    display: block;
+  }
+
+  .nav_header {
+    display: flex; /* ховаємо за межі екрана */
+  }
+
+  .nav_header ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ======= Десктоп (від 768px) ======= */
+@media (min-width: 768px) {
+  .burger_header {
+    display: none !important; /* бургер приховуємо */
+  }
+  .close_header {
+    display: none;
+  }
+
+  .nav_header {
+    display: flex;
+    position: static;
+    height: auto;
+    left: auto;
+    flex-direction: row;
+    justify-content: flex-end;
+    background: none;
+    transition: none;
+  }
+
+  .nav_header ul {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav_header li {
+    margin: 0;
+  }
 }

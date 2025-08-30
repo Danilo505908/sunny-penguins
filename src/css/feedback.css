@@ -35,44 +35,4 @@
 
 
         
-    .feedback-card {
-        background: #f9f9f9;
-        border-radius: 8px;
-        padding: 20px;
-        text-align: center;
-        }
-    
-        .message-text {
-            font-size: 14px;
-            margin: 10px 0;
-        }
-    
-        .message-person {
-            font-weight: bold;
-            color: #333;
-        }
-        
-        
-        .rating-stars {
-            display: inline-flex;
-            gap: 4px;
-            margin-bottom: 10px;
-        }
-    
-        .star {
-            width: 20px;
-            height: 19px;
-        }
-    
-        .star.filled {
-            color: #764191;
-        }
-    
-        .star.empty {
-            color: #fff;
-        }
-    
-        
-        
-        
-  
+   

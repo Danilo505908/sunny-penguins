@@ -2,7 +2,8 @@ import axios from 'axios';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/navigation';
+
+//import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -74,7 +75,7 @@ async function renderFeedbacks() {
       el: '.swiper-pagination',
       clickable: true,
       renderBullet: (index, className) => {
-        // Повертаємо HTML тільки для перших 3 крапок
+        
         if (index < 3) {
           return `<span class="${className}"></span>`;
         }

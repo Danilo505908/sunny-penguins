@@ -124,7 +124,7 @@
 }
 
 /* Desktop */
-@media (min-width: 1200px) {
+@media (min-width: 1440px) {
     .about {
         padding: 112px 64px;
     }

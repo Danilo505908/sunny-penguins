@@ -45,5 +45,3 @@ document.addEventListener('keydown', e => {
     burger.style.display = 'block';
   }
 });
-
-console.log('JS файл підключено');

@@ -4,18 +4,28 @@
 <body>
   <header class="header">
     <a href="index.html" class="logo_header"
-      ><img src="../img/favicon.svg" alt="logo" width="119" height="51" />
+      ><img
+        class="img-header"
+        src="../img/favicon.svg"
+        alt="logo"
+        width="119"
+        height="51"
+      />
     </a>
 
     <!-- бургер кнопка -->
     <button class="burger_header" aria-label="menu">
-      <svg class="icon_header"><use href="#icon-iconBurgerMenu"></use></svg>
+      <svg class="icon_header">
+        <use href="../img/sprite.svg#icon-iconBurgerMenu"></use>
+      </svg>
     </button>
 
     <!-- навігація (спочатку прихована) -->
     <nav class="nav_header">
       <button class="close_header" aria-label="close menu">
-        <svg class="icon_header"><use href="#icon-iconClose"></use></svg>
+        <svg class="icon_header">
+          <use href="../img/sprite.svg#icon-iconClose"></use>
+        </svg>
       </button>
       <ul>
         <li><a href="#Artists">Artists</a></li>

@@ -24,12 +24,12 @@
 
 .about img {
     width: 100%;
+    fill: var(--color-scheme-1-text);
     max-width: 288px;
     border-radius: 16px;
     object-fit: cover;
     margin: 0 auto;
 }
-
 /* ---------- TABLET (768px) ---------- */
 @media (min-width: 768px) {
     .about {

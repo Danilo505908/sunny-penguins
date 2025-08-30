@@ -20,8 +20,11 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <title>ArtistsHub</title>
+  
   <script type="module" crossorigin src="/sunny-penguins/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-BREgOvjm.css">
+  <link rel="modulepreload" crossorigin href="/sunny-penguins/assets/vendor-cotWbADi.js">
+  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/vendor-B1-dZGZP.css">
+  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-D9FHACtn.css">
 </head>
 
 <body>
@@ -47,7 +50,7 @@
             <button class="hero-btn">
                 Explore Artists
                 <svg class="btn-icon" width="15" height="20">
-                    <use xlink:href="/sunny-penguins/assets/sprite-DWrPqVAf.svg#icon-play"></use>
+                    <use xlink:href="/sunny-penguins/assets/sprite-CIhFok7j.svg#icon-play"></use>
                 </svg>
             </button>
         </div>
@@ -69,6 +72,42 @@
 
     <!-- About Us Section -->
     <section class="about">
+ AboutUs
+    <div class="about__container">
+        <!-- Фото -->
+        <picture class="about__image">
+            <!-- Мобільна версія -->
+            <source srcset="/sunny-penguins/assets/about-m@1x-CIJ5XWWM.png 1x, /sunny-penguins/assets/about-m@2x-BhGrRB9i.png 2x" media="(max-width: 767px)">
+        
+            <!-- Планшетна версія -->
+            <source srcset="/sunny-penguins/assets/about-t@1x-BWkWEotF.png 1x, /sunny-penguins/assets/about-t@2x-DHDUpvv5.png 2x" media="(min-width: 768px) and (max-width: 1439px)">
+        
+            <!-- Десктопна версія -->
+            <source srcset="/sunny-penguins/assets/about@1x-C1Aij-Oz.png 1x, /sunny-penguins/assets/about@2x-54rF9P6O.png 2x" media="(min-width: 1440px)">
+        
+            <!-- fallback -->
+            <img src="/sunny-penguins/assets/about@1x-C1Aij-Oz.png" alt="team">
+        </picture>
+        <!-- Контент -->
+        <div class="about__content">
+            <div class="about__logo">
+                    <svg class="img iteam-icon" width="80" height="80">
+                        <use href="/sunny-penguins/assets/sprite-CIhFok7j.svg#icon-logo-icon">
+                        </use>
+                    </svg>
+            </div>
+            <h2 class="about__title">About ArtistsHub</h2>
+            <p class="about__text">
+                At ArtistsHub, our mission is to connect music lovers with the artists they adore.
+                We strive to create a vibrant community where discovering new music
+                is as enjoyable as listening to it.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- JS підключення -->
+<script src="js/about.js"></script>
+=======
   <div class="about__container">
     <!-- Фото -->
     <picture class="about__image">
@@ -112,9 +151,43 @@
     </div>
   </div>
 </section>
+main
+
 
     <!-- Feedback Section -->
-    <section id="feedbacks" class="feedback-section">
+    feedbackSection
+
+
+<section id="feedbacks" class="feedback-section">
+  <h2 class="visually-hidden">Feedbacks our visitors</h2>
+  <div id="loader"></div>
+  <div class="swiper feedback-swiper">
+    <div class="swiper-wrapper" id="feedback-list"></div>
+    <!-- кнопки -->
+    <div class="message-cont">
+      <div class="message-wrap">
+        <button class="swiper-button-prev arrow" aria-label="Previous testimonial" type="button">
+          <svg width="14" height="14" aria-hidden="true">
+            <use href="../img/feedback/arrow-left-feedback.svg"></use>
+          </svg>
+        </button>
+        <p class="message-text">
+
+        </p>
+        <button class="swiper-button-next arrow" aria-label="Next testimonial" type="button">
+          <svg width="14" height="14" aria-hidden="true">
+            <use href="../img/feedback/arrow-right-feedback.svg"></use>
+          </svg>
+        </button>
+      </div>
+      <p class="message-person"></p>
+    </div>
+    <!-- пагінація -->
+    <div class="swiper-pagination" aria-label="Feedback pagination"></div>
+  </div>
+</section>
+
+<section id="feedbacks" class="feedback-section">
   <h2 class="visually-hidden">Feedbacks our visitors</h2>
   <div class="swiper feedback-swiper">
     <div class="swiper-wrapper" id="feedback-list">12345</div>
@@ -156,6 +229,7 @@
         </div>
       `;
       feedbackList.appendChild(slide); -->
+main
 
     <!-- Modal Section -->
     <!DOCTYPE html>
@@ -233,7 +307,7 @@
 
     <div class="nav-box">
         <svg class="footer-socials-icon" width="116" height="45">
-                <use href="/sunny-penguins/assets/sprite-DWrPqVAf.svg#icon-logo"></use>
+                <use href="/sunny-penguins/assets/sprite-CIhFok7j.svg#icon-logo"></use>
               </svg>
         <ul class="footer-nav">
     <li><a href="#artists" class="footer-nav-link">Artists</a></li>
@@ -250,7 +324,7 @@
               target="_blank"
             >
             <svg class="footer-socials-icon" width="40" height="40">
-                <use href="/sunny-penguins/assets/sprite-DWrPqVAf.svg#icon-Instagram"></use>
+                <use href="/sunny-penguins/assets/sprite-CIhFok7j.svg#icon-Instagram"></use>
               </svg>
         </a>
         </li>
@@ -260,7 +334,7 @@
               rel="noopener noreferrer"
               target="_blank"
             ><svg class="footer-socials-icon" width="40" height="40">
-                <use href="/sunny-penguins/assets/sprite-DWrPqVAf.svg#icon-Facebook"></use>
+                <use href="/sunny-penguins/assets/sprite-CIhFok7j.svg#icon-Facebook"></use>
               </svg>
         </a>
         </li>
@@ -270,7 +344,7 @@
               rel="noopener noreferrer"
               target="_blank"
             ><svg class="footer-socials-icon" width="40" height="40">
-                <use href="/sunny-penguins/assets/sprite-DWrPqVAf.svg#icon-Youtube"></use>
+                <use href="/sunny-penguins/assets/sprite-CIhFok7j.svg#icon-Youtube"></use>
               </svg>
         </a>
         
@@ -283,6 +357,9 @@
 </footer>
 
   <!-- Scripts -->
+ feedbackSection
+
+ main
 </body>
 
 </html>

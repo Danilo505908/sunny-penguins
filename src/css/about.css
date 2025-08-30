@@ -1,225 +1,229 @@
-AboutUs .about {
+.about {
     background: var(--color-scheme-1-background);
     color: var(--color-scheme-1-text);
     padding: 16px 20px;
     margin: 0 auto;
+}
 
-    .fade-in {
-        opacity: 1;
-        transform: translateY(0);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
 
-    /* Initial state */
-    .about__content.fade-in {
-        transition-delay: 0.3s;
-    }
+/* Initial state */
+.about__content.fade-in {
+    transition-delay: 0.3s;
+}
 
+.about {
+    background: var(--color-neutral-darkest);
+    padding: 112px 64px;
+}
+
+.about__container {
+    display: grid;
+    grid-template-columns: 640px 1fr;
+    align-items: center;
+    gap: 64px;
+}
+
+.about__image img {
+    border-radius: 16px;
+    width: 640px;
+    height: 664px;
+    object-fit: cover;
+}
+
+.about__content {
+    color: var(--color-white);
+    font-family: var(--font-family);
+}
+
+.about__logo {
+    margin-bottom: 23px;
+    display: flex;
+    /* <-- main прибрав */
+    gap: 1px;
+    align-items: center;
+    fill: var(--color-white);
+}
+
+.about h2 {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 130%;
+}
+
+.about p {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+}
+
+.about img {
+    width: 100%;
+    fill: var(--color-scheme-1-text);
+    max-width: 288px;
+    border-radius: 16px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+/* ---------- TABLET (768px) ---------- */
+@media (min-width: 768px) {
     .about {
-        background: var(--color-neutral-darkest);
+        max-width: 768px;
+        padding: 32px 40px;
+    }
+
+    .about__logo svg {
+        fill: var(--color-white);
+    }
+
+    .about__title {
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 120%;
+        letter-spacing: -0.01em;
+        margin-bottom: 24px;
+        color: var(--color-white);
+    }
+
+    .about__text {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 150%;
+        color: var(--color-white);
+        max-width: 640px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .about {
+        padding: 24px;
+    }
+
+    .about__container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .about__image img {
+        width: 288px;
+        height: 169px;
+    }
+
+    .about__title {
+        font-size: 40px;
+        line-height: 130%;
+        max-width: 288px;
+    }
+
+    .about__text {
+        font-size: 18px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .about {
+        padding: 24px;
+    }
+
+    .about__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        /* <-- main прибрав */
+        align-items: center;
+    }
+
+    .about img {
+        max-width: 704px;
+        border-radius: 24px;
+    }
+
+    .about__image img {
+        width: 704px;
+        height: 413px;
+    }
+
+    .about__title {
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 120%;
+        letter-spacing: -0.01em;
+        text-align: center;
+    }
+
+    .about__text {
+        font-size: 20px;
+        text-align: center;
+        /* <-- AboutUs прибрав */
+        max-width: 600px;
+    }
+}
+
+/* ---------- DESKTOP (1440px) ---------- */
+@media (min-width: 1440px) {
+    .about {
+        max-width: 1440px;
+        margin: 0 auto;
+        max-width: 704px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1440px) {
+    .about {
         padding: 112px 64px;
+        /* <-- main прибрав */
     }
 
     .about__container {
         display: grid;
         grid-template-columns: 640px 1fr;
         align-items: center;
-        gap: 64px;
+        gap: 80px;
     }
 
-    .about__image img {
-        border-radius: 16px;
-        width: 640px;
-        height: 664px;
-        object-fit: cover;
+    .about__image {
+        order: 1;
+        /* лишаємо картинку першою */
     }
 
     .about__content {
-        color: var(--color-white);
-        font-family: var(--font-family);
-    }
-
-    .about__logo {
-        margin-bottom: 23px;
-        main display: flex;
-        gap: 1px;
-        align-items: center;
-        fill: var(--color-white);
-    }
-
-    AboutUs .about h2 {
-        font-family: "IBM Plex Sans", sans-serif;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 130%;
-    }
-
-    .about p {
-        font-family: var(--font-family);
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 150%;
+        order: 2;
+        text-align: left;
     }
 
     .about img {
-        width: 100%;
-        fill: var(--color-scheme-1-text);
-        max-width: 288px;
-        border-radius: 16px;
-        object-fit: cover;
-        margin: 0 auto;
+        max-width: 640px;
+        height: auto;
+        border-radius: 24px;
     }
 
-    /* ---------- TABLET (768px) ---------- */
-    @media (min-width: 768px) {
-        .about {
-            max-width: 768px;
-            padding: 32px 40px;
+    .about h2 {
+        font-family: var(--second-family);
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 120%;
+        letter-spacing: -0.01em;
+        margin-bottom: 24px;
+        text-align: left;
+    }
 
-            =======.about__logo svg {
-                fill: var(--color-white);
-            }
-
-            .about__title {
-                font-family: var(--font-family);
-                font-weight: 700;
-                font-size: 60px;
-                line-height: 120%;
-                letter-spacing: -0.01em;
-                margin-bottom: 24px;
-                color: var(--color-white);
-            }
-
-            .about__text {
-                font-family: var(--font-family);
-                font-weight: 400;
-                font-size: 20px;
-                line-height: 150%;
-                color: var(--color-white);
-                max-width: 640px;
-            }
-
-            /* Mobile */
-            @media (max-width: 767px) {
-                .about {
-                    padding: 24px;
-                }
-
-                .about__container {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 24px;
-                }
-
-                .about__image img {
-                    width: 288px;
-                    height: 169px;
-                }
-
-                .about__title {
-                    font-size: 40px;
-                    line-height: 130%;
-                    max-width: 288px;
-                }
-
-                .about__text {
-                    font-size: 18px;
-                }
-            }
-
-            /* Tablet */
-            @media (min-width: 768px) {
-                .about {
-                    padding: 24px;
-                }
-
-                .about__container {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    main gap: 32px;
-                    align-items: center;
-                }
-
-                AboutUs .about img {
-                    max-width: 704px;
-                    border-radius: 24px;
-
-                    .about__image img {
-                        width: 704px;
-                        height: 413px;
-                        main
-                    }
-
-                    .about__title {
-                        font-weight: 700;
-                        font-size: 44px;
-                        line-height: 120%;
-                        letter-spacing: -0.01em;
-                        text-align: center;
-                    }
-
-                    .about__text {
-                        font-size: 20px;
-                        AboutUs text-align: center;
-                        max-width: 600px;
-                    }
-                }
-
-                /* ---------- DESKTOP (1440px) ---------- */
-                @media (min-width: 1440px) {
-                    .about {
-                        max-width: 1440px;
-                        margin: 0 auto;
-                        max-width: 704px;
-                    }
-                }
-
-                /* Desktop */
-                @media (min-width: 1440px) {
-                    .about {
-                        main padding: 112px 64px;
-                    }
-
-                    .about__container {
-                        display: grid;
-                        grid-template-columns: 640px 1fr;
-
-                        align-items: center;
-                        gap: 80px;
-                    }
-
-                    .about__image {
-                        order: 1;
-                        /* лишаємо картинку першою */
-                    }
-
-                    .about__content {
-                        order: 2;
-                        text-align: left;
-                    }
-
-                    AboutUs .about img {
-                        max-width: 640px;
-                        height: auto;
-                        border-radius: 24px;
-                    }
-
-                    .about h2 {
-                        font-family: var(--second-family);
-                        font-weight: 700;
-                        font-size: 60px;
-                        line-height: 120%;
-                        letter-spacing: -0.01em;
-                        margin-bottom: 24px;
-                        text-align: left;
-                    }
-
-                    .about p {
-                        font-size: 20px;
-                        max-width: 520px;
-                        text-align: left;
-                    }
-
-                    main
-                }
+    .about p {
+        font-size: 20px;
+        max-width: 520px;
+        text-align: left;
+    }
+}

@@ -30,6 +30,10 @@
     object-fit: cover;
     margin: 0 auto;
 }
+
+.iteam-icon {
+    fill: var(--color-scheme-1-text);
+}
 /* ---------- TABLET (768px) ---------- */
 @media (min-width: 768px) {
     .about {
@@ -105,4 +109,3 @@
         text-align: left;
     }
 }
-/* rty */

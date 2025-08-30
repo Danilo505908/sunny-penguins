@@ -21,7 +21,7 @@
 
   <title>ArtistsHub</title>
   <script type="module" crossorigin src="/sunny-penguins/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-HcBGUFw4.css">
+  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-BWz7VqqZ.css">
 </head>
 
 <body>
@@ -114,7 +114,48 @@
 </section>
 
     <!-- Feedback Section -->
-    
+    <section id="feedbacks" class="feedback-section">
+  <h2 class="visually-hidden">Feedbacks our visitors</h2>
+  <div class="swiper feedback-swiper">
+    <div class="swiper-wrapper" id="feedback-list">12345</div>
+    <!-- кнопки -->
+    <div class="message-cont">
+      <div class="message-wrap">
+        <button class="swiper-button-prev arrow" aria-label="Previous testimonial" type="button">
+          <svg width="14" height="14" aria-hidden="true">
+            <use href="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M8.70694%2012.2549L4.41394%207.96188H13.9999V5.96188H4.41394L8.70694%201.66888L7.29294%200.254883L0.585938%206.96188L7.29294%2013.6689L8.70694%2012.2549Z'%20fill='white'/%3e%3c/svg%3e"></use>
+          </svg>
+        </button>
+        <p class="message-text">
+          "ArtistsHub has transformed the way I discover new music. It's like
+          having a personal DJ that knows my taste perfectly!"
+        </p>
+        <button class="swiper-button-next arrow" aria-label="Next testimonial" type="button">
+          <svg width="14" height="14" aria-hidden="true">
+            <use href="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M5.293%2012.2549L6.707%2013.6689L13.414%206.96188L6.707%200.254883L5.293%201.66888L9.586%205.96188H0V7.96188H9.586L5.293%2012.2549Z'%20fill='white'/%3e%3c/svg%3e"></use>
+          </svg>
+        </button>
+      </div>
+      <p class="message-person">Emily Johnson</p>
+    </div>
+    <!-- пагінація -->
+    <div class="swiper-pagination" aria-label="Feedback pagination">123</div>
+  </div>
+</section>
+<!-- Loader -->
+<div id="loader" class="loader hidden"></div>
+
+<!-- feedbacks.forEach((fb, i) => {
+      const slide = document.createElement("div");
+      slide.classList.add("swiper-slide");
+      slide.innerHTML = `
+        <div class="feedback-card">
+          <div id="rating-${i}" class="feedback-rating"></div>
+          <p class="feedback-text">"${fb.text}"</p>
+          <p class="feedback-author">${fb.user}</p>
+        </div>
+      `;
+      feedbackList.appendChild(slide); -->
 
     <!-- Modal Section -->
     <!DOCTYPE html>

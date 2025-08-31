@@ -28,6 +28,14 @@
   color: #fff;
 
 }
+
+.footer-logo {
+  fill: #764191;;
+  width: 84px;
+  height: 36px;
+  margin-bottom: 32px;
+}
+
  .nav-box {
   display: flex;
   flex-direction: column;
@@ -118,6 +126,11 @@ line-height: 1.5;
   .footer {
     padding: 80px 32px;
   }
+  .footer-logo {
+  width: 116px;
+  height: 45px;
+  
+}
   .footer-nav {
     flex-direction: row;
       margin-bottom: 80px;
@@ -154,6 +167,12 @@ line-height: 1.5;
     padding: 80px 64px;
   
   }
+  .footer-logo {
+  
+  width: 116px;
+  height: 45px;
+  
+}
   .footer-nav {
     flex-direction: row;
     gap: 32px;

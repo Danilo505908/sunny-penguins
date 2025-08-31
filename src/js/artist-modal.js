@@ -15,6 +15,7 @@ async function renderArtistModal(artistId) {
   const modalClose = modalWindow.querySelector(".modal_close");
 
   try {
+    modalWindow.classList.remove("is_open");
     loaderOverlay.style.display = "flex";
 
     const res = await fetch(`https://sound-wave.b.goit.study/api/artists/${artistId}/albums`);
@@ -26,15 +27,20 @@ async function renderArtistModal(artistId) {
     const infoPs = modalWindow.querySelectorAll(".modal_basic_info li p");
     const bioEl = modalWindow.querySelector(".modal_text_biography");
     const genresList = modalWindow.querySelector(".genres");
-    const albumsContainer = modalWindow.querySelector(".albums_list");
+    const albumsContainer = modalWindow.querySelector(".albums_info ul");
 
     nameEl.textContent = data.strArtist ?? "Unknown artist";
     imgEl.src = data.strArtistThumb || "https://via.placeholder.com/300x300?text=No+Image";
     imgEl.alt = data.strArtist ?? "Artist";
 
-    infoPs[0].textContent = data.intFormedYear 
-      ? `${data.intFormedYear} - ${data.intDiedYear ?? "present"}`
-      : "information missing";
+    if (data.intFormedYear && data.intDiedYear) {
+      infoPs[0].textContent = `${data.intFormedYear} - ${data.intDiedYear}`;
+    } else if (data.intFormedYear) {
+      infoPs[0].textContent = `${data.intFormedYear} - present`;
+    } else {
+      infoPs[0].textContent = "information missing";
+    }
+
     infoPs[1].textContent = data.strGender || "Undefined";
     infoPs[2].textContent = data.intMembers || "?";
     infoPs[3].textContent = data.strCountry || "Undefined";
@@ -85,33 +91,32 @@ async function renderArtistModal(artistId) {
       albumsContainer.innerHTML = "<li>No albums found</li>";
     }
 
-    loaderOverlay.style.display = "none";
-
     modalWindow.classList.add("is_open");
     document.body.style.overflow = "hidden";
 
     function closeModal() {
       modalWindow.classList.remove("is_open");
-      document.body.style.overflow = "";
       document.removeEventListener("keydown", onEscPress);
       modalWindow.removeEventListener("click", onBackdropClick);
       modalClose.removeEventListener("click", closeModal);
+      document.body.style.overflow = "";
     }
+
+    modalClose.addEventListener("click", closeModal);
 
     function onBackdropClick(e) {
       if (!modalContent.contains(e.target)) closeModal();
     }
+    modalWindow.addEventListener("click", onBackdropClick);
 
     function onEscPress(e) {
       if (e.key === "Escape") closeModal();
     }
-
-    modalClose.addEventListener("click", closeModal);
-    modalWindow.addEventListener("click", onBackdropClick);
     document.addEventListener("keydown", onEscPress);
 
   } catch (err) {
     console.error("Помилка при завантаженні артиста:", err);
+  } finally {
     loaderOverlay.style.display = "none";
   }
 }

@@ -81,9 +81,6 @@
     border-radius: 16px;
     object-fit: cover;
 }
-.iteam-icon {
-    fill: #fff;
-}
 
 /* ---------- MOBILE (до 767px) ---------- */
 @media (max-width: 767px) {

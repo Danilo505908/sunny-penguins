@@ -1,35 +1,4 @@
-import{S as v,N as b,P as f,a as g,i as w}from"./assets/vendor-B3QObSWc.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))o(n);new MutationObserver(n=>{for(const a of n)if(a.type==="childList")for(const l of a.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&o(l)}).observe(document,{childList:!0,subtree:!0});function s(n){const a={};return n.integrity&&(a.integrity=n.integrity),n.referrerPolicy&&(a.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?a.credentials="include":n.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function o(n){if(n.ep)return;n.ep=!0;const a=s(n);fetch(n.href,a)}})();document.getElementById("loader-overlay");const z="https://sound-wave.b.goit.study/api/artists";let r=1;const u=8,x=document.getElementById("artists-list"),c=document.getElementById("load-more");async function y(e=1,t=8){try{c.textContent="Loading...";const s=await fetch(`${z}?page=${e}&limit=${t}`);if(!s.ok)throw new Error("Failed to fetch artists");const o=await s.json();console.log("API response:",o),Array.isArray(o.artists)?(M(o.artists),o.artists.length<t||e*t>=o.totalArtists?c.style.display="none":c.textContent="Load More"):console.error("Unexpected API structure:",o)}catch(s){console.error(s),alert("❌ Помилка завантаження артистів")}}function M(e){e.forEach(t=>{const s=document.createElement("div");s.classList.add("artist-card"),s.innerHTML=`
-      <img src="${t.photo}" alt="${t.name}" class="artist-photo" />
-      <div class="artist-content">
-        <h3 class="artist-name">${t.name}</h3>
-        <p class="artist-genres">${t.genres.join(", ")}</p>
-        <p class="artist-description">${t.description||"No description available"}</p>
-      </div>
-    `,x.appendChild(s)})}c.addEventListener("click",()=>{r++,y(r,u)});y(r,u);const B=`<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-
-        <symbol id="star-empty" viewBox="0 0 34 32">
-            <title>star-empty</title>
-            <path class="path-star-empty"
-                  d="M33.412 12.395l-11.842-1.021-4.628-10.904-4.628 10.92-11.842 1.005 8.993 7.791-2.701 11.579 10.179-6.144 10.179 6.144-2.685-11.579 8.976-7.791zM16.941 22.541l-6.193 3.739 1.647-7.049-5.468-4.744 7.214-0.626 2.8-6.638 2.816 6.654 7.214 0.626-5.468 4.744 1.647 7.049-6.209-3.755z"/>
-        </symbol>
-
-        <symbol id="star-half" viewBox="0 0 34 32">
-            <title>star-half</title>
-            <path class="path-star-half"
-                  d="M 33.412,12.395 21.57,11.374 16.942,0.47 12.314,11.39 0.472,12.395 9.465,20.186 6.764,31.765 16.943,25.621 27.122,31.765 24.437,20.186 33.413,12.395 Z M 16.941,22.541 c 0,0 -0.297971,-14.6455833 0,-15.318 l 2.816,6.654 7.214,0.626 -5.468,4.744 1.647,7.049 z"/>
-            </symbol>
-
-        <symbol id="star-filled" viewBox="0 0 34 32">
-            <title>star-filled</title>
-            <path class="path-star-filled"
-                  d="M16.941 25.621l10.179 6.144-2.701-11.579 8.993-7.791-11.842-1.005-4.628-10.92-4.628 10.92-11.842 1.005 8.993 7.791-2.701 11.579z"/>
-        </symbol>
-
-    </defs>
-</svg>
-`,L=`<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
   <defs>
     <symbol id="icon-caret-play" viewBox="0 0 31 32">
       <path d="M11.52 24.96 21.76 16 11.52 7.04v17.92z" />
@@ -110,21 +79,4 @@ import{S as v,N as b,P as f,a as g,i as w}from"./assets/vendor-B3QObSWc.js";(fun
         />
       </symbol>
     </defs>
-  </svg>`,d="star-rating-sprite";if(!document.getElementById(d)){const e=document.createElement("div");e.id=d,e.style.position="absolute",e.style.width="0",e.style.height="0",e.style.overflow="hidden",e.innerHTML=B,document.body.prepend(e)}const E="https://sound-wave.b.goit.study/api/feedbacks",m=document.querySelector(".swiper-wrapper"),p=document.getElementById("loader");let i=Number(localStorage.getItem("feedbackPage"))||1;function I(e){const t=Math.round(e),s=Array.from({length:5},(o,n)=>`
-      <svg class="star ${n<t?"filled":"empty"}" aria-hidden="true" width="20" height="20">
-        <use href="#star-filled"></use>
-      </svg>
-    `).join("");return`
-    <div class="rating star-svg value-${t}" aria-label="Rating ${t} out of 5">
-      <div class="star-container">${s}</div>
-    </div>
-  `}function C(e){return`
-    <div class="swiper-slide">
-      <div class="feedback-card">
-        ${I(e.rating)}
-        <p class="message-text">"${e.descr}"</p>
-        <p class="message-person">${e.name}</p>
-      </div>
-    </div>
-  `}async function S(e=1,t=10){p.style.display="block";try{const{data:s}=await g.get(E,{params:{page:e,limit:t}});return s.data}catch(s){return console.error("Error fetching feedbacks:",s),w.error({title:"Error",message:"Failed to load feedbacks"}),[]}finally{p.style.display="none"}}async function $(){const e=await S(i,10);if(!e.length){m.insertAdjacentHTML("beforeend","<p>No feedbacks found.</p>");return}m.innerHTML=e.map(C).join("");const t=new v(".swiper",{modules:[b,f],slidesPerView:1,autoHeight:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{el:".message-cont .swiper-pagination",clickable:!0,renderBullet:(s,o)=>s<3?`<span class="custom-bullet ${o}" data-index="${s}"></span>`:""}});t.on("slideChange",()=>{const s=t.slides.length,o=t.activeIndex,n=document.querySelectorAll(".custom-bullet");n.forEach(a=>a.classList.remove("swiper-pagination-bullet-active")),o===0?n[0].classList.add("swiper-pagination-bullet-active"):o===s-1?n[2].classList.add("swiper-pagination-bullet-active"):n[1].classList.add("swiper-pagination-bullet-active")}),document.addEventListener("click",s=>{const o=s.target.closest(".custom-bullet");if(!o)return;const n=t.slides.length;o.dataset.index==="0"?t.slideTo(0):o.dataset.index==="2"?t.slideTo(n-1):t.slideTo(1)}),i++,i>70&&(i=1),localStorage.setItem("feedbackPage",i)}$();const h="main-icon-sprite";if(!document.getElementById(h)){const e=document.createElement("div");e.id=h,e.style.position="absolute",e.style.width="0",e.style.height="0",e.style.overflow="hidden",e.innerHTML=L,document.body.prepend(e)}
-//# sourceMappingURL=index.js.map
+  </svg>

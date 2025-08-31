@@ -13,12 +13,12 @@
     background: var(--color-scheme-1-background);
     color: var(--color-scheme-1-text);
     padding: 112px 64px;
-    /* взято з modal-window */
-    margin: 0 auto;
     display: flex;
-    gap: 1px;
+    gap: 0;
     align-items: center;
-    fill: var(--color-white);
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
 }
 
 .about__container {
@@ -26,6 +26,8 @@
     grid-template-columns: 640px 1fr;
     align-items: center;
     gap: 64px;
+    width: 100%;
+    margin: 0;
 }
 
 .about__image img {
@@ -33,6 +35,7 @@
     width: 640px;
     height: 664px;
     object-fit: cover;
+    display: block;
 }
 
 .about__content {
@@ -77,19 +80,23 @@
     max-width: 288px;
     border-radius: 16px;
     object-fit: cover;
-    margin: 0 auto;
 }
 
 /* ---------- MOBILE (до 767px) ---------- */
 @media (max-width: 767px) {
     .about {
         padding: 24px;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
     }
 
     .about__container {
         display: flex;
         flex-direction: column;
         gap: 24px;
+        width: 100%;
+        margin: 0;
     }
 
     .about__image img,
@@ -116,11 +123,13 @@
 /* ---------- TABLET (768px+) ---------- */
 @media (min-width: 768px) {
     .about {
-        max-width: 768px;
-        margin: 0 auto;
+        max-width: 100%;
         padding: 32px 40px;
-        gap: 32px;
+        gap: 0;
         align-items: center;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
     }
 
     .about img {
@@ -148,8 +157,10 @@
 /* ---------- DESKTOP (1200px+) ---------- */
 @media (min-width: 1200px) {
     .about {
-        max-width: 1440px;
+        max-width: 100%;
         padding: 112px 64px;
+        margin: 0;
+        overflow: hidden;
     }
 
     .about__container {
@@ -157,11 +168,12 @@
         grid-template-columns: 640px 1fr;
         align-items: center;
         gap: 80px;
+        width: 100%;
+        margin: 0;
     }
 
     .about__image {
         order: 1;
-        /* лишаємо картинку першою */
     }
 
     .about__content {

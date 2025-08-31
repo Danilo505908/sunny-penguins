@@ -1,4 +1,3 @@
-// ===== Форматування мілісекунд у хв:сек =====
 function formatDuration(ms) {
   if (!ms || isNaN(ms)) return "—";
   const minutes = Math.floor(ms / 60000);
@@ -8,50 +7,35 @@ function formatDuration(ms) {
   return `${minutes}:${seconds}`;
 }
 
-// ===== Екранування HTML, щоб уникнути XSS =====
-function escapeHtml(str) {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
+const loaderOverlay = document.getElementById("loader-overlay");
 
-// ===== Основна функція для рендеру модального вікна =====
 async function renderArtistModal(artistId) {
+  const modalWindow = document.querySelector(".modal_window");
+  const modalContent = modalWindow.querySelector(".modal");
+  const modalClose = modalWindow.querySelector(".modal_close");
+
   try {
+    modalWindow.classList.remove("is_open");
+    loaderOverlay.style.display = "flex";
+
     const res = await fetch(`https://sound-wave.b.goit.study/api/artists/${artistId}/albums`);
     if (!res.ok) throw new Error(`Request failed: ${res.status}`);
     const data = await res.json();
 
-    const modalClose = document.querySelector(".modal_close");
-    const modalWindow = document.querySelector(".modal_window")
-    const nameEl = document.querySelector(".modal_artist");
-    const imgEl = document.querySelector(".modal_content img");
-    const infoPs = document.querySelectorAll(".modal_basic_info li p");
-    const bioEl = document.querySelector(".modal_text_biography");
-    const genresList = document.querySelector(".genres");
-    const albumsContainer = document.querySelector(".albums_info ul");
+    const nameEl = modalWindow.querySelector(".modal_artist");
+    const imgEl = modalWindow.querySelector(".modal_content img");
+    const infoPs = modalWindow.querySelectorAll(".modal_basic_info li p");
+    const bioEl = modalWindow.querySelector(".modal_text_biography");
+    const genresList = modalWindow.querySelector(".genres");
+    const albumsContainer = modalWindow.querySelector(".albums_info ul");
 
-    // ===== Закриття модалки =====
-    function closeModal(e) {
-      e.preventDefault();
-      modalWindow.classList.remove("is-open");
-      modalWindow.remove();
-      modalClose.removeEventListener("click", closeModal);
-    }
-    modalClose.addEventListener("click", closeModal);
-
-    // ===== Основна інформація =====
     nameEl.textContent = data.strArtist ?? "Unknown artist";
     imgEl.src = data.strArtistThumb || "https://via.placeholder.com/300x300?text=No+Image";
     imgEl.alt = data.strArtist ?? "Artist";
 
-    // ===== Роки існування =====
     if (data.intFormedYear && data.intDiedYear) {
       infoPs[0].textContent = `${data.intFormedYear} - ${data.intDiedYear}`;
-    } else if (data.intFormedYear && !data.intDiedYear) {
+    } else if (data.intFormedYear) {
       infoPs[0].textContent = `${data.intFormedYear} - present`;
     } else {
       infoPs[0].textContent = "information missing";
@@ -63,12 +47,10 @@ async function renderArtistModal(artistId) {
 
     bioEl.textContent = data.strBiographyEN || "No biography available.";
 
-    // ===== Жанри =====
     genresList.innerHTML = Array.isArray(data.genres) && data.genres.length
-      ? data.genres.map(g => `<li>${escapeHtml(g)}</li>`).join("")
+      ? data.genres.map(g => `<li>${g}</li>`).join("")
       : "<li>Unknown</li>";
 
-    // ===== Альбоми =====
     albumsContainer.innerHTML = "";
     if (Array.isArray(data.albumsList) && data.albumsList.length) {
       data.albumsList.forEach(album => {
@@ -81,20 +63,18 @@ async function renderArtistModal(artistId) {
                  </svg>
                </a>`
             : "";
-
           return `
             <tr>
-              <td>${escapeHtml(track.strTrack || "")}</td>
+              <td>${track.strTrack || ""}</td>
               <td>${formatDuration(Number(track.intDuration))}</td>
               <td>${playButton}</td>
-            </tr>
-          `;
+            </tr>`;
         }).join("");
 
         const tableHTML = `
           <li>
             <table>
-              <caption>${escapeHtml(album.strAlbum || "Album")}${album.intYearReleased ? ` (${album.intYearReleased})` : ""}</caption>
+              <caption>${album.strAlbum || "Album"}${album.intYearReleased ? ` (${album.intYearReleased})` : ""}</caption>
               <thead>
                 <tr class="album_columns">
                   <th>Track</th>
@@ -104,25 +84,50 @@ async function renderArtistModal(artistId) {
               </thead>
               <tbody>${rows}</tbody>
             </table>
-          </li>
-        `;
+          </li>`;
         albumsContainer.insertAdjacentHTML("beforeend", tableHTML);
       });
     } else {
       albumsContainer.innerHTML = "<li>No albums found</li>";
     }
 
+    modalWindow.classList.add("is_open");
+    document.body.style.overflow = "hidden";
+
+    function closeModal() {
+      modalWindow.classList.remove("is_open");
+      document.removeEventListener("keydown", onEscPress);
+      modalWindow.removeEventListener("click", onBackdropClick);
+      modalClose.removeEventListener("click", closeModal);
+      document.body.style.overflow = "";
+    }
+
+    modalClose.addEventListener("click", closeModal);
+
+    function onBackdropClick(e) {
+      if (!modalContent.contains(e.target)) closeModal();
+    }
+    modalWindow.addEventListener("click", onBackdropClick);
+
+    function onEscPress(e) {
+      if (e.key === "Escape") closeModal();
+    }
+    document.addEventListener("keydown", onEscPress);
+
   } catch (err) {
     console.error("Помилка при завантаженні артиста:", err);
+  } finally {
+    loaderOverlay.style.display = "none";
   }
 }
 
-// ===== Виклик функції це просто приклад для наочності =====
+/* Приклад виклику
 document.addEventListener("DOMContentLoaded", () => {
-  renderArtistModal("65ada227af9f6d155db46908"); // замінити на потрібний ID артиста
+  renderArtistModal("65ada227af9f6d155db46908");
 });
 
 /*
 кнопка.addEventListener('click', () => {
   renderArtistModal("треба сюди передати айді"); 
+});
 */

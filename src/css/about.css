@@ -10,8 +10,14 @@
 }
 
 .about {
-    background: var(--color-neutral-darkest);
-    padding: 112px 64px;
+    background: var(--color-scheme-1-background);
+    color: var(--color-scheme-1-text);
+    padding: 112px 64px; /* взято з modal-window */
+    margin: 0 auto;
+    display: flex;
+    gap: 1px;
+    align-items: center;
+    fill: var(--color-white);
 }
 
 .about__container {
@@ -35,17 +41,14 @@
 
 .about__logo {
     margin-bottom: 23px;
-    display: flex;
-    gap: 1px;
-    align-items: center;
-    fill: var(--color-white);
 }
 
 .about__logo svg {
     fill: var(--color-white);
 }
 
-.about__title {
+.about__title,
+.about h2 {
     font-family: var(--font-family);
     font-weight: 700;
     font-size: 60px;
@@ -53,18 +56,31 @@
     letter-spacing: -0.01em;
     margin-bottom: 24px;
     color: var(--color-white);
+    text-align: left;
 }
 
-.about__text {
+.about__text,
+.about p {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 20px;
     line-height: 150%;
     color: var(--color-white);
     max-width: 640px;
+    text-align: left;
 }
 
-/* Mobile */
+.about__image img,
+.about img {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+/* ---------- MOBILE (до 767px) ---------- */
 @media (max-width: 767px) {
     .about {
         padding: 24px;
@@ -76,56 +92,65 @@
         gap: 24px;
     }
 
-    .about__image img {
+    .about__image img,
+    .about img {
         width: 288px;
         height: 169px;
     }
 
-    .about__title {
+    .about__title,
+    .about h2 {
         font-size: 40px;
         line-height: 130%;
         max-width: 288px;
+        text-align: center;
     }
 
-    .about__text {
+    .about__text,
+    .about p {
         font-size: 18px;
+        text-align: center;
     }
 }
 
-/* Tablet */
+/* ---------- TABLET (768px+) ---------- */
 @media (min-width: 768px) {
     .about {
-        padding: 24px;
-    }
-
-    .about__container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        max-width: 768px;
+        margin: 0 auto;
+        padding: 32px 40px;
         gap: 32px;
+        align-items: center;
     }
 
-    .about__image img {
-        width: 704px;
-        height: 413px;
+    .about__image img,
+    .about img {
+        max-width: 704px;
+        border-radius: 24px;
+        height: auto;
     }
 
-    .about__title {
-        font-weight: 700;
+    .about__title,
+    .about h2 {
         font-size: 44px;
         line-height: 120%;
         letter-spacing: -0.01em;
+        text-align: center;
     }
 
-    .about__text {
+    .about__text,
+    .about p {
         font-size: 20px;
         max-width: 704px;
+        text-align: center;
     }
 }
 
-/* Desktop */
+/* ---------- DESKTOP (1200px+) ---------- */
 @media (min-width: 1200px) {
     .about {
+        max-width: 1440px;
+        margin: 0 auto;
         padding: 112px 64px;
     }
 
@@ -133,6 +158,33 @@
         display: grid;
         grid-template-columns: 640px 1fr;
         align-items: center;
-        gap: 64px;
+        gap: 80px;
+    }
+
+    .about__image {
+        order: 1; /* картинка перша */
+    }
+
+    .about__content {
+        order: 2;
+        text-align: left;
+    }
+
+    .about__image img,
+    .about img {
+        max-width: 640px;
+        border-radius: 24px;
+    }
+
+    .about__title,
+    .about h2 {
+        font-size: 60px;
+        text-align: left;
+    }
+
+    .about__text,
+    .about p {
+        max-width: 520px;
+        text-align: left;
     }
 }

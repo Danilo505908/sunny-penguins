@@ -11,7 +11,6 @@ const BASE_URL = 'https://sound-wave.b.goit.study/api/feedbacks';
 const container = document.querySelector('.swiper-wrapper');
 const loader = document.getElementById('loader');
 
-
 let pageCounter = Math.floor(Math.random() * 500) + 1;
 
 export async function fetchFeedbacks(page, limit = 10) {
@@ -116,4 +115,6 @@ async function renderFeedbacks() {
 }
 
 renderFeedbacks();
+
+
 

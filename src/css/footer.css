@@ -26,16 +26,17 @@
   padding-bottom: 48px;
   font-family: "IBM Plex Sans", sans-serif;
   color: #fff;
-
 }
- .nav-box {
+
+.nav-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
- }
- .nav-box::after {
+}
+
+.nav-box::after {
   display: block;
   content: '';
   position: absolute;
@@ -44,7 +45,11 @@
   transform: translateX(-50%);
   width: 100%;
   height: 1px;
-  background:  rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+  margin-bottom: 24px;
+
+}
+
 .footer-nav {
   display: flex;
   flex-wrap: wrap;
@@ -52,9 +57,11 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
+
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;
+
   margin-bottom: 48px;
 }
 
@@ -62,6 +69,7 @@
   position: relative;
   text-decoration: none;
   color: white;
+
 }
 
 .footer-nav-link::after {
@@ -81,11 +89,11 @@
 
 .socials-box {
   display: flex;
+
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  margin-top: 32px;
   margin-bottom: 32px;
 }
 
@@ -96,21 +104,23 @@
 
 .footer-socials-icon {
   fill: white;
-  transition: 200ms ease;
-  cursor: pointer;
+
 }
 
 .footer-socials-icon:hover,
 .footer-socials-icon:focus {
   fill: #764191;
+  transition: 200ms ease;
+  cursor: pointer;
 }
 
 .copyright {
   margin-top: 32px;
   font-weight: 400;
   font-size: 16px;
+
   line-height: 1.5;
-  text-align: center;
+
 }
 
 @media screen and (min-width: 768px) {
@@ -130,6 +140,8 @@
   .socials-box {
     flex-direction: row-reverse;
     justify-content: space-between;
+
+
   }
 
   .footer-socials {
@@ -148,17 +160,21 @@
 
   .copyright {
     text-align: left;
+
   }
+
 }
 
 @media screen and (min-width: 1440px) {
   .footer {
     padding: 80px 64px;
+
   }
 
   .footer-nav {
     flex-direction: row;
     gap: 32px;
+
   }
 
   .socials-box {

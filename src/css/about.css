@@ -12,7 +12,8 @@
 .about {
     background: var(--color-scheme-1-background);
     color: var(--color-scheme-1-text);
-    padding: 112px 64px; /* взято з modal-window */
+    padding: 112px 64px;
+    /* взято з modal-window */
     margin: 0 auto;
     display: flex;
     gap: 1px;
@@ -70,11 +71,10 @@
     text-align: left;
 }
 
-.about__image img,
 .about img {
     width: 100%;
-    max-width: 640px;
-    height: auto;
+    fill: var(--color-scheme-1-text);
+    max-width: 288px;
     border-radius: 16px;
     object-fit: cover;
     margin: 0 auto;
@@ -123,7 +123,6 @@
         align-items: center;
     }
 
-    .about__image img,
     .about img {
         max-width: 704px;
         border-radius: 24px;
@@ -150,7 +149,6 @@
 @media (min-width: 1200px) {
     .about {
         max-width: 1440px;
-        margin: 0 auto;
         padding: 112px 64px;
     }
 
@@ -162,7 +160,8 @@
     }
 
     .about__image {
-        order: 1; /* картинка перша */
+        order: 1;
+        /* лишаємо картинку першою */
     }
 
     .about__content {
@@ -170,7 +169,6 @@
         text-align: left;
     }
 
-    .about__image img,
     .about img {
         max-width: 640px;
         border-radius: 24px;

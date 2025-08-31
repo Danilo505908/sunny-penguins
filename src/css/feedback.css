@@ -1,13 +1,12 @@
-.feedback-section .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
+.custom-bullet {
+  background: #fff !important;
+  opacity: 0.5;
+  margin: 0 6px !important;
+}
+
+.custom-bullet.swiper-pagination-bullet-active {
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 #loader {
@@ -209,71 +208,4 @@
     transform: none;
     margin-top: 32px;
   }
-}
-
-.swiper-button-disabled {
-  opacity: 0.35;
-  pointer-events: none;
-  cursor: default;
-}
-
-.rating .star-container {
-  display: inline-flex;
-  gap: 4px;
-}
-
-.rating.star-svg svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.feedback-card .rating {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
-}
-
-.rating.star-svg .star {
-  width: 20px;
-  height: 20px;
-  display: block;
-}
-
-/* кольори */
-.rating.star-svg .star.filled use {
-  fill: var(--color-accent, #6e43ff);
-}
-
-.rating.star-svg .star.empty use {
-  fill: var(--color-scheme-1-text);
-  stroke: none;
-  opacity: 1;
-}
-
-.feedback-swiper .swiper-pagination,
-.feedback-swiper .swiper-horizontal > .swiper-pagination-bullets,
-.feedback-swiper .swiper-pagination-bullets.swiper-pagination-horizontal {
-  position: static !important;
-  inset: auto !important;
-  transform: none !important;
-  width: auto !important;
-  margin: 0 !important;
-  display: flex !important;
-  justify-content: center !important;
-}
-
-.feedback-swiper .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  margin: 0 6px !important;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.28);
-  opacity: 1;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.feedback-swiper .swiper-pagination-bullet-active {
-  background: var(--color-scheme-1-text); /* активна — чисто біла */
-  transform: none;
 }

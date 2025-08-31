@@ -2,8 +2,7 @@ import axios from 'axios';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
-
-//import 'swiper/css/navigation';
+import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -12,9 +11,10 @@ const BASE_URL = 'https://sound-wave.b.goit.study/api/feedbacks';
 const container = document.querySelector('.swiper-wrapper');
 const loader = document.getElementById('loader');
 
-let pageCounter = Number(localStorage.getItem('feedbackPage')) || 1;
 
-export async function fetchFeedbacks(page = 1, limit = 10) {
+let pageCounter = Math.floor(Math.random() * 500) + 1;
+
+export async function fetchFeedbacks(page, limit = 10) {
   loader.style.display = 'block';
 
   try {
@@ -64,64 +64,56 @@ async function renderFeedbacks() {
 
   container.innerHTML = feedbacks.map(createSlide).join('');
 
-  
-const swiper = new Swiper('.swiper', {
-  modules: [Navigation, Pagination],
-  slidesPerView: 1,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-    renderBullet: (index, className) => {
-      
-      if (index === 0 || index === 1 || index === 2) {
-        return `<span class="${className} custom-bullet" data-index="${index}"></span>`;
-      }
-      return '';
+  const swiper = new Swiper('.swiper', {
+    modules: [Navigation, Pagination],
+    slidesPerView: 1,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     },
-  },
-});
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      renderBullet: (index, className) => {
+        if (index === 0 || index === 1 || index === 2) {
+          return `<span class="${className} custom-bullet" data-index="${index}"></span>`;
+        }
+        return '';
+      },
+    },
+  });
 
+  swiper.on('slideChange', () => {
+    const totalSlides = swiper.slides.length;
+    const activeIndex = swiper.activeIndex;
 
-swiper.on('slideChange', () => {
-  const totalSlides = swiper.slides.length;
-  const activeIndex = swiper.activeIndex;
+    const bullets = document.querySelectorAll('.custom-bullet');
+    bullets.forEach(b => b.classList.remove('swiper-pagination-bullet-active'));
 
-  const bullets = document.querySelectorAll('.custom-bullet');
-  bullets.forEach(b => b.classList.remove('swiper-pagination-bullet-active'));
+    if (activeIndex === 0) {
+      bullets[0].classList.add('swiper-pagination-bullet-active');
+    } else if (activeIndex === totalSlides - 1) {
+      bullets[2].classList.add('swiper-pagination-bullet-active');
+    } else {
+      bullets[1].classList.add('swiper-pagination-bullet-active');
+    }
+  });
 
-  if (activeIndex === 0) {
-    bullets[0].classList.add('swiper-pagination-bullet-active');
-  } else if (activeIndex === totalSlides - 1) {
-    bullets[2].classList.add('swiper-pagination-bullet-active');
-  } else {
-    bullets[1].classList.add('swiper-pagination-bullet-active');
-  }
-});
+  document.addEventListener('click', e => {
+    const bullet = e.target.closest('.custom-bullet');
+    if (!bullet) return;
 
+    const totalSlides = swiper.slides.length;
 
-document.addEventListener('click', e => {
-  const bullet = e.target.closest('.custom-bullet');
-  if (!bullet) return;
-
-  const totalSlides = swiper.slides.length;
-
-  if (bullet.dataset.index === '0') {
-    swiper.slideTo(0); 
-  } else if (bullet.dataset.index === '2') {
-    swiper.slideTo(totalSlides - 1); 
-  } else {
-    swiper.slideTo(1); 
-  }
-});
-  pageCounter++;
-  if (pageCounter > 70) {
-    pageCounter = 1;
-  }
-  localStorage.setItem('feedbackPage', pageCounter);
+    if (bullet.dataset.index === '0') {
+      swiper.slideTo(0);
+    } else if (bullet.dataset.index === '2') {
+      swiper.slideTo(totalSlides - 1);
+    } else {
+      swiper.slideTo(1);
+    }
+  });
 }
 
 renderFeedbacks();
+

@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/sunny-penguins/assets/favicon-BpxdQZBh.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/sunny-penguins/assets/favicon-BpxdQZBh.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Epilogue:wght@700&family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Epilogue:wght@700&family=Roboto:wght@700&display=swap"
-    rel="stylesheet" />
+    <!-- Normalize -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
+      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
+    <title>ArtistsHub</title>
 
-  <!-- Normalize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
-    integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="module" crossorigin src="/sunny-penguins/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/sunny-penguins/assets/vendor-cotWbADi.js">
+    <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/vendor-B1-dZGZP.css">
+    <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-DTRXtsSr.css">
+  </head>
 
-  <title>ArtistsHub</title>
+  <body>
+    <!-- Header -->
+    
 
-  <script type="module" crossorigin src="/sunny-penguins/index.js"></script>
-  <link rel="modulepreload" crossorigin href="/sunny-penguins/assets/vendor-cotWbADi.js">
-  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/vendor-B1-dZGZP.css">
-  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-Tky8MCtq.css">
-</head>
-
-<body>
-  <!-- Header -->
-  
-
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
     <div class="hero-container">
         <!-- Лівий блок -->
         <div class="hero-content">
@@ -50,7 +53,7 @@
             <button class="hero-btn">
                 Explore Artists
                 <svg class="btn-icon" width="15" height="20">
-                    <use xlink:href="/sunny-penguins/assets/sprite-iRYGLujh.svg#icon-play"></use>
+                    <use xlink:href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-play"></use>
                 </svg>
             </button>
         </div>
@@ -67,49 +70,64 @@
     </div>
 </section>
 
-    <!-- Artists Section -->
-    
+      <!-- Artists Section -->
+      <section class="artists-section" id="artists">
+  <div class="container">
+    <h2 class="artists-title">Artists</h2>
+    <p class="artists-subtitle">Explore Your New Favorite Artists</p>
 
-    <!-- About Us Section -->
-    <section class="about">
-    <div class="about__container">
-        <!-- Фото -->
-        <picture class="about__image">
-            <!-- Мобільна версія -->
-            <source srcset="/sunny-penguins/assets/about-m@1x-CIJ5XWWM.png 1x, /sunny-penguins/assets/about-m@2x-BhGrRB9i.png 2x" media="(max-width: 767px)">
-        
-            <!-- Планшетна версія -->
-            <source srcset="/sunny-penguins/assets/about-t@1x-BWkWEotF.png 1x, /sunny-penguins/assets/about-t@2x-DHDUpvv5.png 2x" media="(min-width: 768px) and (max-width: 1439px)">
-        
-            <!-- Десктопна версія -->
-            <source srcset="/sunny-penguins/assets/about@1x-C1Aij-Oz.png 1x, /sunny-penguins/assets/about@2x-54rF9P6O.png 2x" media="(min-width: 1440px)">
-        
-            <!-- fallback -->
-            <img src="/sunny-penguins/assets/about@1x-C1Aij-Oz.png" alt="team">
-        </picture>
-        <!-- Контент -->
-        <div class="about__content">
-            <div class="about__logo">
-                    <svg class="img iteam-icon" width="80" height="80">
-                        <use href="/sunny-penguins/assets/sprite-iRYGLujh.svg#icon-logo-icon">
-                        </use>
-                    </svg>
-            </div>
-            <h2 class="about__title">About ArtistsHub</h2>
-            <p class="about__text">
-                At ArtistsHub, our mission is to connect music lovers with the artists they adore.
-                We strive to create a vibrant community where discovering new music
-                is as enjoyable as listening to it.
-            </p>
-        </div>
+    <div id="artists-list" class="artists-grid"></div>
+
+    <div class="load-more-wrapper">
+      <button id="load-more" class="load-more-btn">
+        Load More
+        <img src="./images/down-arrow-alt.svg" alt="arrow" class="btn-icon" />
+      </button>
     </div>
+  </div>
 </section>
-<!-- yt -->
-<!-- JS підключення -->
-<script src="js/about.js"></script>
 
-    <!-- Feedback Section -->
-    <section id="feedbacks" class="feedback-section">
+
+      <!-- About Us Section -->
+      <section class="about">
+  <div class="about__container">
+    <!-- Фото -->
+    <picture class="about__image">
+      <!-- Мобільна версія -->
+      <source srcset="/sunny-penguins/assets/about-m@1x-CIJ5XWWM.png 1x, /sunny-penguins/assets/about-m@2x-BhGrRB9i.png 2x" media="(max-width: 767px)">
+
+      <!-- Планшетна версія -->
+      <source srcset="/sunny-penguins/assets/about-t@1x-BWkWEotF.png 1x, /sunny-penguins/assets/about-t@2x-DHDUpvv5.png 2x" media="(min-width: 768px) and (max-width: 1439px)">
+
+      <!-- Десктопна версія -->
+      <source srcset="/sunny-penguins/assets/about@1x-C1Aij-Oz.png 1x, /sunny-penguins/assets/about@2x-54rF9P6O.png 2x" media="(min-width: 1440px)">
+
+      <!-- fallback -->
+      <img src="/sunny-penguins/assets/about@1x-C1Aij-Oz.png" alt="team">
+    </picture>
+    <!-- Контент -->
+    <div class="about__content">
+      <div class="about__logo">
+        <svg class="img iteam-icon" width="80" height="80">
+          <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-logo-icon">
+          </use>
+        </svg>
+      </div>
+      <h2 class="about__title">About ArtistsHub</h2>
+      <p class="about__text">
+        At ArtistsHub, our mission is to connect music lovers with the artists they adore.
+        We strive to create a vibrant community where discovering new music
+        is as enjoyable as listening to it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- JS підключення -->
+<script src="./js/about.js"></script>
+
+      <!-- Feedback Section -->
+      <section id="feedbacks" class="feedback-section">
   <h2 class="visually-hidden">Feedbacks our visitors</h2>
   <div id="loader"></div>
   <div class="swiper feedback-swiper">
@@ -181,8 +199,8 @@
       `;
       feedbackList.appendChild(slide); -->
 
-    <!-- Modal Section -->
-    <!DOCTYPE html>
+      <!-- Modal Section -->
+      <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -196,6 +214,9 @@
 </head>
 
 <body>
+    <div id="loader-overlay">
+        <div id="loader"></div>
+    </div>
     <div class="modal_window">
         <div class="modal">
             <button class="modal_close" type="button">
@@ -250,63 +271,64 @@
 </body>
 
 </html>
-  </main>
+    </main>
 
-  <!-- Footer -->
-  <footer class="footer" id="footer">
-
-    <div class="nav-box">
-        <svg class="footer-socials-icon" width="116" height="45">
-                <use href="/sunny-penguins/assets/sprite-iRYGLujh.svg#icon-logo"></use>
-              </svg>
-        <ul class="footer-nav">
-    <li><a href="#artists" class="footer-nav-link">Artists</a></li>
-    <li><a href="#about" class="footer-nav-link">About us</a></li>
-    <li><a href="#feedback" class="footer-nav-link">Reviews</a></li>
-  </ul>
-</div>
-
-<div class="socials-box">
-    <ul class="footer-socials">
-        <li class="footer-socials-item"><a class="footer-socials-link"
-              href="https://www.instagram.com/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-            <svg class="footer-socials-icon" width="40" height="40">
-                <use href="/sunny-penguins/assets/sprite-iRYGLujh.svg#icon-Instagram"></use>
-              </svg>
-        </a>
-        </li>
-        <li class="footer-socials-item"> <a class="footer-socials-link"
-              
-              href="https://www.facebook.com/"
-              rel="noopener noreferrer"
-              target="_blank"
-            ><svg class="footer-socials-icon" width="40" height="40">
-                <use href="/sunny-penguins/assets/sprite-iRYGLujh.svg#icon-Facebook"></use>
-              </svg>
-        </a>
-        </li>
-        <li class="footer-socials-item"><a
-              class="footer-socials-link"
-              href="https://www.youtube.com/"
-              rel="noopener noreferrer"
-              target="_blank"
-            ><svg class="footer-socials-icon" width="40" height="40">
-                <use href="/sunny-penguins/assets/sprite-iRYGLujh.svg#icon-Youtube"></use>
-              </svg>
-        </a>
-        
-        </li>
-        
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+  <div class="nav-box">
+    <svg class="footer-socials-icon" width="116" height="45">
+      <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-logo"></use>
+    </svg>
+    <ul class="footer-nav">
+      <li><a href="#artists" class="footer-nav-link">Artists</a></li>
+      <li><a href="#about" class="footer-nav-link">About us</a></li>
+      <li><a href="#feedback" class="footer-nav-link">Reviews</a></li>
     </ul>
-   <p class="copyright">&copy; 2025 ArtistsHub. All rights reserved.</p> 
-</div>
-    
+  </div>
+
+  <div class="socials-box">
+    <ul class="footer-socials">
+      <li class="footer-socials-item">
+        <a
+          class="footer-socials-link"
+          href="https://www.instagram.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg class="footer-socials-icon" width="40" height="40">
+            <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-Instagram"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="footer-socials-item">
+        <a
+          class="footer-socials-link"
+          href="https://www.facebook.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg class="footer-socials-icon" width="40" height="40">
+            <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-Facebook"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="footer-socials-item">
+        <a
+          class="footer-socials-link"
+          href="https://www.youtube.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg class="footer-socials-icon" width="40" height="40">
+            <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-Youtube"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
+    <p class="copyright">&copy; 2025 ArtistsHub. All rights reserved.</p>
+  </div>
 </footer>
 
-  <!-- Scripts -->
-</body>
-
+    <!-- Scripts -->
+  </body>
 </html>

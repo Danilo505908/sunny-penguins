@@ -31,7 +31,16 @@
      width: 600px;
      height: 297px;
  }
+.custom-bullet {
+    background: #fff !important;
+    opacity: 0.5;
+    margin: 0 6px !important;
+}
 
+.custom-bullet.swiper-pagination-bullet-active {
+    opacity: 1;
+    transform: scale(1.2);
+}
 
 
         

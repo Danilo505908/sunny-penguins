@@ -64,44 +64,59 @@ async function renderFeedbacks() {
 
   container.innerHTML = feedbacks.map(createSlide).join('');
 
-  const swiper = new Swiper('.swiper', {
-    modules: [Navigation, Pagination],
-    slidesPerView: 1,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+  
+const swiper = new Swiper('.swiper', {
+  modules: [Navigation, Pagination],
+  slidesPerView: 1,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+    renderBullet: (index, className) => {
+      
+      if (index === 0 || index === 1 || index === 2) {
+        return `<span class="${className} custom-bullet" data-index="${index}"></span>`;
+      }
+      return '';
     },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      renderBullet: (index, className) => {
-        
-        if (index < 3) {
-          return `<span class="${className}"></span>`;
-        }
-        return '';
-      },
-    },
-  });
+  },
+});
 
-  swiper.on('slideChange', function () {
-    const activeSlide = swiper.activeIndex + 1;
-    let bulletIndex = 0;
 
-    if (activeSlide >= 1 && activeSlide <= 4) bulletIndex = 0;
-    else if (activeSlide >= 5 && activeSlide <= 9) bulletIndex = 1;
-    else bulletIndex = 2;
+swiper.on('slideChange', () => {
+  const totalSlides = swiper.slides.length;
+  const activeIndex = swiper.activeIndex;
 
-    document
-      .querySelectorAll('.swiper-pagination-bullet')
-      .forEach(b => b.classList.remove('swiper-pagination-bullet-active'));
+  const bullets = document.querySelectorAll('.custom-bullet');
+  bullets.forEach(b => b.classList.remove('swiper-pagination-bullet-active'));
 
-    const bullets = document.querySelectorAll('.swiper-pagination-bullet');
-    if (bullets[bulletIndex]) {
-      bullets[bulletIndex].classList.add('swiper-pagination-bullet-active');
-    }
-  });
+  if (activeIndex === 0) {
+    bullets[0].classList.add('swiper-pagination-bullet-active');
+  } else if (activeIndex === totalSlides - 1) {
+    bullets[2].classList.add('swiper-pagination-bullet-active');
+  } else {
+    bullets[1].classList.add('swiper-pagination-bullet-active');
+  }
+});
 
+
+document.addEventListener('click', e => {
+  const bullet = e.target.closest('.custom-bullet');
+  if (!bullet) return;
+
+  const totalSlides = swiper.slides.length;
+
+  if (bullet.dataset.index === '0') {
+    swiper.slideTo(0); 
+  } else if (bullet.dataset.index === '2') {
+    swiper.slideTo(totalSlides - 1); 
+  } else {
+    swiper.slideTo(1); 
+  }
+});
   pageCounter++;
   if (pageCounter > 70) {
     pageCounter = 1;

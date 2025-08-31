@@ -1,59 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./img/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="./img/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Epilogue:wght@700&family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Epilogue:wght@700&family=Roboto:wght@700&display=swap"
-    rel="stylesheet" />
+    <!-- Normalize -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
+      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
+    <title>ArtistsHub</title>
 
-  <!-- Normalize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
-    integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/artists.css" />
+  </head>
 
-  <title>ArtistsHub</title>
-  <link rel="stylesheet" href="./css/styles.css" />
-  
-</head>
+  <body>
+    <!-- Header -->
+    <load src="./partials/header.html" />
 
-<body>
-  <!-- Header -->
-  <load src="./partials/header.html" />
+    <main>
+      <!-- Hero Section -->
+      <load src="./partials/hero.html" />
 
-  <main>
-    <!-- Hero Section -->
-    <load src="./partials/hero.html" />
+      <!-- Artists Section -->
+      <load src="./partials/artists.html" />
 
-    <!-- Artists Section -->
-    <load src="./partials/artists.html" />
+      <!-- About Us Section -->
+      <load src="./partials/about.html" />
 
-    <!-- About Us Section -->
-    <load src="./partials/about.html" />
+      <!-- Feedback Section -->
+      <load src="./partials/feedback.html" />
 
-    <!-- Feedback Section -->
-    <load src="./partials/feedback.html" />
+      <!-- Modal Section -->
+      <load src="./partials/artist-modal.html" />
+    </main>
 
-    <!-- Modal Section -->
-    <load src="./partials/artist-modal.html" />
-  </main>
+    <!-- Footer -->
+    <load src="./partials/footer.html" />
 
-  <!-- Footer -->
-  <load src="./partials/footer.html" />
-
-  <!-- Scripts -->
- feedbackSection
-  <script type="module" src="main.js"></script>
-
-  <script type="module" src="./main.js"></script>
- main
-</body>
-
+    <!-- Scripts -->
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>

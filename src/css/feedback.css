@@ -1,12 +1,13 @@
-.custom-bullet {
-  background: #fff !important;
-  opacity: 0.5;
-  margin: 0 6px !important;
-}
-
-.custom-bullet.swiper-pagination-bullet-active {
-  opacity: 1;
-  transform: scale(1.2);
+.feedback-section .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 #loader {

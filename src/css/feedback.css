@@ -27,27 +27,10 @@
   }
 }
 
-.swiper {
-  width: 600px;
-  height: 297px;
-}
-
 .feedback-section {
   background: var(--color-neutral-darkest);
   color: var(--color-white);
   padding: 64px 16px;
-}
-
-.visually-hidden {
-  position: absolute !important;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 1px, 1px);
-  white-space: nowrap;
-  border: 0;
 }
 
 .feedback-swiper {
@@ -55,18 +38,32 @@
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 1312px;
+}
+
+.feedback-card {
+  max-width: 518px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .swiper-wrapper {
   height: auto;
-  margin-bottom: 32px;
+  margin-bottom: 0;
 }
 
 .message-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16px;
+  width: 100%;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
 }
 
 .swiper-button-next,
@@ -82,18 +79,21 @@
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  /* color: white; */
+  color: var(--color-scheme-1-text);
 }
 
 .arrow {
   display: none;
 }
 
-.message-wrap {
-  display: flex;
-  gap: 44px;
-  align-items: center;
-  margin-bottom: 32px;
+.arrow svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  pointer-events: none;
+}
+.arrow svg use {
+  fill: var(--color-scheme-1-text);
 }
 
 .message-text,
@@ -107,50 +107,173 @@
   color: var(--color-scheme-1-text);
 }
 
+.message-text {
+  margin: 0 0 32px;
+}
+
+.feedback-card .message-person {
+  margin: 0 0 16px;
+}
+
+.message-cont .message-text,
+.message-cont .message-person {
+  margin: 0 !important;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+  overflow: hidden;
+}
+
+.feedback-swiper .swiper-pagination {
+  position: static !important;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .feedback-section {
     padding: 64px 32px;
-  }
-
-  .feedback-swiper {
-    max-width: 768px;
   }
 
   .arrow {
     display: flex;
   }
 
+  .feedback-card {
+    max-width: 518px;
+  }
+
   .message-text {
     font-size: 26px;
+    max-width: 518px;
   }
 
   .message-person {
     font-weight: 600;
     line-height: 1.5;
   }
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: auto;
+    z-index: 10;
+  }
+
+  .swiper-button-prev {
+    left: 0;
+  }
+  .swiper-button-next {
+    right: 0;
+  }
 }
 
 /* Styles for Desktop devices */
 @media only screen and (min-width: 1440px) {
-  .feedback-swiper {
-    max-width: 1440px;
-  }
-
   .feedback-section {
     padding: 112px 64px;
+  }
+
+  .feedback-card {
+    max-width: 100%;
+    padding: 0;
   }
 
   .message-text {
     font-size: 32px;
     line-height: 1.3;
+    max-width: 866px;
+    margin: 0 auto 32px;
   }
 
-  .message-wrap {
-    align-items: start;
-    gap: 175px;
+  .feedback-card {
+    padding-bottom: 75px;
   }
 
-  .message-cont {
-    margin-bottom: 75px;
+  .feedback-card .message-person {
+    margin-bottom: 0;
   }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: 20px;
+    transform: none;
+    margin-top: 32px;
+  }
+}
+
+.swiper-button-disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: default;
+}
+
+.rating .star-container {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.rating.star-svg svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.feedback-card .rating {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.rating.star-svg .star {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* кольори */
+.rating.star-svg .star.filled use {
+  fill: var(--color-accent, #6e43ff);
+}
+
+.rating.star-svg .star.empty use {
+  fill: var(--color-scheme-1-text);
+  stroke: none;
+  opacity: 1;
+}
+
+.feedback-swiper .swiper-pagination,
+.feedback-swiper .swiper-horizontal > .swiper-pagination-bullets,
+.feedback-swiper .swiper-pagination-bullets.swiper-pagination-horizontal {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.feedback-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 6px !important;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  opacity: 1;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.feedback-swiper .swiper-pagination-bullet-active {
+  background: var(--color-scheme-1-text); /* активна — чисто біла */
+  transform: none;
 }

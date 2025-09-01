@@ -257,6 +257,7 @@
 
     .hero-gallery .col-right .hero-img-last {
         display: none;
+        /* Приховуємо 6-ту картинку */
     }
 
     /* Адаптивні картинки */

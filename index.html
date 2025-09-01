@@ -27,7 +27,7 @@
     <script type="module" crossorigin src="/sunny-penguins/index.js"></script>
     <link rel="modulepreload" crossorigin href="/sunny-penguins/assets/vendor-B3QObSWc.js">
     <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/vendor-QIBi29mK.css">
-    <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-CSMnxVT1.css">
+    <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-CBxUxQV2.css">
   </head>
 
   <body>
@@ -109,12 +109,26 @@
     <h2 class="artists-title">Artists</h2>
     <p class="artists-subtitle">Explore Your New Favorite Artists</p>
 
-    <div id="artists-list" class="artists-grid"></div>
+    <div id="artists-list" class="artists-grid" aria-live="polite"></div>
 
     <div class="load-more-wrapper">
-      <button id="load-more" class="load-more-btn">
-        Load More
-        <img src="./images/down-arrow-alt.svg" alt="arrow" class="btn-icon" />
+      <button
+        id="load-more"
+        class="load-more-btn"
+        type="button"
+        aria-label="Load more artists"
+      >
+        <span class="btn-text">Load More</span>
+
+        <svg
+          class="btn-icon"
+          width="20"
+          height="20"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-down-arrow"></use>
+        </svg>
       </button>
     </div>
   </div>

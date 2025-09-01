@@ -1,11 +1,24 @@
-import{S as v,N as b,P as f,a as g,i as w}from"./assets/vendor-B3QObSWc.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))o(n);new MutationObserver(n=>{for(const a of n)if(a.type==="childList")for(const l of a.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&o(l)}).observe(document,{childList:!0,subtree:!0});function s(n){const a={};return n.integrity&&(a.integrity=n.integrity),n.referrerPolicy&&(a.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?a.credentials="include":n.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function o(n){if(n.ep)return;n.ep=!0;const a=s(n);fetch(n.href,a)}})();document.getElementById("loader-overlay");const z="https://sound-wave.b.goit.study/api/artists";let r=1;const u=8,x=document.getElementById("artists-list"),c=document.getElementById("load-more");async function y(e=1,t=8){try{c.textContent="Loading...";const s=await fetch(`${z}?page=${e}&limit=${t}`);if(!s.ok)throw new Error("Failed to fetch artists");const o=await s.json();console.log("API response:",o),Array.isArray(o.artists)?(M(o.artists),o.artists.length<t||e*t>=o.totalArtists?c.style.display="none":c.textContent="Load More"):console.error("Unexpected API structure:",o)}catch(s){console.error(s),alert("❌ Помилка завантаження артистів")}}function M(e){e.forEach(t=>{const s=document.createElement("div");s.classList.add("artist-card"),s.innerHTML=`
-      <img src="${t.photo}" alt="${t.name}" class="artist-photo" />
-      <div class="artist-content">
-        <h3 class="artist-name">${t.name}</h3>
-        <p class="artist-genres">${t.genres.join(", ")}</p>
-        <p class="artist-description">${t.description||"No description available"}</p>
+import{S as g,N as v,P as w,a as z,i as x}from"./assets/vendor-B3QObSWc.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))i(n);new MutationObserver(n=>{for(const o of n)if(o.type==="childList")for(const r of o.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function s(n){const o={};return n.integrity&&(o.integrity=n.integrity),n.referrerPolicy&&(o.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?o.credentials="include":n.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function i(n){if(n.ep)return;n.ep=!0;const o=s(n);fetch(n.href,o)}})();document.getElementById("loader-overlay");const L="https://sound-wave.b.goit.study/api/artists";let d=1;const y=8,M=document.getElementById("artists-list"),a=document.getElementById("load-more");function B(e){return e?.name||e?.strArtist||e?.artist||"Unknown artist"}function I(e){const t=e?.photo||e?.photo_url||e?.strArtistThumb||e?.image||e?.img||"";return t?typeof t=="string"&&t.startsWith("/")?`https://sound-wave.b.goit.study${t}`:t:"https://via.placeholder.com/600x400?text=No+Image"}function A(e){return e?.description||e?.bio||e?.biography||e?.strBiographyEN||""}function E(e){const t=e?.genres;return t?Array.isArray(t)&&t.every(s=>typeof s=="string")?t.join(", "):Array.isArray(t)&&t.length&&typeof t[0]=="object"?t.map(s=>s?.name||s?.title||s?.label||"").filter(Boolean).join(", "):typeof t=="string"?t:"Unknown":"Unknown"}function $(e){return e?._id||e?.id||e?.artistId||""}function C(e){const t=B(e),s=I(e),i=A(e),n=E(e),o=$(e),r=i?i.slice(0,120)+(i.length>120?"...":""):"No description available";return`
+    <article class="artist-card">
+      <div class="artist-image-wrap">
+        <img src="${s}" alt="${t}" class="artist-photo" loading="lazy" />
       </div>
-    `,x.appendChild(s)})}c.addEventListener("click",()=>{r++,y(r,u)});y(r,u);const B=`<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"
+      <div class="artist-content">
+        <h3 class="artist-name">${t}</h3>
+        <ul class="artist-genres">
+  ${n.split(",").map(b=>`<li class="artist-genre">${b.trim()}</li>`).join("")}
+</ul>
+        <p class="artist-description">${r}</p>
+
+        <button type="button" class="learn-more-btn" data-id="${o}">
+  Learn More
+  <svg class="btn-icon" width="16" height="16" aria-hidden="true">
+    <use href="./img/sprite.svg#icon-caret-right"></use>
+  </svg>
+</button>
+      </div>
+    </article>
+  `}async function f(e=1,t=8){try{c(!0);const s=await fetch(`${L}?page=${e}&limit=${t}`);if(!s.ok)throw new Error(`Failed to fetch artists: ${s.status}`);const i=await s.json(),n=Array.isArray(i?.artists)?i.artists:[];M.insertAdjacentHTML("beforeend",n.map(C).join(""));const o=e*t;n.length<t||o>=Number(i?.totalArtists||0)?S():c(!1)}catch(s){console.error(s),c(!1),alert("❌ Помилка завантаження артистів")}}function c(e){if(!a)return;const t=a.querySelector(".btn-text");e?(a.disabled=!0,a.classList.add("is-loading"),a.setAttribute("aria-busy","true"),t.textContent="Loading..."):(a.disabled=!1,a.classList.remove("is-loading"),a.removeAttribute("aria-busy"),t.textContent="Load More")}function S(){a&&(a.style.display="none")}a&&a.addEventListener("click",()=>{d+=1,f(d,y)});f(d,y);const k=`<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
 
@@ -29,7 +42,7 @@ import{S as v,N as b,P as f,a as g,i as w}from"./assets/vendor-B3QObSWc.js";(fun
 
     </defs>
 </svg>
-`,L=`<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+`,N=`<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
   <defs>
     <symbol id="icon-caret-play" viewBox="0 0 31 32">
       <path d="M11.52 24.96 21.76 16 11.52 7.04v17.92z" />
@@ -110,7 +123,7 @@ import{S as v,N as b,P as f,a as g,i as w}from"./assets/vendor-B3QObSWc.js";(fun
         />
       </symbol>
     </defs>
-  </svg>`,d="star-rating-sprite";if(!document.getElementById(d)){const e=document.createElement("div");e.id=d,e.style.position="absolute",e.style.width="0",e.style.height="0",e.style.overflow="hidden",e.innerHTML=B,document.body.prepend(e)}const E="https://sound-wave.b.goit.study/api/feedbacks",m=document.querySelector(".swiper-wrapper"),p=document.getElementById("loader");let i=Number(localStorage.getItem("feedbackPage"))||1;function I(e){const t=Math.round(e),s=Array.from({length:5},(o,n)=>`
+  </svg>`,m="star-rating-sprite";if(!document.getElementById(m)){const e=document.createElement("div");e.id=m,e.style.position="absolute",e.style.width="0",e.style.height="0",e.style.overflow="hidden",e.innerHTML=k,document.body.prepend(e)}const T="https://sound-wave.b.goit.study/api/feedbacks",u=document.querySelector(".swiper-wrapper"),h=document.getElementById("loader");let l=Number(localStorage.getItem("feedbackPage"))||1;function P(e){const t=Math.round(e),s=Array.from({length:5},(i,n)=>`
       <svg class="star ${n<t?"filled":"empty"}" aria-hidden="true" width="20" height="20">
         <use href="#star-filled"></use>
       </svg>
@@ -118,13 +131,13 @@ import{S as v,N as b,P as f,a as g,i as w}from"./assets/vendor-B3QObSWc.js";(fun
     <div class="rating star-svg value-${t}" aria-label="Rating ${t} out of 5">
       <div class="star-container">${s}</div>
     </div>
-  `}function C(e){return`
+  `}function H(e){return`
     <div class="swiper-slide">
       <div class="feedback-card">
-        ${I(e.rating)}
+        ${P(e.rating)}
         <p class="message-text">"${e.descr}"</p>
         <p class="message-person">${e.name}</p>
       </div>
     </div>
-  `}async function S(e=1,t=10){p.style.display="block";try{const{data:s}=await g.get(E,{params:{page:e,limit:t}});return s.data}catch(s){return console.error("Error fetching feedbacks:",s),w.error({title:"Error",message:"Failed to load feedbacks"}),[]}finally{p.style.display="none"}}async function $(){const e=await S(i,10);if(!e.length){m.insertAdjacentHTML("beforeend","<p>No feedbacks found.</p>");return}m.innerHTML=e.map(C).join("");const t=new v(".swiper",{modules:[b,f],slidesPerView:1,autoHeight:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{el:".message-cont .swiper-pagination",clickable:!0,renderBullet:(s,o)=>s<3?`<span class="custom-bullet ${o}" data-index="${s}"></span>`:""}});t.on("slideChange",()=>{const s=t.slides.length,o=t.activeIndex,n=document.querySelectorAll(".custom-bullet");n.forEach(a=>a.classList.remove("swiper-pagination-bullet-active")),o===0?n[0].classList.add("swiper-pagination-bullet-active"):o===s-1?n[2].classList.add("swiper-pagination-bullet-active"):n[1].classList.add("swiper-pagination-bullet-active")}),document.addEventListener("click",s=>{const o=s.target.closest(".custom-bullet");if(!o)return;const n=t.slides.length;o.dataset.index==="0"?t.slideTo(0):o.dataset.index==="2"?t.slideTo(n-1):t.slideTo(1)}),i++,i>70&&(i=1),localStorage.setItem("feedbackPage",i)}$();const h="main-icon-sprite";if(!document.getElementById(h)){const e=document.createElement("div");e.id=h,e.style.position="absolute",e.style.width="0",e.style.height="0",e.style.overflow="hidden",e.innerHTML=L,document.body.prepend(e)}
+  `}async function V(e=1,t=10){h.style.display="block";try{const{data:s}=await z.get(T,{params:{page:e,limit:t}});return s.data}catch(s){return console.error("Error fetching feedbacks:",s),x.error({title:"Error",message:"Failed to load feedbacks"}),[]}finally{h.style.display="none"}}async function j(){const e=await V(l,10);if(!e.length){u.insertAdjacentHTML("beforeend","<p>No feedbacks found.</p>");return}u.innerHTML=e.map(H).join("");const t=new g(".swiper",{modules:[v,w],slidesPerView:1,autoHeight:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{el:".message-cont .swiper-pagination",clickable:!0,renderBullet:(s,i)=>s<3?`<span class="custom-bullet ${i}" data-index="${s}"></span>`:""}});t.on("slideChange",()=>{const s=t.slides.length,i=t.activeIndex,n=document.querySelectorAll(".custom-bullet");n.forEach(o=>o.classList.remove("swiper-pagination-bullet-active")),i===0?n[0].classList.add("swiper-pagination-bullet-active"):i===s-1?n[2].classList.add("swiper-pagination-bullet-active"):n[1].classList.add("swiper-pagination-bullet-active")}),document.addEventListener("click",s=>{const i=s.target.closest(".custom-bullet");if(!i)return;const n=t.slides.length;i.dataset.index==="0"?t.slideTo(0):i.dataset.index==="2"?t.slideTo(n-1):t.slideTo(1)}),l++,l>70&&(l=1),localStorage.setItem("feedbackPage",l)}j();const p="main-icon-sprite";if(!document.getElementById(p)){const e=document.createElement("div");e.id=p,e.style.position="absolute",e.style.width="0",e.style.height="0",e.style.overflow="hidden",e.innerHTML=N,document.body.prepend(e)}
 //# sourceMappingURL=index.js.map

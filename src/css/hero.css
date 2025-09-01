@@ -121,6 +121,7 @@
 .btn-icon {
     width: 20px;
     height: 20px;
+    fill: #ffff;
 }
 
 /* Галерея */
@@ -178,6 +179,10 @@
 .hero-img-last,
 .hero-img-logic {
     border-radius: 16px 16px 0 0;
+}
+
+.hero-img-last {
+    background-position: top;
 }
 
 /* Прив’язка картинок */

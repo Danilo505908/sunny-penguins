@@ -1,48 +1,4 @@
-import{S as b,N as v,P as w,a as z,i as x}from"./assets/vendor-B3QObSWc.js";(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))i(s);new MutationObserver(s=>{for(const o of s)if(o.type==="childList")for(const r of o.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function n(s){const o={};return s.integrity&&(o.integrity=s.integrity),s.referrerPolicy&&(o.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?o.credentials="include":s.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function i(s){if(s.ep)return;s.ep=!0;const o=n(s);fetch(s.href,o)}})();document.getElementById("loader-overlay");const L="https://sound-wave.b.goit.study/api/artists";let d=1;const f=8,M=document.getElementById("artists-list"),a=document.getElementById("load-more");function B(t){return t?.name||t?.strArtist||t?.artist||"Unknown artist"}function E(t){const e=t?.photo||t?.photo_url||t?.strArtistThumb||t?.image||t?.img||"";return e?typeof e=="string"&&e.startsWith("/")?`https://sound-wave.b.goit.study${e}`:e:"https://via.placeholder.com/600x400?text=No+Image"}function I(t){return t?.description||t?.bio||t?.biography||t?.strBiographyEN||""}function $(t){const e=t?.genres;return e?Array.isArray(e)&&e.every(n=>typeof n=="string")?e.join(", "):Array.isArray(e)&&e.length&&typeof e[0]=="object"?e.map(n=>n?.name||n?.title||n?.label||"").filter(Boolean).join(", "):typeof e=="string"?e:"Unknown":"Unknown"}function A(t){return t?._id||t?.id||t?.artistId||""}function S(t){const e=B(t),n=E(t),i=I(t),s=$(t),o=A(t),r=i?i.slice(0,120)+(i.length>120?"...":""):"No description available";return`
-    <article class="artist-card">
-      <div class="artist-image-wrap">
-        <img src="${n}" alt="${e}" class="artist-photo" loading="lazy" />
-      </div>
-      <div class="artist-content">
-        <h3 class="artist-name">${e}</h3>
-        <ul class="artist-genres">
-  ${s.split(",").map(y=>`<li class="artist-genre">${y.trim()}</li>`).join("")}
-</ul>
-        <p class="artist-description">${r}</p>
-
-        <button type="button" class="learn-more-btn" data-id="${o}">
-  Learn More
-  <svg class="btn-icon" width="16" height="16" aria-hidden="true">
-    <use href="./img/sprite.svg#icon-caret-right"></use>
-  </svg>
-</button>
-      </div>
-    </article>
-  `}async function g(t=1,e=8){try{l(!0);const n=await fetch(`${L}?page=${t}&limit=${e}`);if(!n.ok)throw new Error(`Failed to fetch artists: ${n.status}`);const i=await n.json(),s=Array.isArray(i?.artists)?i.artists:[];M.insertAdjacentHTML("beforeend",s.map(S).join(""));const o=t*e;s.length<e||o>=Number(i?.totalArtists||0)?N():l(!1)}catch(n){console.error(n),l(!1),alert("❌ Помилка завантаження артистів")}}function l(t){if(!a)return;const e=a.querySelector(".btn-text");t?(a.disabled=!0,a.classList.add("is-loading"),a.setAttribute("aria-busy","true"),e.textContent="Loading..."):(a.disabled=!1,a.classList.remove("is-loading"),a.removeAttribute("aria-busy"),e.textContent="Load More")}function N(){a&&(a.style.display="none")}a&&a.addEventListener("click",()=>{d+=1,g(d,f)});g(d,f);const T=`<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-
-        <symbol id="star-empty" viewBox="0 0 34 32">
-            <title>star-empty</title>
-            <path class="path-star-empty"
-                  d="M33.412 12.395l-11.842-1.021-4.628-10.904-4.628 10.92-11.842 1.005 8.993 7.791-2.701 11.579 10.179-6.144 10.179 6.144-2.685-11.579 8.976-7.791zM16.941 22.541l-6.193 3.739 1.647-7.049-5.468-4.744 7.214-0.626 2.8-6.638 2.816 6.654 7.214 0.626-5.468 4.744 1.647 7.049-6.209-3.755z"/>
-        </symbol>
-
-        <symbol id="star-half" viewBox="0 0 34 32">
-            <title>star-half</title>
-            <path class="path-star-half"
-                  d="M 33.412,12.395 21.57,11.374 16.942,0.47 12.314,11.39 0.472,12.395 9.465,20.186 6.764,31.765 16.943,25.621 27.122,31.765 24.437,20.186 33.413,12.395 Z M 16.941,22.541 c 0,0 -0.297971,-14.6455833 0,-15.318 l 2.816,6.654 7.214,0.626 -5.468,4.744 1.647,7.049 z"/>
-            </symbol>
-
-        <symbol id="star-filled" viewBox="0 0 34 32">
-            <title>star-filled</title>
-            <path class="path-star-filled"
-                  d="M16.941 25.621l10.179 6.144-2.701-11.579 8.993-7.791-11.842-1.005-4.628-10.92-4.628 10.92-11.842 1.005 8.993 7.791-2.701 11.579z"/>
-        </symbol>
-
-    </defs>
-</svg>
-`,k=`<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
   <defs>
     <symbol id="icon-caret-right" viewBox="0 0 31 32">
       <path d="M11.52 24.96 21.76 16 11.52 7.04v17.92z" />
@@ -92,21 +48,4 @@ import{S as b,N as v,P as w,a as z,i as x}from"./assets/vendor-B3QObSWc.js";(fun
         d="M27.639 9.981a3.199 3.199 0 0 0-2.255-2.261c-2.004-.55-10.024-.559-10.024-.559s-8.018-.009-10.024.517a3.272 3.272 0 0 0-2.261 2.275c-.529 2.004-.534 6.162-.534 6.162s-.005 4.178.52 6.162a3.204 3.204 0 0 0 2.257 2.259c2.025.55 10.022.559 10.022.559s8.019.009 10.024-.516a3.221 3.221 0 0 0 2.262-2.257c.53-2.003.534-6.159.534-6.159s.026-4.179-.521-6.184zm-14.844 9.987.006-7.68 6.665 3.846-6.671 3.834z" />
     </symbol>
   </defs>
-</svg>`,m="star-rating-sprite";if(!document.getElementById(m)){const t=document.createElement("div");t.id=m,t.style.position="absolute",t.style.width="0",t.style.height="0",t.style.overflow="hidden",t.innerHTML=T,document.body.prepend(t)}const P="https://sound-wave.b.goit.study/api/feedbacks",u=document.querySelector(".swiper-wrapper"),p=document.getElementById("loader");let c=Number(localStorage.getItem("feedbackPage"))||1;function H(t){const e=Math.round(t),n=Array.from({length:5},(i,s)=>`
-      <svg class="star ${s<e?"filled":"empty"}" aria-hidden="true" width="20" height="20">
-        <use href="#star-filled"></use>
-      </svg>
-    `).join("");return`
-    <div class="rating star-svg value-${e}" aria-label="Rating ${e} out of 5">
-      <div class="star-container">${n}</div>
-    </div>
-  `}function j(t){return`
-    <div class="swiper-slide">
-      <div class="feedback-card">
-        ${H(t.rating)}
-        <p class="message-text">"${t.descr}"</p>
-        <p class="message-person">${t.name}</p>
-      </div>
-    </div>
-  `}async function _(t=1,e=10){p.style.display="block";try{const{data:n}=await z.get(P,{params:{page:t,limit:e}});return n.data}catch(n){return console.error("Error fetching feedbacks:",n),x.error({title:"Error",message:"Failed to load feedbacks"}),[]}finally{p.style.display="none"}}async function O(){const t=await _(c,10);if(!t.length){u.insertAdjacentHTML("beforeend","<p>No feedbacks found.</p>");return}u.innerHTML=t.map(j).join("");const e=new b(".swiper",{modules:[v,w],slidesPerView:1,autoHeight:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{el:".message-cont .swiper-pagination",clickable:!0,renderBullet:(n,i)=>n<3?`<span class="custom-bullet ${i}" data-index="${n}"></span>`:""}});e.on("slideChange",()=>{const n=e.slides.length,i=e.activeIndex,s=document.querySelectorAll(".custom-bullet");s.forEach(o=>o.classList.remove("swiper-pagination-bullet-active")),i===0?s[0].classList.add("swiper-pagination-bullet-active"):i===n-1?s[2].classList.add("swiper-pagination-bullet-active"):s[1].classList.add("swiper-pagination-bullet-active")}),document.addEventListener("click",n=>{const i=n.target.closest(".custom-bullet");if(!i)return;const s=e.slides.length;i.dataset.index==="0"?e.slideTo(0):i.dataset.index==="2"?e.slideTo(s-1):e.slideTo(1)}),c++,c>70&&(c=1),localStorage.setItem("feedbackPage",c)}O();const h="main-icon-sprite";if(!document.getElementById(h)){const t=document.createElement("div");t.id=h,t.style.position="absolute",t.style.width="0",t.style.height="0",t.style.overflow="hidden",t.innerHTML=k,document.body.prepend(t)}
-//# sourceMappingURL=index.js.map
+</svg>

@@ -1,75 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/sunny-penguins/assets/favicon-BVILg2co.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Epilogue:wght@700&family=Roboto:wght@700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/sunny-penguins/assets/favicon-BVILg2co.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Normalize -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
-      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Epilogue:wght@700&family=Roboto:wght@700&display=swap"
+    rel="stylesheet" />
 
-    <title>ArtistsHub</title>
+  <!-- Normalize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
+    integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script type="module" crossorigin src="/sunny-penguins/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/sunny-penguins/assets/vendor-B3QObSWc.js">
-    <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/vendor-QIBi29mK.css">
-    <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-COPD0GPE.css">
-  </head>
+  <title>ArtistsHub</title>
 
-  <body>
-    <!-- Header -->
-    <head>
-  <link rel="stylesheet" href="../css/header.css" />
+  <script type="module" crossorigin src="/sunny-penguins/index.js"></script>
+  <link rel="modulepreload" crossorigin href="/sunny-penguins/assets/vendor-B3QObSWc.js">
+  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/vendor-QIBi29mK.css">
+  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-nE9FF_eg.css">
 </head>
 
 <body>
+  <!-- Header -->
   <header class="header">
-    <a href="index.html" class="logo_header"><img class="img-header" src="../img/sprite.svg#icon-logo-header" alt="logo"
-        width="119" height="51" />
-    </a>
+  <svg class="iteam-icon" width="119" height="51">
+    <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-logo"></use>
+  </svg>
 
-    <!-- бургер кнопка -->
-    <button class="burger_header" aria-label="menu">
-      <svg class="icon_header">
-        <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-iconBurgerMenu"></use>
+  <!-- бургер кнопка -->
+  <button class="burger_header" aria-label="menu">
+    <svg class="icon_burger">
+      <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-menu-alt-right"></use>
+    </svg>
+  </button>
+
+  <!-- навігація (спочатку прихована) -->
+  <nav class="nav_header">
+    <button class="close_header" aria-label="close menu">
+      <svg class="icon_close">
+        <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-iconClose"></use>
       </svg>
     </button>
+    <ul>
+      <li><a href="#" data-target="artists">Artists</a></li>
+      <li><a href="#" data-target="about">About Us</a></li>
+      <li><a href="#" data-target="reviews">Reviews</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <!-- навігація (спочатку прихована) -->
-    <nav class="nav_header">
-      <button class="close_header" aria-label="close menu">
-        <svg class="icon_header">
-          <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-iconClose"></use>
-        </svg>
-      </button>
-      <ul>
-        <li><a href="#" data-target="artists">Artists</a></li>
-        <li><a href="#" data-target="about">About Us</a></li>
-        <li><a href="#" data-target="reviews">Reviews</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <script src="../js/header.js"></script>
-</body>
-
-    <main>
-      <!-- Hero Section -->
-      <section class="hero">
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
     <div class="hero-container">
         <!-- Лівий блок -->
         <div class="hero-content">
@@ -79,14 +67,14 @@
                 Artist Today
             </h1>
             <p class="hero-text">
-                Dive into a world of music discoveries with ArtistsHub – your personal
+                Dive into a world of music discoveries with ArtistsHub - your personal
                 guide to the boundless universe of sound. Explore, filter, and learn
                 about your favorite artists all in one place.
             </p>
             <button class="hero-btn">
                 Explore Artists
-                <svg class="btn-icon" width="15" height="20">
-                    <use xlink:href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-play"></use>
+                <svg class="play-icon" width="15" height="20">
+                    <use xlink:href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-play"></use>
                 </svg>
             </button>
         </div>
@@ -103,61 +91,51 @@
     </div>
 </section>
 
-      <!-- Artists Section -->
-      <section class="artists-section" id="artists">
+    <!-- Artists Section -->
+    <section class="artists-section" id="artists">
   <div class="container">
     <h2 class="artists-title">Artists</h2>
     <p class="artists-subtitle">Explore Your New Favorite Artists</p>
 
+    <!-- Список артистів (JS буде підвантажувати дані сюди) -->
     <div id="artists-list" class="artists-grid" aria-live="polite"></div>
 
+    <!-- Кнопка завантаження -->
     <div class="load-more-wrapper">
-      <button
-        id="load-more"
-        class="load-more-btn"
-        type="button"
-        aria-label="Load more artists"
-      >
+      <button id="load-more" class="load-more-btn" type="button" aria-label="Load more artists">
         <span class="btn-text">Load More</span>
-
-        <svg
-          class="btn-icon"
-          width="20"
-          height="20"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-down-arrow"></use>
+        <svg class="btn-icon" width="24" height="24">
+          <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-down-arrow-alt"></use>
         </svg>
       </button>
     </div>
   </div>
 </section>
 
-
-      <!-- About Us Section -->
-      <section class="about">
+    <!-- About Us Section -->
+    <section class="about" id="about">
   <div class="about__container">
     <!-- Фото -->
     <picture class="about__image">
       <!-- Мобільна версія -->
-      <source srcset="/sunny-penguins/assets/about-m@1x-CIJ5XWWM.png 1x, /sunny-penguins/assets/about-m@2x-BhGrRB9i.png 2x" media="(max-width: 767px)">
+      <source srcset="/sunny-penguins/assets/about-m@1x-CIJ5XWWM.png 1x, /sunny-penguins/assets/about-m@2x-BhGrRB9i.png 2x" media="(max-width: 767px)" />
 
       <!-- Планшетна версія -->
-      <source srcset="/sunny-penguins/assets/about-t@1x-BWkWEotF.png 1x, /sunny-penguins/assets/about-t@2x-DHDUpvv5.png 2x" media="(min-width: 768px) and (max-width: 1439px)">
+      <source srcset="/sunny-penguins/assets/about-t@1x-BWkWEotF.png 1x, /sunny-penguins/assets/about-t@2x-DHDUpvv5.png 2x"
+        media="(min-width: 768px) and (max-width: 1439px)" />
 
       <!-- Десктопна версія -->
-      <source srcset="/sunny-penguins/assets/about@1x-C1Aij-Oz.png 1x, /sunny-penguins/assets/about@2x-54rF9P6O.png 2x" media="(min-width: 1440px)">
+      <source srcset="/sunny-penguins/assets/about@1x-C1Aij-Oz.png 1x, /sunny-penguins/assets/about@2x-54rF9P6O.png 2x" media="(min-width: 1440px)" />
 
       <!-- fallback -->
-      <img src="/sunny-penguins/assets/about@1x-C1Aij-Oz.png" alt="team">
+      <img src="/sunny-penguins/assets/about@1x-C1Aij-Oz.png" alt="team" />
     </picture>
+
     <!-- Контент -->
     <div class="about__content">
       <div class="about__logo">
-        <svg class="img iteam-icon" width="80" height="80">
-          <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-logo-icon">
-          </use>
+        <svg class="logo-icon" width="80" height="80">
+          <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-logo-icon"></use>
         </svg>
       </div>
       <h2 class="about__title">About ArtistsHub</h2>
@@ -173,8 +151,8 @@
 <!-- JS підключення -->
 <script src="./js/about.js"></script>
 
-      <!-- Feedback Section -->
-      <section id="feedbacks" class="feedback-section">
+    <!-- Feedback Section -->
+    <section id="feedbacks" class="feedback-section">
   <h2 class="visually-hidden">Feedbacks from our visitors</h2>
 
   <div id="loader"></div>
@@ -187,7 +165,7 @@
       <div class="message-wrap">
         <button class="swiper-button-prev arrow" aria-label="Previous testimonial" type="button">
           <svg width="14" height="14" viewBox="0 0 32 32" aria-hidden="true">
-            <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-left-arrow"></use>
+            <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-left-arrow"></use>
           </svg>
         </button>
 
@@ -195,7 +173,7 @@
 
         <button class="swiper-button-next arrow" aria-label="Next testimonial" type="button">
           <svg width="14" height="14" viewBox="0 0 32 32" aria-hidden="true">
-            <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-right-arrow"></use>
+            <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-right-arrow"></use>
           </svg>
         </button>
       </div>
@@ -208,8 +186,8 @@
   </div>
 </section>
 
-      <!-- Modal Section -->
-      <!DOCTYPE html>
+    <!-- Modal Section -->
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -280,13 +258,13 @@
 </body>
 
 </html>
-    </main>
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer" id="footer">
+  <!-- Footer -->
+  <footer class="footer" id="footer">
   <div class="nav-box">
     <svg class="footer-logo" width="40" height="40">
-      <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-logo"></use>
+      <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-logo"></use>
     </svg>
     <ul class="footer-nav">
       <li><a href="#artists" class="footer-nav-link">Artists</a></li>
@@ -301,21 +279,21 @@
         <li class="footer-socials-item">
           <a class="footer-socials-link" href="https://www.instagram.com/" rel="noopener noreferrer" target="_blank">
             <svg class="footer-socials-icon" width="40" height="40">
-              <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-Instagram"></use>
+              <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-Instagram"></use>
             </svg>
           </a>
         </li>
         <li class="footer-socials-item">
           <a class="footer-socials-link" href="https://www.facebook.com/" rel="noopener noreferrer" target="_blank">
             <svg class="footer-socials-icon" width="40" height="40">
-              <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-Facebook"></use>
+              <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-Facebook"></use>
             </svg>
           </a>
         </li>
         <li class="footer-socials-item">
           <a class="footer-socials-link" href="https://www.youtube.com/" rel="noopener noreferrer" target="_blank">
             <svg class="footer-socials-icon" width="40" height="40">
-              <use href="/sunny-penguins/assets/sprite-urPudKRw.svg#icon-Youtube"></use>
+              <use href="/sunny-penguins/assets/sprite-CYEujcwB.svg#icon-Youtube"></use>
             </svg>
           </a>
         </li>
@@ -324,6 +302,7 @@
     </div>
 </footer>
 
-    <!-- Scripts -->
-  </body>
+  <!-- Scripts -->
+</body>
+
 </html>

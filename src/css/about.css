@@ -12,12 +12,13 @@
 .about {
     background: var(--color-scheme-1-background);
     color: var(--color-scheme-1-text);
-    padding: 112px 64px; /* взято з modal-window */
-    margin: 0 auto;
+    padding: 112px 64px;
     display: flex;
-    gap: 1px;
+    gap: 0;
     align-items: center;
-    fill: var(--color-white);
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
 }
 
 .about__container {
@@ -25,6 +26,8 @@
     grid-template-columns: 640px 1fr;
     align-items: center;
     gap: 64px;
+    width: 100%;
+    margin: 0;
 }
 
 .about__image img {
@@ -32,6 +35,7 @@
     width: 640px;
     height: 664px;
     object-fit: cover;
+    display: block;
 }
 
 .about__content {
@@ -70,26 +74,32 @@
     text-align: left;
 }
 
-.about__image img,
 .about img {
     width: 100%;
-    max-width: 640px;
-    height: auto;
+    fill: var(--color-scheme-1-text);
+    max-width: 288px;
     border-radius: 16px;
     object-fit: cover;
-    margin: 0 auto;
+}
+.iteam-icon {
+    fill: #fff;
 }
 
 /* ---------- MOBILE (до 767px) ---------- */
 @media (max-width: 767px) {
     .about {
         padding: 24px;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
     }
 
     .about__container {
         display: flex;
         flex-direction: column;
         gap: 24px;
+        width: 100%;
+        margin: 0;
     }
 
     .about__image img,
@@ -116,14 +126,15 @@
 /* ---------- TABLET (768px+) ---------- */
 @media (min-width: 768px) {
     .about {
-        max-width: 768px;
-        margin: 0 auto;
+        max-width: 100%;
         padding: 32px 40px;
-        gap: 32px;
+        gap: 0;
         align-items: center;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
     }
 
-    .about__image img,
     .about img {
         max-width: 704px;
         border-radius: 24px;
@@ -149,9 +160,10 @@
 /* ---------- DESKTOP (1200px+) ---------- */
 @media (min-width: 1200px) {
     .about {
-        max-width: 1440px;
-        margin: 0 auto;
+        max-width: 100%;
         padding: 112px 64px;
+        margin: 0;
+        overflow: hidden;
     }
 
     .about__container {
@@ -159,10 +171,12 @@
         grid-template-columns: 640px 1fr;
         align-items: center;
         gap: 80px;
+        width: 100%;
+        margin: 0;
     }
 
     .about__image {
-        order: 1; /* картинка перша */
+        order: 1;
     }
 
     .about__content {
@@ -170,7 +184,6 @@
         text-align: left;
     }
 
-    .about__image img,
     .about img {
         max-width: 640px;
         border-radius: 24px;

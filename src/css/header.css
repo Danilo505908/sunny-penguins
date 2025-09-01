@@ -86,7 +86,22 @@
 }
 
 .nav_header.open {
+  position: fixed;
+  top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-scheme-1-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#artists,
+#about,
+#reviews {
+  scroll-margin-top: 64px;
 }
 
 .close_header {
@@ -158,6 +173,16 @@
 
 /* ======= Десктоп (від 768px) ======= */
 @media (min-width: 768px) {
+  .header {
+    height: 72px;
+  }
+
+  #artists,
+  #about,
+  #reviews {
+    scroll-margin-top: 72px;
+  }
+
   .img-header {
     margin-top: 10.5px;
     margin-left: 64px;

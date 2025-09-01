@@ -1,6 +1,7 @@
 const burger = document.querySelector('.burger_header');
 const nav = document.querySelector('.nav_header');
 const closeBtn = document.querySelector('.close_header');
+const targetSection = document.getElementById(targetId);
 
 // відкриття бургер-меню
 burger.addEventListener('click', () => {
@@ -19,7 +20,7 @@ const links = document.querySelectorAll('.nav_header a');
 links.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault(); // блокуємо стандартний різкий перехід
-    const targetId = link.getAttribute('href').substring(1);
+    const targetId = link.dataset.target;
     const targetSection = document.getElementById(targetId);
 
     if (targetSection) {

@@ -1,25 +1,77 @@
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Initial state */
+.about__content.fade-in {
+    transition-delay: 0.3s;
+}
+
 .about {
     background: var(--color-scheme-1-background);
     color: var(--color-scheme-1-text);
-    padding: 16px 20px;
-    margin: 0 auto;
+    padding: 112px 64px;
     display: flex;
-    flex-direction: column;
-    gap: 24px;
+    gap: 0;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
 }
 
+.about__container {
+    display: grid;
+    grid-template-columns: 640px 1fr;
+    align-items: center;
+    gap: 64px;
+    width: 100%;
+    margin: 0;
+}
+
+.about__image img {
+    border-radius: 16px;
+    width: 640px;
+    height: 664px;
+    object-fit: cover;
+    display: block;
+}
+
+.about__content {
+    color: var(--color-white);
+    font-family: var(--font-family);
+}
+
+.about__logo {
+    margin-bottom: 23px;
+}
+
+.about__logo svg {
+    fill: var(--color-white);
+}
+
+.about__title,
 .about h2 {
-    font-family: "IBM Plex Sans", sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 130%;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    color: var(--color-white);
+    text-align: left;
 }
 
+.about__text,
 .about p {
     font-family: var(--font-family);
     font-weight: 400;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 150%;
+    color: var(--color-white);
+    max-width: 640px;
+    text-align: left;
 }
 
 .about img {
@@ -28,58 +80,103 @@
     max-width: 288px;
     border-radius: 16px;
     object-fit: cover;
-    margin: 0 auto;
 }
 .iteam-icon {
     fill: #fff;
 }
 
-/* ---------- TABLET (768px) ---------- */
+/* ---------- MOBILE (до 767px) ---------- */
+@media (max-width: 767px) {
+    .about {
+        padding: 24px;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .about__container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+        margin: 0;
+    }
+
+    .about__image img,
+    .about img {
+        width: 288px;
+        height: 169px;
+    }
+
+    .about__title,
+    .about h2 {
+        font-size: 40px;
+        line-height: 130%;
+        max-width: 288px;
+        text-align: center;
+    }
+
+    .about__text,
+    .about p {
+        font-size: 18px;
+        text-align: center;
+    }
+}
+
+/* ---------- TABLET (768px+) ---------- */
 @media (min-width: 768px) {
     .about {
-        max-width: 768px;
+        max-width: 100%;
         padding: 32px 40px;
-        gap: 32px;
+        gap: 0;
         align-items: center;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
     }
 
     .about img {
         max-width: 704px;
         border-radius: 24px;
+        height: auto;
     }
 
+    .about__title,
     .about h2 {
-        font-family: var(--second-family);
-        font-weight: 700;
         font-size: 44px;
         line-height: 120%;
         letter-spacing: -0.01em;
         text-align: center;
     }
 
+    .about__text,
     .about p {
         font-size: 20px;
+        max-width: 704px;
         text-align: center;
-        max-width: 600px;
     }
 }
 
-/* ---------- DESKTOP (1440px) ---------- */
-@media (min-width: 1440px) {
+/* ---------- DESKTOP (1200px+) ---------- */
+@media (min-width: 1200px) {
     .about {
-        max-width: 1440px;
-        margin: 0 auto;
+        max-width: 100%;
         padding: 112px 64px;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .about__container {
         display: grid;
         grid-template-columns: 640px 1fr;
-
         align-items: center;
         gap: 80px;
+        width: 100%;
+        margin: 0;
     }
 
     .about__image {
         order: 1;
-        /* лишаємо картинку першою */
     }
 
     .about__content {
@@ -89,22 +186,17 @@
 
     .about img {
         max-width: 640px;
-        height: auto;
         border-radius: 24px;
     }
 
+    .about__title,
     .about h2 {
-        font-family: var(--second-family);
-        font-weight: 700;
         font-size: 60px;
-        line-height: 120%;
-        letter-spacing: -0.01em;
-        margin-bottom: 24px;
         text-align: left;
     }
 
+    .about__text,
     .about p {
-        font-size: 20px;
         max-width: 520px;
         text-align: left;
     }

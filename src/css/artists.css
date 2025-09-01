@@ -1,0 +1,255 @@
+/* ================= MOBILE-FIRST (320+) ================= */
+.artists-section {
+  padding: 64px 16px;
+  background-color: #06030f;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Tagline (Artists) */
+.artists-title {
+  font-family: 'Heading', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+  color: #ffffff;
+  margin: 0 0 12px;
+  width: 50px;
+  height: 24px;
+}
+
+/* H2 (big subtitle) */
+.artists-subtitle {
+  font-family: 'Epilogue', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -1%;
+  color: #ffffff;
+  margin: 0 0 32px;
+  max-width: 86ch;
+}
+
+/* Grid: mobile = 1 column */
+.artists-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/* Card */
+.artist-card {
+  background: #060307;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image area */
+.artist-image-wrap {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: #060307;
+  overflow: hidden;
+}
+.artist-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content */
+.artist-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+/* Name  */
+.artist-name {
+  font-family: 'Epilogue', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Genres  */
+.artist-genres {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.artist-genres li {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+/* Short description  */
+.artist-description {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #dcdcdc;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Learn More button inside card */
+.learn-more-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+}
+.learn-more-btn {
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: auto;
+  max-width: fit-content;
+}
+
+.learn-more-btn .btn-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+.learn-more-btn svg {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  fill: #ffffff;
+}
+
+/* Load More */
+.load-more-wrapper {
+  text-align: center;
+  margin-top: 24px;
+}
+.load-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #7a3db0;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.load-more-btn .btn-icon {
+  fill: #fff;
+}
+.load-more-btn:hover {
+  background: #6a2f91;
+}
+
+/* Make sprite icons white by default for load-more */
+.load-more-btn .btn-icon,
+.load-more-btn .btn-icon use {
+  fill: #ffffff;
+  color: #ffffff;
+}
+
+/* When load button disabled/ loading */
+.load-more-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ================= Tablet (768px) ================= */
+@media (min-width: 768px) {
+  .artists-section {
+    padding: 80px 32px;
+  }
+
+  .artists-subtitle {
+    font-size: 48px;
+    margin-bottom: 40px;
+    max-width: 860px;
+  }
+
+  /* Tablet: 2 columns */
+  .artists-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .artist-photo {
+    height: auto;
+  }
+  .artist-image-wrap {
+    aspect-ratio: 4/3;
+  }
+}
+
+/* ================= Desktop (1440px) ================= */
+@media (min-width: 1440px) {
+  .artists-section {
+    padding: 112px 64px;
+  }
+
+  .artists-subtitle {
+    font-size: 60px;
+    margin-bottom: 48px;
+  }
+
+  /* Desktop: 2 columns  */
+  .artists-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .artist-image-wrap {
+    aspect-ratio: 16/9;
+  }
+  .artist-photo {
+    transition: transform 0.3s ease;
+  }
+  .artist-card:hover .artist-photo {
+    transform: scale(1.03);
+  }
+}

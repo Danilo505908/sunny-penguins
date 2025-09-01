@@ -1,48 +1,4 @@
-import{S as w,N as z,P as L,a as x,i as B}from"./assets/vendor-B3QObSWc.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))o(s);new MutationObserver(s=>{for(const i of s)if(i.type==="childList")for(const r of i.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&o(r)}).observe(document,{childList:!0,subtree:!0});function n(s){const i={};return s.integrity&&(i.integrity=s.integrity),s.referrerPolicy&&(i.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?i.credentials="include":s.crossOrigin==="anonymous"?i.credentials="omit":i.credentials="same-origin",i}function o(s){if(s.ep)return;s.ep=!0;const i=n(s);fetch(s.href,i)}})();document.getElementById("loader-overlay");const E="https://sound-wave.b.goit.study/api/artists";let u=1;const g=8,M=document.getElementById("artists-list"),a=document.getElementById("load-more");function I(e){return e?.name||e?.strArtist||e?.artist||"Unknown artist"}function S(e){const t=e?.photo||e?.photo_url||e?.strArtistThumb||e?.image||e?.img||"";return t?typeof t=="string"&&t.startsWith("/")?`https://sound-wave.b.goit.study${t}`:t:"https://via.placeholder.com/600x400?text=No+Image"}function k(e){return e?.description||e?.bio||e?.biography||e?.strBiographyEN||""}function A(e){const t=e?.genres;return t?Array.isArray(t)&&t.every(n=>typeof n=="string")?t.join(", "):Array.isArray(t)&&t.length&&typeof t[0]=="object"?t.map(n=>n?.name||n?.title||n?.label||"").filter(Boolean).join(", "):typeof t=="string"?t:"Unknown":"Unknown"}function $(e){return e?._id||e?.id||e?.artistId||""}function T(e){const t=I(e),n=S(e),o=k(e),s=A(e),i=$(e),r=o?o.slice(0,120)+(o.length>120?"...":""):"No description available";return`
-    <article class="artist-card">
-      <div class="artist-image-wrap">
-        <img src="${n}" alt="${t}" class="artist-photo" loading="lazy" />
-      </div>
-      <div class="artist-content">
-        <h3 class="artist-name">${t}</h3>
-        <ul class="artist-genres">
-  ${s.split(",").map(b=>`<li class="artist-genre">${b.trim()}</li>`).join("")}
-</ul>
-        <p class="artist-description">${r}</p>
-
-        <button type="button" class="learn-more-btn" data-id="${i}">
-  Learn More
-  <svg class="btn-icon" width="16" height="16" aria-hidden="true">
-    <use href="./img/sprite.svg#icon-caret-right"></use>
-  </svg>
-</button>
-      </div>
-    </article>
-  `}async function v(e=1,t=8){try{m(!0);const n=await fetch(`${E}?page=${e}&limit=${t}`);if(!n.ok)throw new Error(`Failed to fetch artists: ${n.status}`);const o=await n.json(),s=Array.isArray(o?.artists)?o.artists:[];M.insertAdjacentHTML("beforeend",s.map(T).join(""));const i=e*t;s.length<t||i>=Number(o?.totalArtists||0)?N():m(!1)}catch(n){console.error(n),m(!1),alert("❌ Помилка завантаження артистів")}}function m(e){if(!a)return;const t=a.querySelector(".btn-text");e?(a.disabled=!0,a.classList.add("is-loading"),a.setAttribute("aria-busy","true"),t.textContent="Loading..."):(a.disabled=!1,a.classList.remove("is-loading"),a.removeAttribute("aria-busy"),t.textContent="Load More")}function N(){a&&(a.style.display="none")}a&&a.addEventListener("click",()=>{u+=1,v(u,g)});v(u,g);const P=`<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-
-        <symbol id="star-empty" viewBox="0 0 34 32">
-            <title>star-empty</title>
-            <path class="path-star-empty"
-                  d="M33.412 12.395l-11.842-1.021-4.628-10.904-4.628 10.92-11.842 1.005 8.993 7.791-2.701 11.579 10.179-6.144 10.179 6.144-2.685-11.579 8.976-7.791zM16.941 22.541l-6.193 3.739 1.647-7.049-5.468-4.744 7.214-0.626 2.8-6.638 2.816 6.654 7.214 0.626-5.468 4.744 1.647 7.049-6.209-3.755z"/>
-        </symbol>
-
-        <symbol id="star-half" viewBox="0 0 34 32">
-            <title>star-half</title>
-            <path class="path-star-half"
-                  d="M 33.412,12.395 21.57,11.374 16.942,0.47 12.314,11.39 0.472,12.395 9.465,20.186 6.764,31.765 16.943,25.621 27.122,31.765 24.437,20.186 33.413,12.395 Z M 16.941,22.541 c 0,0 -0.297971,-14.6455833 0,-15.318 l 2.816,6.654 7.214,0.626 -5.468,4.744 1.647,7.049 z"/>
-            </symbol>
-
-        <symbol id="star-filled" viewBox="0 0 34 32">
-            <title>star-filled</title>
-            <path class="path-star-filled"
-                  d="M16.941 25.621l10.179 6.144-2.701-11.579 8.993-7.791-11.842-1.005-4.628-10.92-4.628 10.92-11.842 1.005 8.993 7.791-2.701 11.579z"/>
-        </symbol>
-
-    </defs>
-</svg>
-`,_=`<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
   <defs>
     <symbol id="icon-play-hero" viewBox="0 0 24 32">
       <path d="M.858 31.818a1.603 1.603 0 0 0 1.653-.103l20.8-14.4a1.604 1.604 0 0 0 .506-2.057 1.604 1.604 0 0 0-.506-.573L2.511.285A1.596 1.596 0 0 0 0 1.6v28.8a1.598 1.598 0 0 0 .858 1.417zM3.2 4.654 19.589 16 3.2 27.346V4.655z"/>
@@ -85,21 +41,4 @@ import{S as w,N as z,P as L,a as x,i as B}from"./assets/vendor-B3QObSWc.js";(fun
       <path d="M17.285 3.195c.38-.041.82.039 1.185.142.827.235 1.499.738 1.898 1.456.415.736.494 1.596.221 2.387-.347.976-1.092 1.466-2.022 1.917l.01 2.845c.665.189 1.311.403 1.915.729a5.59 5.59 0 0 1 2.733 3.449 5.531 5.531 0 0 1-.665 4.452 5.645 5.645 0 0 1-3.495 2.461c-1.935.451-3.576-.037-5.24-.959-.735.732-1.462 1.473-2.179 2.222.32.704.427 1.444.214 2.192-.208.732-.758 1.359-1.462 1.73-.789.416-1.688.492-2.553.261-.858-.229-1.58-.724-1.999-1.469-.413-.732-.448-1.589-.18-2.371.305-.888.925-1.435 1.797-1.841.939-.342 1.715-.23 2.631.078.763-.748 1.481-1.534 2.252-2.275-.847-1.548-1.121-2.866-.681-4.572-.959-.417-1.884-.903-2.843-1.321a3.43 3.43 0 0 1-1.875.954 3.617 3.617 0 0 1-2.525-.566c-.715-.483-1.185-1.218-1.301-2.033-.119-.791.105-1.662.648-2.286.56-.644 1.43-1.032 2.309-1.117a3.427 3.427 0 0 1 2.392.681c.855.667 1.101 1.496 1.205 2.484.91.52 1.951.92 2.899 1.384 1.233-1.358 2.134-1.787 3.931-2.303l.002-2.824a4.27 4.27 0 0 1-.923-.458c-.709-.489-1.174-1.225-1.289-2.04a2.916 2.916 0 0 1 .682-2.269c.594-.694 1.387-1.01 2.307-1.123zm3.961 14.047c-.183-1.943-2.014-3.383-4.1-3.225-2.105.159-3.668 1.885-3.483 3.844s2.046 3.406 4.149 3.221c2.083-.183 3.618-1.898 3.435-3.841zm6.03-4.718c.089-.004.175-.005.264.007.277.037.549.162.702.388.162.24.184.56.206.838.11 1.377.028 2.809.028 4.19 0 1.128.134 2.658-.091 3.745-.071.341-.314.505-.605.69-.111.013-.227.027-.339.021a.944.944 0 0 1-.648-.294c-.16-.176-.155-.529-.169-.749-.102-1.584-.016-3.218-.014-4.806.001-.903-.132-2.63.071-3.436.073-.288.352-.439.595-.593zm-2.55 2.212c.3.051.565.156.74.399.269.374.277 4.041.142 4.564-.074.286-.339.426-.591.563-.288-.016-.668-.04-.86-.273-.287-.346-.263-4.243-.1-4.732.095-.284.408-.404.67-.522z"/>
     </symbol>
   </defs>
-</svg>`,p="star-rating-sprite";if(!document.getElementById(p)){const e=document.createElement("div");e.id=p,e.style.position="absolute",e.style.width="0",e.style.height="0",e.style.overflow="hidden",e.innerHTML=P,document.body.prepend(e)}const H="https://sound-wave.b.goit.study/api/feedbacks",h=document.querySelector(".swiper-wrapper"),y=document.getElementById("loader");let c=Number(localStorage.getItem("feedbackPage"))||1;function j(e){const t=Math.round(e),n=Array.from({length:5},(o,s)=>`
-      <svg class="star ${s<t?"filled":"empty"}" aria-hidden="true" width="20" height="20">
-        <use href="#star-filled"></use>
-      </svg>
-    `).join("");return`
-    <div class="rating star-svg value-${t}" aria-label="Rating ${t} out of 5">
-      <div class="star-container">${n}</div>
-    </div>
-  `}function q(e){return`
-    <div class="swiper-slide">
-      <div class="feedback-card">
-        ${j(e.rating)}
-        <p class="message-text">"${e.descr}"</p>
-        <p class="message-person">${e.name}</p>
-      </div>
-    </div>
-  `}async function O(e=1,t=10){y.style.display="block";try{const{data:n}=await x.get(H,{params:{page:e,limit:t}});return n.data}catch(n){return console.error("Error fetching feedbacks:",n),B.error({title:"Error",message:"Failed to load feedbacks"}),[]}finally{y.style.display="none"}}async function C(){const e=await O(c,10);if(!e.length){h.insertAdjacentHTML("beforeend","<p>No feedbacks found.</p>");return}h.innerHTML=e.map(q).join("");const t=new w(".swiper",{modules:[z,L],slidesPerView:1,autoHeight:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{el:".message-cont .swiper-pagination",clickable:!0,renderBullet:(n,o)=>n<3?`<span class="custom-bullet ${o}" data-index="${n}"></span>`:""}});t.on("slideChange",()=>{const n=t.slides.length,o=t.activeIndex,s=document.querySelectorAll(".custom-bullet");s.forEach(i=>i.classList.remove("swiper-pagination-bullet-active")),o===0?s[0].classList.add("swiper-pagination-bullet-active"):o===n-1?s[2].classList.add("swiper-pagination-bullet-active"):s[1].classList.add("swiper-pagination-bullet-active")}),document.addEventListener("click",n=>{const o=n.target.closest(".custom-bullet");if(!o)return;const s=t.slides.length;o.dataset.index==="0"?t.slideTo(0):o.dataset.index==="1"?s>=5?t.slideTo(4):t.slideTo(s-1):o.dataset.index==="2"&&t.slideTo(s-1)}),c++,c>70&&(c=1),localStorage.setItem("feedbackPage",c)}C();const f="main-icon-sprite";if(!document.getElementById(f)){const e=document.createElement("div");e.id=f,e.style.position="absolute",e.style.width="0",e.style.height="0",e.style.overflow="hidden",e.innerHTML=_,document.body.prepend(e)}const l=document.querySelector(".burger_header"),d=document.querySelector(".nav_header"),F=document.querySelector(".close_header");document.getElementById(targetId);l.addEventListener("click",()=>{d.classList.add("open"),l.style.display="none"});F.addEventListener("click",()=>{d.classList.remove("open"),l.style.display="block"});const U=document.querySelectorAll(".nav_header a");U.forEach(e=>{e.addEventListener("click",t=>{t.preventDefault();const n=e.dataset.target,o=document.getElementById(n);if(o){const s=document.querySelector(".header").offsetHeight,i=o.offsetTop-s;window.scrollTo({top:i,behavior:"smooth"})}d.classList.remove("open"),l.style.display="block"})});document.addEventListener("keydown",e=>{e.key==="Escape"&&(d.classList.remove("open"),l.style.display="block")});
-//# sourceMappingURL=index.js.map
+</svg>

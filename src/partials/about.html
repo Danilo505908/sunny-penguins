@@ -1,41 +1,26 @@
-<section id= "about"class="about">
-    <div class="about__container">
-        <!-- Фото -->
-        <picture class="about__image">
-            <!-- Мобільна версія -->
-            <source srcset="
-
-<section class="about">
+<section class="about" id="about">
   <div class="about__container">
     <!-- Фото -->
     <picture class="about__image">
       <!-- Мобільна версія -->
-      <source srcset="
-            img/about/about-m@1x.png 1x,
-            img/about/about-m@2x.png 2x
-          " media="(max-width: 767px)">
+      <source srcset="img/about/about-m@1x.png 1x, img/about/about-m@2x.png 2x" media="(max-width: 767px)" />
 
       <!-- Планшетна версія -->
-      <source srcset="
-            img/about/about-t@1x.png 1x,
-            img/about/about-t@2x.png 2x
-          " media="(min-width: 768px) and (max-width: 1439px)">
+      <source srcset="img/about/about-t@1x.png 1x, img/about/about-t@2x.png 2x"
+        media="(min-width: 768px) and (max-width: 1439px)" />
 
       <!-- Десктопна версія -->
-      <source srcset="
-            img/about/about@1x.png 1x,
-            img/about/about@2x.png 2x
-          " media="(min-width: 1440px)">
+      <source srcset="img/about/about@1x.png 1x, img/about/about@2x.png 2x" media="(min-width: 1440px)" />
 
       <!-- fallback -->
-      <img src="img/about/about@1x.png" alt="team">
+      <img src="img/about/about@1x.png" alt="team" />
     </picture>
+
     <!-- Контент -->
     <div class="about__content">
       <div class="about__logo">
-        <svg class="img iteam-icon" width="80" height="80">
-          <use href="/img/sprite.svg#icon-logo-icon">
-          </use>
+        <svg class="logo-icon" width="80" height="80">
+          <use href="./img/sprite.svg#icon-logo-icon"></use>
         </svg>
       </div>
       <h2 class="about__title">About ArtistsHub</h2>

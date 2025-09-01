@@ -81,6 +81,7 @@
     border-radius: 16px;
     object-fit: cover;
 }
+
 .iteam-icon {
     fill: #fff;
 }
@@ -112,7 +113,6 @@
     .about h2 {
         font-size: 40px;
         line-height: 130%;
-        max-width: 288px;
         text-align: center;
     }
 

@@ -126,17 +126,20 @@ async function renderFeedbacks() {
   });
 
   document.addEventListener('click', e => {
-    const bullet = e.target.closest('.custom-bullet');
-    if (!bullet) return;
-
-    const totalSlides = swiper.slides.length;
-    if (bullet.dataset.index === '0') {
-      swiper.slideTo(0);
-    } else if (bullet.dataset.index === '2') {
-      swiper.slideTo(totalSlides - 1);
+  const bullet = e.target.closest('.custom-bullet');
+  if (!bullet) return;
+  const totalSlides = swiper.slides.length;
+  if (bullet.dataset.index === '0') {
+    swiper.slideTo(0);
+  } else if (bullet.dataset.index === '1') {
+    if (totalSlides >= 5) {
+      swiper.slideTo(4);
     } else {
-      swiper.slideTo(1);
+      swiper.slideTo(totalSlides - 1);
     }
+  } else if (bullet.dataset.index === '2') {
+    swiper.slideTo(totalSlides - 1);
+  }
   });
   // ==============================================
 

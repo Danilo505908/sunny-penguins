@@ -157,8 +157,8 @@
     }
 }
 
-/* ---------- DESKTOP (1200px+) ---------- */
-@media (min-width: 1200px) {
+/* ---------- DESKTOP (1440px) ---------- */
+@media (min-width: 1440px) {
     .about {
         max-width: 100%;
         padding: 112px 64px;

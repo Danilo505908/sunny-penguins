@@ -129,16 +129,7 @@ async function renderArtistModal(artistId) {
   }
 }
 export { renderArtistModal };
-/* Приклад виклику
-document.addEventListener("DOMContentLoaded", () => {
-  renderArtistModal("65ada227af9f6d155db46908");
-});
-
-/*
-кнопка.addEventListener('click', () => {
-  renderArtistModal("треба сюди передати айді"); 
-});
-*/
+  
 const buttons = document.querySelectorAll('.learn-more-btn');
 buttons.forEach(button => {
   button.addEventListener('click', () => {

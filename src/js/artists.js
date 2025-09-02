@@ -2,6 +2,7 @@
 const API_URL = 'https://sound-wave.b.goit.study/api/artists';
 
 import { renderArtistModal } from './artist-modal.js';
+import sprite from '../img/sprite.svg?url';
 
 let currentPage = 1;
 const limit = 8;
@@ -125,8 +126,8 @@ function renderArtistCard(artist) {
         <button type="button" class="learn-more-btn" data-id="${id}">
           <span class="btn-text">Learn More</span>
           <svg class="btn-icon" width="16" height="16" aria-hidden="true">
-            <use href="./img/sprite.svg#icon-caret-right"></use>
-          </svg>
+  <use href="${sprite}#icon-caret-right"></use>
+</svg>
         </button>
       </div>
     </article>

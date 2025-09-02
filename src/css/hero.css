@@ -134,13 +134,16 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* ================= HERO — Tablet (481px-768px) ================= */
+/* ================= HERO — Tablet (481px-1024px) ================= */
 @media (min-width: 481px) and (max-width: 1024px) {
     .hero {
         padding: 110px 20px;
     }
 
     .hero-container {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
         gap: 32px;
     }
 
@@ -165,8 +168,17 @@
         border-radius: 12px;
     }
 
+    .hero-image {
+        display: flex;
+        justify-content: center;
+        /* картинка по центру */
+        width: 100%;
+        margin-top: 20px;
+    }
+
     .hero-image img {
         max-width: 90%;
+        height: auto;
     }
 }
 

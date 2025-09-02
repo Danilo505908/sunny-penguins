@@ -20,18 +20,13 @@
             </a>
         </div>
 
-        <div class="hero-gallery">
-            <div class="col-left">
-                <div class="hero-img-first" style="background-image: url('/img/hero/artist1.png')"></div>
-                <div class="hero-img" style="background-image: url('/img/hero/artist2.png')"></div>
-                <div class="hero-img-logic" style="background-image: url('/img/hero/artist3.png')"></div>
-            </div>
-            <div class="col-right">
-                <div class="hero-img" style="background-image: url('/img/hero/artist4.png')"></div>
-                <div class="hero-img-men" style="background-image: url('/img/hero/artist5.png')"></div>
-                <div class="hero-img-last" style="background-image: url('/img/hero/artist6.png')"></div>
-            </div>
+        <div class="hero-image">
+            <picture>
+                <!-- Для мобілки і планшету -->
+                <source srcset="./img/hero/Content-tbl.png" media="(max-width: 768px)">
+                <!-- Для десктопа -->
+                <img src="./img/hero/Content.png" alt="Artists preview" />
+            </picture>
         </div>
-
     </div>
 </section>

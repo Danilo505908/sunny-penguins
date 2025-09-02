@@ -23,7 +23,7 @@
   <script type="module" crossorigin src="/sunny-penguins/index.js"></script>
   <link rel="modulepreload" crossorigin href="/sunny-penguins/assets/vendor-B3QObSWc.js">
   <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/vendor-QIBi29mK.css">
-  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-C7D1CzbJ.css">
+  <link rel="stylesheet" crossorigin href="/sunny-penguins/assets/index-JZW5DfTR.css">
 </head>
 
 <body>
@@ -82,19 +82,14 @@
             </a>
         </div>
 
-        <div class="hero-gallery">
-            <div class="col-left">
-                <div class="hero-img-first" style="background-image: url('/sunny-penguins/assets/artist1-B0PGszIS.png')"></div>
-                <div class="hero-img" style="background-image: url('/sunny-penguins/assets/artist2-Dhi1CqTJ.png')"></div>
-                <div class="hero-img-logic" style="background-image: url('/sunny-penguins/assets/artist3-DLllBxWj.png')"></div>
-            </div>
-            <div class="col-right">
-                <div class="hero-img" style="background-image: url('/sunny-penguins/assets/artist4-C1CDs-hs.png')"></div>
-                <div class="hero-img-men" style="background-image: url('/sunny-penguins/assets/artist5-BPc38HLN.png')"></div>
-                <div class="hero-img-last" style="background-image: url('/sunny-penguins/assets/artist6-CVSVwkVH.png')"></div>
-            </div>
+        <div class="hero-image">
+            <picture>
+                <!-- Для мобілки і планшету -->
+                <source srcset="/sunny-penguins/assets/Content-tbl-Bc-8jn3G.png" media="(max-width: 768px)">
+                <!-- Для десктопа -->
+                <img src="/sunny-penguins/assets/Content-C8SPcl_G.png" alt="Artists preview" />
+            </picture>
         </div>
-
     </div>
 </section>
 

@@ -134,7 +134,7 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* ================= HERO — Tablet (481px–768px) ================= */
+/* ================= HERO — Tablet (481px-768px) ================= */
 @media (min-width: 481px) and (max-width: 1024px) {
     .hero {
         padding: 110px 20px;
@@ -145,8 +145,12 @@
     }
 
     .hero-title {
-        font-size: 48px;
+        max-width: 624px;
         margin-bottom: 24px;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 110%;
+        letter-spacing: -0.01em;
     }
 
     .hero-text {

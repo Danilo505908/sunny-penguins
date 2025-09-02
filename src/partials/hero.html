@@ -3,31 +3,30 @@
         <!-- Лівий блок -->
         <div class="hero-content">
             <h1 class="hero-title">
-                Discover Your <br />
-                Next Favorite <br />
+                Discover Your
+                Next Favorite
                 Artist Today
             </h1>
             <p class="hero-text">
-                Dive into a world of music discoveries with ArtistsHub – your personal
+                Dive into a world of music discoveries with ArtistsHub - your personal
                 guide to the boundless universe of sound. Explore, filter, and learn
                 about your favorite artists all in one place.
             </p>
-            <button class="hero-btn">
+            <a href="#artists" class="hero-btn">
                 Explore Artists
                 <svg class="btn-icon" width="15" height="20">
-                    <use href="./img/sprite.svg#icon-play"></use>
+                    <use href="./img/sprite.svg#icon-play-hero"></use>
                 </svg>
-            </button>
+            </a>
         </div>
 
-        <!-- Правий блок -->
-        <div class="hero-images">
-            <div class="hero-img artist1"></div>
-            <div class="hero-img artist2"></div>
-            <div class="hero-img artist3"></div>
-            <div class="hero-img artist4"></div>
-            <div class="hero-img artist5"></div>
-            <div class="hero-img artist6"></div>
+        <div class="hero-image">
+            <picture>
+                <!-- Для мобілки і планшету -->
+                <source srcset="./img/hero/Content-tbl.png" media="(max-width: 768px)">
+                <!-- Для десктопа -->
+                <img src="./img/hero/Content.png" alt="Artists preview" />
+            </picture>
         </div>
     </div>
 </section>

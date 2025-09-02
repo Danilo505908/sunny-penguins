@@ -1,7 +1,6 @@
 const burger = document.querySelector('.burger_header');
 const nav = document.querySelector('.nav_header');
 const closeBtn = document.querySelector('.close_header');
-const targetSection = document.getElementById(targetId);
 
 // відкриття бургер-меню
 burger.addEventListener('click', () => {

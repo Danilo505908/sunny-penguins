@@ -139,3 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
   renderArtistModal("треба сюди передати айді"); 
 });
 */
+const buttons = document.querySelectorAll('.learn-more-btn');
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const id = button.dataset.id;
+    renderArtistModal(id);
+  });
+});

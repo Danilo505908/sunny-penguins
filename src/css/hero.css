@@ -1,101 +1,298 @@
+/* ================= HERO SECTION ================= */
 .hero {
-    background-color: #1a0d2e;
-    color: #ffffff;
-    padding: 40px 20px;
+    position: relative;
+    background-color: var(--color-affair-darkest);
+    background-image: url('../img/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--color-scheme-1-text);
+    padding: 30px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow: hidden;
 }
 
+/* Верхній градієнт */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(180deg,
+            var(--color-neutral-darkest) 0%,
+            var(--opacity-transparent) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Нижній градієнт */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(180deg,
+            var(--opacity-transparent) 0%,
+            var(--color-neutral-darkest) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Контейнер */
 .hero-container {
     display: flex;
-    padding: 0px 64px;
-    width: 1440px;
-    height: 900px;
     justify-content: space-between;
     align-items: center;
+    max-width: 1440px;
+    width: 100%;
+    min-height: 900px;
+    padding: 0 44px;
+    position: relative;
+    z-index: 1;
+    margin-top: 30px;
 }
 
+/* Текстова частина */
 .hero-content {
     max-width: 50%;
 }
 
 .hero-title {
-    font-family: 'Epilogue', sans-serif;
+    font-family: var(--second-family);
     font-weight: 700;
     font-size: 84px;
     line-height: 110%;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: var(--color-scheme-1-text);
     margin-bottom: 20px;
 }
 
 .hero-text {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: var(--font-family);
     font-weight: 400;
     font-size: 20px;
     line-height: 150%;
-    color: #ffffff;
+    color: var(--color-scheme-1-text);
     margin-bottom: 30px;
 }
 
+/* Кнопка */
 .hero-btn {
-    border-radius: 12px;
-    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
     width: 206px;
     height: 47px;
+    padding: 10px 24px;
     border: none;
-    box-shadow:
-        0 1px 2px 0 rgba(0, 0, 0, 0.05),
-        /* var(--opacity-neutral-darkest-5) */
-        inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
-        inset 0 0 0 1px rgba(0, 0, 0, 0.15),
-        /* var(--opacity-neutral-darkest-15) */
-        inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
-        inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
-    /* var(--opacity-white-5) */
+    border-radius: 12px;
 
-    background: #764191;
-    font-family: 'Roboto', sans-serif;
-    color: #ffffff;
+    background: var(--color-affair);
+    color: var(--color-white);
+
+    font-family: var(--third-family);
     font-weight: 500;
     font-size: 18px;
     line-height: 150%;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
+
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow:
+        0 1px 2px 0 rgba(0, 0, 0, 0.05),
+        inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.15),
+        inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
 }
 
 .hero-btn:hover {
-    background-color: #8a1dde;
+    background-color: #6a2f91;
 }
 
 .btn-icon {
     width: 20px;
     height: 20px;
-    margin-top: 3px;
+    fill: #ffff;
 }
 
-.hero-images {
+/* Галерея */
+.hero-gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* Два стовпці */
-    grid-template-rows: auto auto auto;
-    /* Три рядки */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    max-width: 40%;
-}
-
-.hero-img {
-    width: 311px;
-    height: 340px;
-    border-radius: 16px;
+    margin-left: 10px;
+    position: relative;
     overflow: hidden;
+    z-index: 4;
 }
 
-.hero-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.hero-gallery .col-left,
+.hero-gallery .col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hero-gallery .col-right {
+    margin-top: 2px;
+    /* Зсув вниз */
+}
+
+/* Картки */
+.hero-img,
+.hero-img-men,
+.hero-img-logic,
+.hero-img-first,
+.hero-img-last {
+    width: 311px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+}
+
+.hero-img,
+.hero-img-men,
+.hero-img-logic {
+    height: 340px;
+}
+
+.hero-img-first,
+.hero-img-last {
+    height: 200px;
+}
+
+/* Варіації радіусів */
+.hero-img-first {
+    border-radius: 0 0 16px 16px;
+}
+
+.hero-img-last,
+.hero-img-logic {
+    border-radius: 16px 16px 0 0;
+}
+
+.hero-img-last {
+    background-position: top;
+}
+
+/* Прив’язка картинок */
+.hero-img:nth-child(1) {
+    background-image: url('../img/hero/artist1.png');
+}
+
+.hero-img:nth-child(2) {
+    background-image: url('../img/hero/artist2.png');
+}
+
+.hero-img:nth-child(3) {
+    background-image: url('../img/hero/artist3.png');
+}
+
+.hero-img:nth-child(4) {
+    background-image: url('../img/hero/artist4.png');
+}
+
+.hero-img:nth-child(5) {
+    background-image: url('../img/hero/artist5.png');
+}
+
+.hero-img:nth-child(6) {
+    background-image: url('../img/hero/artist6.png');
+}
+
+/* ================= HERO — Tablet (≤768px) ================= */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 30px 20px;
+        min-height: auto;
+        gap: 32px;
+    }
+
+    .hero-content {
+        max-width: 624px;
+        text-align: left;
+    }
+
+    .hero-title {
+        font-size: 48px;
+        margin-bottom: 24px;
+    }
+
+    .hero-text {
+        font-size: 18px;
+        max-width: 624px;
+        margin-bottom: 32px;
+    }
+
+    .hero-btn {
+        display: inline-flex;
+        padding: 12px 28px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    /* Галерея */
+    .hero-gallery {
+        grid-template-columns: 1fr 1fr;
+        max-width: 700px;
+        width: 100%;
+    }
+
+    .hero-gallery .col-left {
+        margin-top: 50px;
+    }
+
+    .hero-gallery .col-right {
+        margin-top: 70px;
+        /* Зсув як у макеті */
+    }
+
+    .hero-gallery .col-right .hero-img-last {
+        display: none;
+        /* Приховуємо 6-ту картинку */
+    }
+
+    /* Адаптивні картинки */
+    .hero-img,
+    .hero-img-first,
+    .hero-img-last,
+    .hero-img-logic,
+    .hero-img-men {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+    }
+
+    .hero-img-logic {
+        height: 100px;
+        background-position: top;
+    }
+
+    .hero-img-men {
+        height: 250px;
+        background-position: top;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .hero-img-first {
+        height: 150px;
+        border-radius: 0 0 16px 16px;
+    }
+
+    .hero::before {
+        height: 120px;
+    }
 }

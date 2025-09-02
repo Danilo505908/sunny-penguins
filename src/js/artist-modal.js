@@ -128,7 +128,7 @@ async function renderArtistModal(artistId) {
     loaderOverlay.style.display = 'none';
   }
 }
-
+export { renderArtistModal };
 /* Приклад виклику
 document.addEventListener("DOMContentLoaded", () => {
   renderArtistModal("65ada227af9f6d155db46908");

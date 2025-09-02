@@ -1,4 +1,3 @@
-// src/js/artists.js
 const API_URL = 'https://sound-wave.b.goit.study/api/artists';
 
 import { renderArtistModal } from './artist-modal.js';
@@ -8,18 +7,6 @@ const limit = 8;
 
 const artistsList = document.getElementById('artists-list');
 const loadMoreBtn = document.getElementById('load-more');
-
-// =====  Порядок перших 8 карток  =====
-const desiredOrder = [
-  'Ren',
-  'Unlike Pluto',
-  'Sleepy Hallow',
-  'Samara Cyn',
-  'Olver Tree',
-  'Logic',
-  'Mother Mother',
-  'Livingston',
-];
 
 // ===== Утиліти нормалізації полів =====
 function normalizeName(a) {
@@ -42,29 +29,52 @@ function normalizeDescription(a) {
   return a?.description || a?.bio || a?.biography || a?.strBiographyEN || '';
 }
 
-function normalizeGenres(a) {
-  const g = a?.genres;
-  if (!g) return '';
-  if (Array.isArray(g) && g.every(x => typeof x === 'string')) {
-    return g.join(', ');
-  }
-  if (Array.isArray(g) && g.length && typeof g[0] === 'object') {
-    return g
-      .map(x => x?.name || x?.title || x?.label || '')
-      .filter(Boolean)
-      .join(', ');
-  }
-  if (typeof g === 'string') return g;
-  return '';
-}
-
 function normalizeId(a) {
   return a?._id || a?.id || a?.artistId || '';
 }
 
+// ===== Утиліта нормалізації жанрів  =====
+function normalizeGenres(a) {
+  const g = a?.genres;
+  if (!g) return [];
+
+  let arr = [];
+
+  if (Array.isArray(g)) {
+    g.forEach(x => {
+      if (typeof x === 'string') {
+        arr.push(
+          ...x
+            .split(/[\/,]/)
+            .map(s => s.trim())
+            .filter(Boolean)
+        );
+      } else if (typeof x === 'object' && x !== null) {
+        const name = x?.name || x?.title || x?.label;
+        if (name)
+          arr.push(
+            ...name
+              .split(/[\/,]/)
+              .map(s => s.trim())
+              .filter(Boolean)
+          );
+      }
+    });
+  } else if (typeof g === 'string') {
+    arr.push(
+      ...g
+        .split(/[\/,]/)
+        .map(s => s.trim())
+        .filter(Boolean)
+    );
+  }
+
+  return [...new Set(arr)];
+}
+
+// ===== Кнопки Learn More =====
 function attachLearnMoreHandlers(root = document) {
-  const buttons = root.querySelectorAll('.learn-more-btn');
-  buttons.forEach(btn => {
+  root.querySelectorAll('.learn-more-btn').forEach(btn => {
     btn.removeEventListener('click', onLearnMoreClick);
     btn.addEventListener('click', onLearnMoreClick);
   });
@@ -87,28 +97,21 @@ function renderArtistCard(artist) {
   const name = normalizeName(artist);
   const photo = normalizePhoto(artist);
   const desc = normalizeDescription(artist);
-  const genresStr = normalizeGenres(artist);
+  const genresArr = normalizeGenres(artist);
   const id = normalizeId(artist);
+
+  const genreItems = genresArr
+    .map(g => `<li class="artist-genre">${escapeHtml(g)}</li>`)
+    .join('');
 
   const shortDescription = desc
     ? desc.slice(0, 120) + (desc.length > 120 ? '...' : '')
     : 'No description available';
 
-  const genresArr = genresStr
-    ? genresStr
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean)
-    : [];
-  const genreItems = genresArr
-    .slice(0, 4)
-    .map(g => `<li class="artist-genre">${g}</li>`)
-    .join('');
-
   return `
-    <article class="artist-card" data-artist-id="${id}">
+    <article class="artist-card" data-artist-id="${escapeHtml(id)}">
       <div class="artist-image-wrap">
-        <img src="${photo}" alt="${escapeHtml(
+        <img src="${escapeHtml(photo)}" alt="${escapeHtml(
     name
   )}" class="artist-photo" loading="lazy" />
       </div>
@@ -122,7 +125,9 @@ function renderArtistCard(artist) {
 
         <p class="artist-description">${escapeHtml(shortDescription)}</p>
 
-        <button type="button" class="learn-more-btn" data-id="${id}">
+        <button type="button" class="learn-more-btn" data-id="${escapeHtml(
+          id
+        )}">
           <span class="btn-text">Learn More</span>
           <svg class="btn-icon" width="16" height="16" aria-hidden="true">
             <use href="./img/sprite.svg#icon-caret-right"></use>
@@ -153,7 +158,6 @@ async function fetchArtists(page = 1, limit = 8) {
 
     const data = await res.json();
 
-    // ===== DEBUG: покажемо у консолі що прийшло
     const incoming = Array.isArray(data?.artists) ? data.artists : [];
     console.log(`Fetched page ${page}, items:`, incoming.length);
     console.log(
@@ -167,36 +171,10 @@ async function fetchArtists(page = 1, limit = 8) {
 
     let list = incoming.slice();
 
-    if (page === 1) {
-      const orderMap = new Map(
-        desiredOrder.map((n, i) => [n.trim().toLowerCase(), i])
-      );
-      list.sort((a, b) => {
-        const ai = orderMap.has(normalizeName(a).toLowerCase())
-          ? orderMap.get(normalizeName(a).toLowerCase())
-          : Number.MAX_SAFE_INTEGER;
-        const bi = orderMap.has(normalizeName(b).toLowerCase())
-          ? orderMap.get(normalizeName(b).toLowerCase())
-          : Number.MAX_SAFE_INTEGER;
-        return ai - bi;
-      });
-      console.log(
-        'After sort (page 1):',
-        list.map(a => normalizeName(a))
-      );
-    }
-
     artistsList.insertAdjacentHTML(
       'beforeend',
       list.map(renderArtistCard).join('')
     );
-
-    document.querySelectorAll('.learn-more-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.id;
-        renderArtistModal(id);
-      });
-    });
 
     attachLearnMoreHandlers(artistsList);
 
@@ -243,4 +221,5 @@ if (loadMoreBtn) {
   });
 }
 
+// Початкове завантаження
 fetchArtists(currentPage, limit);

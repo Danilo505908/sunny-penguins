@@ -41,16 +41,19 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
   color: #fff;
   position: relative;
+  max-width: 100%
   /* Додано для контролю позиціонування */
 }
 
-.footer-logo {
+.footer-logo-mobile {
   fill: #764191;
   width: 84px;
   height: 36px;
   margin-bottom: 32px;
 }
-
+.footer-logo-tablet {
+  display: none;
+}
 .nav-box {
   display: flex;
   flex-direction: column;
@@ -113,7 +116,7 @@ body {
   margin-bottom: 32px;
 }
 
-.footer-socials-item {
+.footer-socials {
   display: inline-flex;
   gap: 32px;
 }
@@ -143,11 +146,16 @@ body {
     padding: 80px 32px;
   }
 
-  .footer-logo {
-    width: 116px;
-    height: 45px;
+  .footer-logo-mobile {
+    display: none;
   }
-
+.footer-logo-tablet {
+  display: inline-block;
+  fill: #764191;
+  width: 116px;
+height: 45px;
+  margin-bottom: 32px;
+}
   .footer-nav {
     flex-direction: row;
     margin-bottom: 80px;

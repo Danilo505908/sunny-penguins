@@ -39,7 +39,7 @@
   align-items: center;
   justify-content: center;
   transition: left 0.3s ease;
-  z-index: 1050;
+  z-index: 900;
 }
 
 .nav_header.open {
@@ -96,6 +96,22 @@
   font-size: 26px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
+  position: relative;
+}
+
+.nav_header a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* відступ від тексту */
+  width: 0;
+  height: 2px;
+  background-color: #764191;
+  transition: width 0.3s ease;
+}
+
+.nav_header a:hover::after {
+  width: 100%;
 }
 
 /* Бургер */
@@ -104,6 +120,7 @@
   border: none;
   cursor: pointer;
   z-index: 1100;
+  font-size: 30px;
 }
 
 /* ======= Мобільна версія ======= */
@@ -130,7 +147,9 @@
     margin-left: 64px;
   }
 
-  .burger_header,
+  .burger_header {
+    display: none !important; /* бургер приховуємо */
+  }
   .close_header {
     display: none;
   }

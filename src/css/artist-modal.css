@@ -60,7 +60,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 999;
+    z-index: 1001;
     background-color: rgba(0, 0, 0, 0.250);
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
@@ -75,21 +75,20 @@ p {
 }
 
 .modal {
-    width: 1312px;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
     background-color: #060307;
-    border-radius: 10px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 64px;
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 32px;
+    box-shadow: none;
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 32px;
     overflow-y: auto;
-    max-height: calc(100vh - 128px);
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -250,7 +249,6 @@ td svg {
     
     
     .modal {
-        width: 702px;
         padding: 64px 24px;
     }
 
@@ -267,10 +265,6 @@ td svg {
         width: 654px;
     }
 
-    .albums_list {
-    justify-content: space-between;
-    }
-
     .albums_list li {
     width: 311px;
 }
@@ -278,7 +272,6 @@ td svg {
 
 @media screen and (max-width: 767px) {
     .modal {
-        width: 288px;
         padding: 52px 8px;
     }
 
@@ -299,4 +292,15 @@ td svg {
     .artist_picture img {
         width: 272px;
     }
+
+        .modal_text_biography {
+            max-height: 297px;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    
+        .modal_text_biography::-webkit-scrollbar {
+            display: none;
+        }
 }

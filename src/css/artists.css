@@ -4,6 +4,10 @@
   background-color: #06030f;
 }
 
+.artists-section .container {
+  min-width: auto;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;

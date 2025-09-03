@@ -65,7 +65,7 @@ async function renderArtistModal(artistId) {
             const playButton = track.movie
               ? `<a href="${track.movie}" target="_blank" rel="noopener noreferrer" class="play-svg-link">
                  <svg width="21" height="15">
-                   <use href="./img/modal/modal-icons.svg#icon-play"></use>
+                   <use href="/sunny-penguins/assets/modal-icons-BM4YKK8X.svg#icon-play-hero"></use>
                  </svg>
                </a>`
               : '';

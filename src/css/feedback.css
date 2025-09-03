@@ -97,6 +97,10 @@
   fill: var(--color-scheme-1-text);
 }
 
+.arrow:hover {
+  opacity: 0.6;
+}
+
 .message-text,
 .message-person {
   font-family: var(--second-family);
@@ -133,7 +137,6 @@
 }
 
 @media (max-width: 767px) {
-
   .swiper-button-next,
   .swiper-button-prev {
     display: none !important;
@@ -256,7 +259,7 @@
 }
 
 .feedback-swiper .swiper-pagination,
-.feedback-swiper .swiper-horizontal>.swiper-pagination-bullets,
+.feedback-swiper .swiper-horizontal > .swiper-pagination-bullets,
 .feedback-swiper .swiper-pagination-bullets.swiper-pagination-horizontal {
   position: static !important;
   inset: auto !important;

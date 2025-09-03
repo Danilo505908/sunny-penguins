@@ -6,12 +6,14 @@ const closeBtn = document.querySelector('.close_header');
 burger.addEventListener('click', () => {
   nav.classList.add('open');
   burger.style.display = 'none';
+  document.body.classList.add('lock-scroll');
 });
 
 // закриття кнопкою "хрестик"
 closeBtn.addEventListener('click', () => {
   nav.classList.remove('open');
   burger.style.display = 'block';
+  document.body.classList.remove('lock-scroll');
 });
 
 // закриття при кліку на пункт меню + плавний скрол
@@ -21,6 +23,8 @@ links.forEach(link => {
     e.preventDefault(); // блокуємо стандартний різкий перехід
     const targetId = link.dataset.target;
     const targetSection = document.getElementById(targetId);
+
+    document.body.classList.remove('lock-scroll');
 
     if (targetSection) {
       const headerHeight = document.querySelector('.header').offsetHeight;
@@ -43,5 +47,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     nav.classList.remove('open');
     burger.style.display = 'block';
+    document.body.classList.remove('lock-scroll');
   }
 });

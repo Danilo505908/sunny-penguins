@@ -1,3 +1,4 @@
+/* ---------- MOBILE (320px+) ---------- */
 .about {
     background: var(--color-scheme-1-background);
     color: var(--color-scheme-1-text);
@@ -5,30 +6,38 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* центруємо картинку і контент */
     gap: 24px;
 }
 
-.about h2 {
+.about__image img {
+    width: 100%;
+    max-width: 288px;
+    border-radius: 16px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.about__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+}
+
+.about__title {
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 400;
     font-size: 24px;
     line-height: 130%;
 }
 
-.about p {
+.about__text {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
-}
-
-.about img {
-    width: 100%;
-    fill: var(--color-scheme-1-text);
-    max-width: 288px;
-    border-radius: 16px;
-    object-fit: cover;
-    margin: 0 auto;
 }
 
 /* ---------- TABLET (768px – 1439px) ---------- */
@@ -37,29 +46,25 @@
         max-width: 768px;
         padding: 32px 40px;
         gap: 32px;
-        flex-direction: column;
-        
-        align-items: center;
     }
 
-    .about img {
+    .about__image img {
         max-width: 704px;
         border-radius: 24px;
     }
 
-    .about h2 {
+    .about__title {
         font-family: var(--second-family);
         font-weight: 700;
         font-size: 44px;
         line-height: 120%;
         letter-spacing: -0.01em;
-        text-align: center;
     }
 
-    .about p {
+    .about__text {
         font-size: 20px;
-        text-align: center;
         max-width: 600px;
+        margin: 0 auto;
     }
 }
 
@@ -71,39 +76,38 @@
         padding: 112px 64px;
         display: grid;
         grid-template-columns: 640px 1fr;
-        
+        /* картинка ліворуч, текст праворуч */
         align-items: center;
-        gap: 80px;
+        gap: 187px;
+        /* як у Figma */
     }
 
-    .about__image {
-        order: 1;
+    .about__image img {
+        max-width: 640px;
     }
 
     .about__content {
-        order: 2;
+        align-items: flex-start;
+        /* тепер вирівнювання по лівому краю */
         text-align: left;
+        gap: 32px;
+        /* відстань між h2 і p */
     }
 
-    .about img {
-        max-width: 640px;
-        height: auto;
-        border-radius: 24px;
-    }
-
-    .about h2 {
+    .about__title {
         font-family: var(--second-family);
         font-weight: 700;
         font-size: 60px;
         line-height: 120%;
         letter-spacing: -0.01em;
-        margin-bottom: 24px;
+        margin: 0;
         text-align: left;
     }
 
-    .about p {
+    .about__text {
         font-size: 20px;
         max-width: 520px;
+        margin: 0;
         text-align: left;
     }
 }

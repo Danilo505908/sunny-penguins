@@ -41,7 +41,7 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
   color: #fff;
   position: relative;
-  max-width: 100%
+  max-width: 100%;
   /* Додано для контролю позиціонування */
 }
 
@@ -60,6 +60,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  padding-bottom: 48px;
 }
 
 .nav-box::after {
@@ -71,7 +72,8 @@ body {
   width: 100%;
   height: 1px;
   background: rgba(255, 255, 255, 0.2);
-  margin-bottom: 24px;
+  
+  
 }
 
 .footer-nav {
@@ -84,7 +86,7 @@ body {
   font-weight: 600;
   font-size: 16px;
   line-height: 1.5;
-  margin-bottom: 48px;
+  
 }
 
 .footer-nav-link {
@@ -113,12 +115,15 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 32px;
+  
+  
 }
 
 .footer-socials {
-  display: inline-flex;
+  display: flex;
   gap: 32px;
+  margin-top: 24px;
+  
 }
 
 .footer-socials-icon {
@@ -156,19 +161,21 @@ body {
 height: 45px;
   margin-bottom: 32px;
 }
+.nav-box {
+  padding-bottom: 80px
+}
   .footer-nav {
     flex-direction: row;
-    margin-bottom: 80px;
+    
   }
 
-  .nav-box::after {
-    margin-bottom: 32px;
-  }
+  
 
   .socials-box {
     flex-direction: row-reverse;
     justify-content: space-between;
     width: 100%;
+    
   }
 
   .footer-socials-item {

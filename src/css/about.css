@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* центруємо картинку і контент */
     gap: 24px;
 }
 
@@ -79,7 +78,6 @@
         /* картинка ліворуч, текст праворуч */
         align-items: center;
         gap: 187px;
-        /* як у Figma */
     }
 
     .about__image img {
@@ -88,10 +86,8 @@
 
     .about__content {
         align-items: flex-start;
-        /* тепер вирівнювання по лівому краю */
         text-align: left;
         gap: 32px;
-        /* відстань між h2 і p */
     }
 
     .about__title {

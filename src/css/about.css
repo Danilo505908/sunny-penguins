@@ -38,7 +38,9 @@
     font-size: 18px;
     line-height: 150%;
 }
-
+.iteam-icon {
+    fill: #fff;
+}
 /* ---------- TABLET (768px – 1439px) ---------- */
 @media (min-width: 768px) and (max-width: 1439px) {
     .about {

@@ -106,7 +106,8 @@
   content: '';
   position: absolute;
   left: 0;
-  bottom: -4px; /* відступ від тексту */
+  bottom: -4px;
+  /* відступ від тексту */
   width: 0;
   height: 2px;
   background-color: #764191;
@@ -151,8 +152,10 @@
   }
 
   .burger_header {
-    display: none !important; /* бургер приховуємо */
+    display: none !important;
+    /* бургер приховуємо */
   }
+
   .close_header {
     display: none;
   }

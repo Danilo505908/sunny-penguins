@@ -10,7 +10,7 @@
 }
 
 .about {
-    background: var(--color-scheme-1-background);
+    background: var(--color-neutral-darkest);
     color: var(--color-scheme-1-text);
     padding: 112px 64px;
     display: flex;

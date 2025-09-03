@@ -160,12 +160,12 @@ async function fetchArtists(page = 1, limit = 8) {
     const data = await res.json();
 
     const incoming = Array.isArray(data?.artists) ? data.artists : [];
-    console.log(`Fetched page ${page}, items:`, incoming.length);
-    console.log(
+    (`Fetched page ${page}, items:`, incoming.length);
+    (
       'Fetched names (raw):',
       incoming.map(a => normalizeName(a))
     );
-    console.log(
+    (
       'Fetched genres (raw):',
       incoming.map(a => normalizeGenres(a))
     );

@@ -2,46 +2,40 @@
 .hero {
     position: relative;
     background-color: var(--color-affair-darkest);
-    background-image: url('../img/hero.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     color: var(--color-scheme-1-text);
-    padding: 64px 16px;
+    padding: 60px 40px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    min-height: 100vh;
     overflow: hidden;
 }
 
-/* Верхній градієнт */
+/* Фон через псевдоелемент */
 .hero::before {
+    content: url("../img/hero/Content-tbl.png");
+    top: 430px;
+    position: absolute;
+    left: 80px;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Верхній градієнт */
+.hero::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 150px;
+    height: 100%;
     background: linear-gradient(180deg,
             var(--color-neutral-darkest) 0%,
-            var(--opacity-transparent) 100%);
-    pointer-events: none;
-    z-index: 5;
-}
-
-/* Нижній градієнт */
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    background: linear-gradient(180deg,
-            var(--opacity-transparent) 0%,
+            var(--opacity-transparent) 20%,
+            var(--opacity-transparent) 80%,
             var(--color-neutral-darkest) 100%);
     pointer-events: none;
-    z-index: 5;
+    z-index: 2;
 }
 
 /* Контейнер */
@@ -52,15 +46,17 @@
     justify-content: flex-start;
     gap: 24px;
     position: relative;
-    z-index: 1;
+    z-index: 3;
     max-width: 1280px;
     width: 100%;
+    margin-bottom: 360px;
 }
 
 /* Текстова частина */
 .hero-content {
     max-width: 100%;
     text-align: left;
+    margin-top: 100px;
 }
 
 .hero-title {
@@ -119,25 +115,48 @@
     fill: currentColor;
 }
 
-/* Зображення справа */
-.hero-image {
-    width: 100%;
-    margin-top: 32px;
-    display: flex;
-    justify-content: center;
-}
-
-.hero-image img {
-    width: 100%;
-    max-width: 600px;
-    object-fit: cover;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* ================= HERO — Tablet (481px-1024px) ================= */
-@media (min-width: 481px) and (max-width: 1024px) {
+/* ================= HERO — Mobile (≤320px) ================= */
+@media (max-width: 320px) {
     .hero {
-        padding: 110px 20px;
+        padding: 20px 16px;
+    }
+
+    .hero::before {
+        content: url("../img/hero/Content-mbl.png");
+        top: 550px;
+        left: 22px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 0;
+    }
+
+    .hero-title {
+        font-size: 28px;
+        line-height: 120%;
+    }
+
+    .hero-text {
+        font-size: 14px;
+    }
+
+    .hero-btn {
+        width: 100%;
+        font-size: 14px;
+        height: 44px;
+    }
+}
+
+/* ================= HERO — Tablet (≤768px) ================= */
+@media (max-width: 768px) {
+    .hero::before {
+        content: url("../img/hero/Content-tbl.png");
+        top: 500px;
+        left: 30px;
+        width: 20%;
+        height: 50%;
+        position: absolute;
+        z-index: 0;
     }
 
     .hero-container {
@@ -147,8 +166,14 @@
         gap: 32px;
     }
 
+    .hero-content {
+        max-width: 100%;
+        text-align: left;
+        margin-bottom: 320px;
+    }
+
     .hero-title {
-        max-width: 624px;
+        width: 624px;
         margin-bottom: 24px;
         font-weight: 700;
         font-size: 48px;
@@ -157,47 +182,53 @@
     }
 
     .hero-text {
-        font-size: 18px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 150%;
         margin-bottom: 32px;
+        width: 624px;
     }
 
     .hero-btn {
-        width: auto;
-        padding: 12px 28px;
-        font-size: 16px;
         border-radius: 12px;
-    }
-
-    .hero-image {
-        display: flex;
-        justify-content: center;
-        /* картинка по центру */
-        width: 100%;
-        margin-top: 20px;
-    }
-
-    .hero-image img {
-        max-width: 90%;
-        height: auto;
+        padding: 10px 24px;
+        width: 246px;
+        height: 47px;
     }
 }
 
-/* ================= HERO — Desktop (≥769px) ================= */
-@media (min-width: 1025px) {
+/* ================= HERO — Large Desktop (≥1440px) ================= */
+@media (min-width: 1440px) {
+    .hero::before {
+        content: url("../img/hero/Content.png");
+        position: absolute;
+        top: 500px;
+        left: 800px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        z-index: 0;
+    }
+
     .hero {
-        padding: 60px 40px;
-        min-height: 100vh;
+        padding: 20px 40px;
     }
 
     .hero-container {
-        flex-direction: row;
+        display: flex;
         justify-content: space-between;
-        align-items: center;
-        gap: 40px;
+        align-items: flex-start;
+        position: relative;
+        z-index: 2;
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
     }
 
     .hero-content {
         max-width: 50%;
+        margin-top: 400px;
     }
 
     .hero-title {
@@ -213,14 +244,5 @@
         width: 220px;
         height: 52px;
         font-size: 18px;
-    }
-
-    .hero-image {
-        flex: 1;
-        margin-top: 0;
-    }
-
-    .hero-image img {
-        max-width: 600px;
     }
 }

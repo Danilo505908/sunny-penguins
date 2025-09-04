@@ -1,3 +1,5 @@
+import sprite from '../img/sprite.svg?url';
+
 function formatDuration(ms) {
   if (!ms || isNaN(ms)) return '—';
   const minutes = Math.floor(ms / 60000);
@@ -70,7 +72,7 @@ async function renderArtistModal(artistId) {
             const playButton = track.movie
               ? `<a href="${track.movie}" target="_blank" rel="noopener noreferrer" class="play-svg-link">
                    <svg width="21" height="15">
-                     <use href="./img/sprite.svg#icon-Youtube"></use>
+                     <use href="${sprite}#icon-Youtube"></use>
                    </svg>
                  </a>`
               : '';

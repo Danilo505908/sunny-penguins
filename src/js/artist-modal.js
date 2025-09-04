@@ -7,6 +7,11 @@ function formatDuration(ms) {
   return `${minutes}:${seconds}`;
 }
 
+function truncateText(text, maxLength = 20) {
+  if (!text) return '';
+  return text.length > maxLength ? text.slice(0, maxLength) + '…' : text;
+}
+
 const loaderOverlay = document.getElementById('loader-overlay');
 
 async function renderArtistModal(artistId) {
@@ -64,14 +69,14 @@ async function renderArtistModal(artistId) {
           .map(track => {
             const playButton = track.movie
               ? `<a href="${track.movie}" target="_blank" rel="noopener noreferrer" class="play-svg-link">
-                 <svg width="21" height="15">
-                   <use href="/sunny-penguins/assets/modal-icons-BM4YKK8X.svg#icon-play"></use>
-                 </svg>
-               </a>`
+                   <svg width="21" height="15">
+                     <use href="./img/sprite.svg#icon-Youtube"></use>
+                   </svg>
+                 </a>`
               : '';
             return `
             <tr>
-              <td>${track.strTrack || ''}</td>
+              <td>${truncateText(track.strTrack, 20)}</td>
               <td>${formatDuration(Number(track.intDuration))}</td>
               <td>${playButton}</td>
             </tr>`;
@@ -128,8 +133,9 @@ async function renderArtistModal(artistId) {
     loaderOverlay.style.display = 'none';
   }
 }
+
 export { renderArtistModal };
-  
+
 const buttons = document.querySelectorAll('.learn-more-btn');
 buttons.forEach(button => {
   button.addEventListener('click', () => {

@@ -9,7 +9,7 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -153,6 +153,7 @@
   width: auto;
   max-width: fit-content;
 }
+
 .learn-more-btn:hover {
   background: #6a2f91;
   transform: translateY(-1px);
@@ -191,10 +192,11 @@
   width: 170px;
   height: 47px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05),
-    /* var(--opacity-neutral-darkest-5) */ inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
+    /* var(--opacity-neutral-darkest-5) */
+    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
     inset 0 0 0 1px rgba(0, 0, 0, 0.15),
-    /* var(--opacity-neutral-darkest-15) */ inset 0 2px 1px 0
-      rgba(255, 255, 255, 0.25),
+    /* var(--opacity-neutral-darkest-15) */
+    inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
     inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
   /* var(--opacity-white-5) */
   background: #764191;
@@ -284,6 +286,7 @@
     transform: scale(1.03);
   }
 }
+
 .artists-section .container {
   max-width: 1200px;
   margin: 0 auto;

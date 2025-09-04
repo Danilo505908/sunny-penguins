@@ -1,7 +1,7 @@
 /* ================= MOBILE-FIRST (320+) ================= */
 .artists-section {
   padding: 64px 0;
-  background-color: #06030f;
+  background: var(--color-neutral-darkest);
 }
 
 .artists-section .container {

@@ -285,3 +285,10 @@
   /* активна — чисто біла */
   transform: none;
 }
+
+.rating.small .star {
+  height: 9.5px;
+}
+.rating.immediately .star-container {
+  transition: none;
+}

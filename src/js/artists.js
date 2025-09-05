@@ -110,7 +110,7 @@ function renderArtistCard(artist) {
     : 'No description available';
 
   return `
-    <article class="artist-card" data-artist-id="${escapeHtml(id)}">
+    <li  class="artist-card" data-artist-id="${escapeHtml(id)}">
       <div class="artist-image-wrap">
         <img src="${escapeHtml(photo)}" alt="${escapeHtml(
     name
@@ -135,7 +135,7 @@ function renderArtistCard(artist) {
 </svg>
         </button>
       </div>
-    </article>
+    </li>
   `;
 }
 
@@ -193,20 +193,28 @@ async function fetchArtists(page = 1, limit = 8) {
 }
 
 // ===== Лоадер на кнопці =====
+const sectionLoader = document.getElementById('artists-loader');
+
 function setLoading(isLoading) {
   if (!loadMoreBtn) return;
   const btnText = loadMoreBtn.querySelector('.btn-text');
 
   if (isLoading) {
+    // кнопка
     loadMoreBtn.disabled = true;
     loadMoreBtn.classList.add('is-loading');
     loadMoreBtn.setAttribute('aria-busy', 'true');
     if (btnText) btnText.textContent = 'Loading...';
+
+    // секційний loader
+    if (sectionLoader) sectionLoader.hidden = false;
   } else {
     loadMoreBtn.disabled = false;
     loadMoreBtn.classList.remove('is-loading');
     loadMoreBtn.removeAttribute('aria-busy');
     if (btnText) btnText.textContent = 'Load More';
+
+    if (sectionLoader) sectionLoader.hidden = true;
   }
 }
 

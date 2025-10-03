@@ -1,195 +1,189 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@media only screen and (min-width: 320px) {
+
+    .footer-section {
+        padding: 48px 0;
+    }
+
+    .footer-logo-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+
+    .footer-logo {
+        width: 84px;
+        height: 36px;
+    }
+
+    .footer-logo-svg {
+        fill: var(--color-affair);
+        width: 84px;
+        height: 36px;
+    }
+
+    .footer-nav-list {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 48px;
+    }
+
+    .footer-nav-item {
+        color: #fff;
+        font-family: 'IBM Plex Sans';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.5;
+        position: relative;
+        /* для підкреслення */
+    }
+
+    /* Підкреслення футера */
+    .footer-nav-item::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background-color: var(--color-affair);
+        transition: width 0.3s ease;
+    }
+
+    /* Hover/focus для футера */
+    .footer-nav-item:hover::after,
+    .footer-nav-item:focus::after {
+        width: 100%;
+    }
+
+    .footer-nav-link:active {
+        color: var(--color-white);
+    }
+
+    .divider {
+        background: rgba(255, 255, 255, 0.2);
+        width: 100%;
+        height: 1px;
+        margin-bottom: 24px;
+    }
+
+    .footer-social-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .footer-social-list {
+        display: flex;
+        gap: 32px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .social-icon {
+        fill: var(--color-white);
+        transition: none;
+    }
+
+    .social-icon:hover,
+    .social-icon:focus {
+        fill: var(--color-affair);
+    }
+
+    .footer-text {
+        color: var(--color-white);
+        font-family: 'IBM Plex Sans';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    /* ---------- HEADER NAV UNDERLINE ---------- */
+    .header-nav-link {
+        position: relative;
+    }
+
+    .header-nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background-color: var(--color-affair);
+        transition: width 0.3s ease;
+    }
+
+    .header-nav-link:hover::after,
+    .header-nav-link:focus::after,
+    .header-nav-link.active::after {
+        width: 100%;
+    }
 }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+@media only screen and (min-width: 768px) {
+
+    .footer-section {
+        padding: 80px 0;
+    }
+
+    .footer-logo-svg {
+        width: 116px;
+        height: 45px;
+    }
+
+    .footer-logo-wrapper {
+        padding-right: 40px;
+    }
+
+    .footer-nav-list {
+        flex-direction: row;
+        margin-bottom: 80px;
+    }
+
+    .divider {
+        margin-bottom: 32px;
+    }
+
+    .footer-social-wrapper {
+        flex-direction: row-reverse;
+        gap: 0;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    .footer-social-list {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    .footer-text-wrapper {
+        margin-bottom: 0;
+        margin-right: auto;
+    }
+
+    .social-icon {
+        width: 32px;
+        height: 32px;
+    }
 }
 
-.footer {
-  background: var(--color-neutral-darkest);
-  padding: 48px 20px;
-  font-family: "IBM Plex Sans", sans-serif;
-  color: #fff;
-  position: relative;
-  max-width: 100%;
-  /* Додано для контролю позиціонування */
-}
-
-.footer-logo-mobile {
-  fill: #764191;
-  width: 84px;
-  height: 36px;
-  margin-bottom: 32px;
-}
-
-.footer-logo-tablet {
-  display: none;
-}
-
-.nav-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding-bottom: 48px;
-}
-
-.nav-box::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-
-
-}
-
-.footer-nav {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.5;
-
-}
-
-.footer-nav-link {
-  position: relative;
-  text-decoration: none;
-  color: white;
-}
-
-.footer-nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background-color: #764191;
-  transition: width 0.3s ease;
-}
-
-.footer-nav-link:hover::after {
-  width: 100%;
-}
-
-.socials-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-
-}
-
-.footer-socials {
-  display: flex;
-  gap: 32px;
-  margin-top: 24px;
-
-}
-
-.footer-socials-icon {
-  fill: white;
-  transition: fill 200ms ease;
-}
-
-.footer-socials-icon:hover,
-.footer-socials-icon:focus {
-  fill: #764191;
-  cursor: pointer;
-}
-
-.copyright {
-  margin-top: 32px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-  text-align: center;
-}
-
-/* Tablet */
-@media screen and (min-width: 768px) {
-  .footer {
-    padding: 80px 32px;
-  }
-
-  .footer-logo-mobile {
-    display: none;
-  }
-
-  .footer-logo-tablet {
-    display: inline-block;
-    fill: #764191;
-    width: 116px;
-    height: 45px;
-    margin-bottom: 32px;
-  }
-
-  .nav-box {
-    padding-bottom: 80px
-  }
-
-  .footer-nav {
-    flex-direction: row;
-
-  }
-
-
-
-  .socials-box {
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    width: 100%;
-
-  }
-
-  .footer-socials-item {
-    gap: 24px;
-  }
-
-  .footer-socials-icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .copyright {
-    text-align: left;
-  }
-}
-
-/* Desktop */
-@media screen and (min-width: 1440px) {
-  .footer {
-    padding: 80px 64px;
-  }
-
-  .footer-nav {
-    gap: 32px;
-  }
-
-  .socials-box {
-    gap: 24px;
-  }
-
-  .footer-socials-icon {
-    width: 24px;
-    height: 24px;
-  }
+@media only screen and (min-width: 1440px) {
+    .social-icon {
+        width: 24px;
+        height: 24px;
+    }
 }

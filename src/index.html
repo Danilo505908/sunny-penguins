@@ -1,55 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArtistsHub | Website</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="./img/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Epilogue:wght@700&family=Roboto:wght@700&display=swap"
-    rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin:wght@400&family=Roboto:wght@400&family=Sarabun:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Normalize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
-    integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- normalizer -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <!-- def-styles -->
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
 
-  <title>ArtistsHub</title>
+    <!-- Main Content import -->
+    <main>
+      <load src="./partials/hero.html" />
+      <load src="./partials/artists.html" />
+      <load src="./partials/about.html" />
+      <load src="./partials/comments.html" />
+    </main>
 
-  <link rel="stylesheet" href="./css/styles.css" />
-  <link rel="stylesheet" href="./css/artists.css" />
-</head>
+    <load src="./partials/footer.html" />
+    <load src="./partials/modal.html" />
 
-<body>
-  <!-- Header -->
-  <load src="./partials/header.html" />
-
-  <main>
-    <!-- Hero Section -->
-    <load src="./partials/hero.html" />
-
-    <!-- Artists Section -->
-    <load src="./partials/artists.html" />
-
-    <!-- About Us Section -->
-    <load src="./partials/about.html" />
-
-    <!-- Feedback Section -->
-    <load src="./partials/feedback.html" />
-
-    <!-- Modal Section -->
-    <load src="./partials/artist-modal.html" />
-  </main>
-
-  <!-- Footer -->
-  <load src="./partials/footer.html" />
-
-  <!-- Scripts -->
-  <script type="module" src="./main.js"></script>
-</body>
-
+    <!--  import JS (main-file)-->
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>

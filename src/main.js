@@ -1,4 +1,7 @@
-import './js/artists.js';
-import './js/feedback.js';
-import './js/artist-modal.js';
+import './js/api.js';                 
+import './js/artists/index.js';       
+import './js/footer.js';
 import './js/header.js';
+import './js/hero.js';
+import './js/comments.js';
+import "./js/global-sfx.js";

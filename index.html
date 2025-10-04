@@ -44,7 +44,7 @@
 
     <nav class="header-nav" aria-label="Main navigation">
       <ul class="header-nav-list">
-        <li><a href="#artists-section" class="header-nav-link">Artists</a></li>
+        <li><a href="#artists" class="header-nav-link">Artists</a></li>
         <li><a href="#about" class="header-nav-link">About Us</a></li>
         <li><a href="#reviews" class="header-nav-link">Reviews</a></li>
       </ul>
@@ -102,7 +102,7 @@
         guide to the boundless universe of sound. Explore, filter, and learn
         about your favorite artists all in one place.
       </p>
-      <a href="#artists-section" id="exploreBtn" class="hero-btn">
+      <a href="#artists" id="exploreBtn" class="hero-btn">
         Explore Artists
         <svg class="icon-play-btn" width="24" height="24">
           <use href="/sunny-penguins/assets/sprite-DL16Y-CB.svg#icon-icon_play_hero_section"></use>
@@ -112,8 +112,7 @@
     <div class="hero-img"></div>
   </div>
 </section>
-
-      <section id="artists-section" class="artists1 container">
+      <section id="artists" class="artists1 container">
   <div class="artists1__head">
     <p class="eyebrow">Artists</p>
     <h2 class="title">Explore Your New Favorite Artists</h2>
@@ -125,12 +124,7 @@
       <div class="filters__bar">
         <!-- <span class="filters__label">Filters</span> -->
 
-        <button
-          id="view-toggle"
-          class="filters__view"
-          type="button"
-          aria-pressed="false"
-        >
+        <button id="view-toggle" class="filters__view" type="button" aria-pressed="false">
           List view
         </button>
 
@@ -138,13 +132,8 @@
           Reset
         </button>
 
-        <button
-          id="filters-toggle"
-          type="button"
-          class="filters__toggle"
-          aria-controls="filters-panel"
-          aria-expanded="false"
-        >
+        <button id="filters-toggle" type="button" class="filters__toggle" aria-controls="filters-panel"
+          aria-expanded="false">
           <span>Search and Filters</span>
         </button>
       </div>
@@ -152,12 +141,7 @@
       <div id="filters-panel" class="filters__panel" aria-hidden="true">
         <!-- Search -->
         <label class="fld fld-search">
-          <button
-            id="flt-q-btn"
-            type="button"
-            class="fld-search__btn"
-            aria-label="Search"
-          >
+          <button id="flt-q-btn" type="button" class="fld-search__btn" aria-label="Search">
             <svg class="ico" aria-hidden="true" width="24" height="24">
               <!-- якщо у тебе inline-спрайт: href="#icon-search"; якщо файл: href="/img/sprite.svg#icon-search" -->
               <use href="#icon-search"></use>
@@ -168,13 +152,7 @@
 
         <!-- Sorting -->
         <div class="dd" data-dd="sort">
-          <button
-            class="dd__btn"
-            id="dd-sort-btn"
-            type="button"
-            aria-expanded="false"
-            aria-controls="dd-sort-list"
-          >
+          <button class="dd__btn" id="dd-sort-btn" type="button" aria-expanded="false" aria-controls="dd-sort-list">
             <span>Sorting</span>
           </button>
           <ul class="dd__list" id="dd-sort-list" role="listbox">
@@ -186,13 +164,7 @@
 
         <!-- Genre -->
         <div class="dd" data-dd="genre">
-          <button
-            class="dd__btn"
-            id="dd-genre-btn"
-            type="button"
-            aria-expanded="false"
-            aria-controls="dd-genre-list"
-          >
+          <button class="dd__btn" id="dd-genre-btn" type="button" aria-expanded="false" aria-controls="dd-genre-list">
             <span>Genre</span>
           </button>
           <ul class="dd__list" id="dd-genre-list" role="listbox"></ul>
@@ -206,18 +178,14 @@
           </svg>
           <span>/ Next</span>
           <svg class="ico" aria-hidden="true" width="24" height="24">
-            <use
-              href="/sunny-penguins/assets/sprite-DL16Y-CB.svg#icon-icon_right_button_feedback_sec"
-            ></use>
+            <use href="/sunny-penguins/assets/sprite-DL16Y-CB.svg#icon-icon_right_button_feedback_sec"></use>
           </svg>
         </button>
 
         <button id="mixradio-menu-btn" type="button" class="btn btn--purple">
           <span>Radio Menu</span>
           <svg class="ico" aria-hidden="true" width="24" height="24">
-            <use
-              href="/sunny-penguins/assets/sprite-DL16Y-CB.svg#icon-icon_right_button_feedback_sec"
-            ></use>
+            <use href="/sunny-penguins/assets/sprite-DL16Y-CB.svg#icon-icon_right_button_feedback_sec"></use>
           </svg>
         </button>
       </div>
@@ -248,18 +216,8 @@
 
 <div id="artist-modal" class="amodal" hidden>
   <div class="amodal__backdrop"></div>
-  <div
-    class="amodal__dialog"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Artist details"
-  >
-    <button
-      id="am-close"
-      class="amodal__close"
-      type="button"
-      aria-label="Close"
-    >
+  <div class="amodal__dialog" role="dialog" aria-modal="true" aria-label="Artist details">
+    <button id="am-close" class="amodal__close" type="button" aria-label="Close">
       ×
     </button>
     <div id="am-body" class="amodal__body">
@@ -267,7 +225,6 @@
     </div>
   </div>
 </div>
-
       <section id="about" class="about-section">
   <div class="container div-about-section">
     <div class="img-container-about-section">

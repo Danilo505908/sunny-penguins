@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Alex",
+    "descr": "Amazing selection of artists, I keep discovering new music every day!",
+    "rating": 5
+  },
+  {
+    "name": "Maria",
+    "descr": "Nice UI and easy filters. Would love even more genres in the future.",
+    "rating": 4
+  },
+  {
+    "name": "John",
+    "descr": "The player and artist details are really helpful when exploring albums.",
+    "rating": 5
+  }
+]
+
+

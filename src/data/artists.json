@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Radiohead",
+    "country": "United Kingdom",
+    "genres": ["Alternative Rock", "Art Rock"],
+    "image": "https://i.ibb.co/9sQxS7L/radiohead.jpg",
+    "biography": "Radiohead are an English rock band formed in Abingdon, Oxfordshire, in 1985."
+  },
+  {
+    "id": 2,
+    "name": "Coldplay",
+    "country": "United Kingdom",
+    "genres": ["Pop Rock", "Alternative Rock"],
+    "image": "https://i.ibb.co/3dn3c4h/coldplay.jpg",
+    "biography": "Coldplay are a British rock band formed in London in 1997."
+  },
+  {
+    "id": 3,
+    "name": "Beyoncé",
+    "country": "United States",
+    "genres": ["R&B", "Pop"],
+    "image": "https://i.ibb.co/F8FxQ1K/beyonce.jpg",
+    "biography": "Beyoncé is an American singer, songwriter, and producer."
+  }
+]
+
+

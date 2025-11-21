@@ -4,6 +4,7 @@
 // Совместимо с artists/features/api.js
 
 import axios from "axios";
+import localArtists from "../data/artists.json";
 
 /* =========================
    ENV / ЛОГИРОВАНИЕ
@@ -99,8 +100,51 @@ export async function fetchArtists(
     return { artists, totalArtists, page: pageOut, limit: limitOut };
   } catch (err) {
     logWarn("[api] fetchArtists failed:", err?.message || err);
-    toastError("Не удалось загрузить артистов. Попробуйте позже.");
-    return { artists: [], totalArtists: 0, page: 1, limit: clampNumber(limit, 1, 8) };
+    // Фолбек: статичні артисти з локального JSON (працює і на GitHub Pages, і на Vercel)
+    try {
+      const list = Array.isArray(localArtists) ? localArtists : [];
+
+      let filtered = list.slice();
+
+      const g = String(genre || "").trim();
+      if (g && g !== "All Genres") {
+        filtered = filtered.filter((a) =>
+          Array.isArray(a.genres) ? a.genres.includes(g) : a.genre === g
+        );
+      }
+
+      const n = String(name || "").trim().toLowerCase();
+      if (n) {
+        filtered = filtered.filter((a) =>
+          String(a.name || a.strArtist || "").toLowerCase().includes(n)
+        );
+      }
+
+      const s = String(sort || "").toLowerCase();
+      if (s === "asc" || s === "desc") {
+        filtered.sort((a, b) => {
+          const an = String(a.name || "").toLowerCase();
+          const bn = String(b.name || "").toLowerCase();
+          if (an < bn) return s === "asc" ? -1 : 1;
+          if (an > bn) return s === "asc" ? 1 : -1;
+          return 0;
+        });
+      }
+
+      const safeLimit = clampNumber(limit, 1, 8);
+      const start = (clampNumber(page, 1, 1) - 1) * safeLimit;
+      const pageItems = filtered.slice(start, start + safeLimit);
+
+      return {
+        artists: pageItems,
+        totalArtists: filtered.length,
+        page: clampNumber(page, 1, 1),
+        limit: safeLimit,
+      };
+    } catch {
+      toastError("Не удалось загрузить артистов. Попробуйте позже.");
+      return { artists: [], totalArtists: 0, page: 1, limit: clampNumber(limit, 1, 8) };
+    }
   }
 }
 
@@ -135,8 +179,18 @@ export async function fetchGenres() {
     return out;
   } catch (err) {
     logWarn("[api] fetchGenres failed:", err?.message || err);
-    toastError("Не удалось загрузить жанры.");
-    return ["All Genres"];
+    // Фолбек: жанри на основі локального списку артистів
+    try {
+      const base = Array.isArray(localArtists) ? localArtists : [];
+      const all = base.flatMap((a) =>
+        Array.isArray(a.genres) ? a.genres : a.genre ? [a.genre] : []
+      );
+      const uniq = [...new Set(all.filter(Boolean))];
+      return ["All Genres", ...uniq];
+    } catch {
+      toastError("Не удалось загрузить жанры.");
+      return ["All Genres"];
+    }
   }
 }
 

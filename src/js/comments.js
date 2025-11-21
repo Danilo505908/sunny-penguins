@@ -4,10 +4,12 @@ import 'swiper/swiper-bundle.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { API_BASE } from './api.js';
+import fallbackFeedbacks from '../data/feedbacks.json';
 
 // ===== Constants / State =====
 const STORAGE_KEY = 'myFeedback';
 const FEEDBACKS_URL = `${API_BASE.replace(/\/$/, '')}/feedbacks`;
+let localFeedbacks = Array.isArray(fallbackFeedbacks) ? [...fallbackFeedbacks] : [];
 let scrollY = 0;
 let swiper = null;
 
@@ -199,28 +201,31 @@ async function loadReviews() {
     const res = await fetch(FEEDBACKS_URL);
     const json = await res.json();
     const feedbacks = (json?.data || []).slice(0, 10);
-
-    feedbacks.forEach((fb, index) => {
-      const stars = Math.round(fb.rating || 0);
-
-      const slide = document.createElement('div');
-      slide.className = 'swiper-slide';
-      slide.innerHTML = `
-        <div class="rating my-rating" id="rating-${index}" data-rating="${stars}"></div>
-        <div class="feedback">
-          <p class="customer-feedback">${fb.descr}</p>
-          <h3 class="customer-name">${fb.name}</h3>
-        </div>
-      `;
-
-      wrapper.appendChild(slide);
-      createStars(slide.querySelector('.rating'), stars);
-    });
-
-    initSwiper();
-  } catch (err) {
-    iziToast.error({ title: 'Error', message: 'Bad request (invalid request params)' });
+    if (feedbacks.length) {
+      localFeedbacks = feedbacks;
+    }
+  } catch {
+    // якщо бекенд недоступний — використовуємо локальний JSON
   }
+
+  localFeedbacks.slice(0, 10).forEach((fb, index) => {
+    const stars = Math.round(fb.rating || 0);
+
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide';
+    slide.innerHTML = `
+      <div class="rating my-rating" id="rating-${index}" data-rating="${stars}"></div>
+      <div class="feedback">
+        <p class="customer-feedback">${fb.descr}</p>
+        <h3 class="customer-name">${fb.name}</h3>
+      </div>
+    `;
+
+    wrapper.appendChild(slide);
+    createStars(slide.querySelector('.rating'), stars);
+  });
+
+  initSwiper();
 }
 
 // ===== Submit =====
@@ -245,6 +250,7 @@ function attachSubmitHandler() {
       return;
     }
 
+    // Якщо бекенд недоступний — не ламаємо UX: додаємо фідбек локально
     try {
       const response = await fetch(FEEDBACKS_URL, {
         method: 'POST',
@@ -255,20 +261,23 @@ function attachSubmitHandler() {
         body: JSON.stringify({ name, descr: message, rating }),
       });
 
-      if (!response.ok) {
-        iziToast.error({ title: 'Error:', message: `${response.status}` });
-        return;
+      if (response.ok) {
+        // бекенд працює
+        iziToast.success({ message: "Success! Your comment posted" });
+      } else {
+        // додаємо в локальний список
+        localFeedbacks.unshift({ name, descr: message, rating });
+        iziToast.success({ message: "Success! Your comment saved locally" });
       }
-
-      iziToast.success({ message: "Success! Your comment posted" });
-      resetLocalStorage();
-      closeModal();
-      document.body.classList.remove('no-scroll');
-
-      loadReviews();
-    } catch (err) {
-      iziToast.error({ message: 'Bad request (invalid request body)' });
+    } catch {
+      localFeedbacks.unshift({ name, descr: message, rating });
+      iziToast.success({ message: "Success! Your comment saved locally" });
     }
+
+    resetLocalStorage();
+    closeModal();
+    document.body.classList.remove('no-scroll');
+    loadReviews();
   });
 }
 

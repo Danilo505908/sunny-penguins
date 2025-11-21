@@ -10,9 +10,11 @@ const httpsAgent = new https.Agent({
 });
 
 export default async function handler(req, res) {
-  // В catch‑all маршруте [...path] Vercel пробрасывает URL уже БЕЗ префикса /api/sound-wave
-  // Например: "/genres?page=1&limit=8"
-  const suffix = req.url || '/';
+  // Для API‑роута /api/sound-wave/[...path] реальный URL внутри функции
+  // починається з "/sound-wave/...", тому зрізаємо цей префікс.
+  // Наприклад: "/sound-wave/artists?page=1&limit=8" → "/artists?page=1&limit=8"
+  const rawUrl = req.url || '/';
+  const suffix = rawUrl.replace(/^\/sound-wave/, '') || '/';
   const upstreamUrl = TARGET_BASE + suffix;
 
   try {

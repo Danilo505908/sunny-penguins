@@ -4,8 +4,12 @@ import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
 
+const isVercel = process.env.VERCEL === '1';
+const BASE_PATH = isVercel ? '/' : '/sunny-penguins/';
+
 export default defineConfig(({ command }) => {
   return {
+    base: BASE_PATH,
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },

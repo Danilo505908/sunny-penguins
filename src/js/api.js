@@ -18,11 +18,12 @@ const logWarn = (...args) => { if (IS_DEV) console.warn(...args); };
 /* =========================
    BASE URL (с возможностью переопределить)
    ========================= */
-// приоритет: <html data-api="..."> → VITE_API_BASE → дефолт (dev/prod)
-// В DEV ходим на относительный `/api/sound-wave`, который проксируется Vite → бэкенду,
-// чтобы обойти CORS и проблемный SSL‑сертификат.
-const DEFAULT_API_DEV = "/api/sound-wave";
-const DEFAULT_API_PROD = "/api/sound-wave";
+// приоритет: <html data-api="..."> → VITE_API_BASE → дефолт
+// Для стабильной работы на удалённых хостингах НЕ полагаемся на внешний API,
+// а используем локальные JSON‑данные (artists.json). Поэтому BASE сейчас
+// нужен только как часть совместимости с остальным кодом.
+const DEFAULT_API_DEV = "";
+const DEFAULT_API_PROD = "";
 
 const API_BASE =
   document.documentElement.getAttribute("data-api") ||
@@ -72,80 +73,47 @@ function clampNumber(v, min, fallback) {
 export async function fetchArtists(
   { page = 1, limit = 8, genre = "", sort = "", name = "" } = {}
 ) {
-  try {
-    const params = {
-      page: clampNumber(page, 1, 1),
-      limit: clampNumber(limit, 1, 8),
-    };
+  // Полностью локальная реализация — без сетевых запросов.
+  const list = Array.isArray(localArtists) ? localArtists : [];
 
-    const s = String(sort || "").toLowerCase();
-    if (s === "asc" || s === "desc") params.sortName = s;
+  let filtered = list.slice();
 
-    const g = String(genre || "").trim();
-    if (g && g !== "All Genres") params.genre = g;
-
-    const n = String(name || "").trim();
-    if (n.length >= 1) params.name = n;
-
-    const { data } = await api.get("/artists", { params });
-
-    // Нормализация ответа (на случай неожиданных форм)
-    const artists = Array.isArray(data?.artists) ? data.artists
-                   : Array.isArray(data)          ? data
-                   : [];
-    const totalArtists = clampNumber(data?.totalArtists, 0, artists.length);
-    const pageOut  = clampNumber(data?.page, 1, params.page);
-    const limitOut = clampNumber(data?.limit, 1, params.limit);
-
-    return { artists, totalArtists, page: pageOut, limit: limitOut };
-  } catch (err) {
-    logWarn("[api] fetchArtists failed:", err?.message || err);
-    // Фолбек: статичні артисти з локального JSON (працює і на GitHub Pages, і на Vercel)
-    try {
-      const list = Array.isArray(localArtists) ? localArtists : [];
-
-      let filtered = list.slice();
-
-      const g = String(genre || "").trim();
-      if (g && g !== "All Genres") {
-        filtered = filtered.filter((a) =>
-          Array.isArray(a.genres) ? a.genres.includes(g) : a.genre === g
-        );
-      }
-
-      const n = String(name || "").trim().toLowerCase();
-      if (n) {
-        filtered = filtered.filter((a) =>
-          String(a.name || a.strArtist || "").toLowerCase().includes(n)
-        );
-      }
-
-      const s = String(sort || "").toLowerCase();
-      if (s === "asc" || s === "desc") {
-        filtered.sort((a, b) => {
-          const an = String(a.name || "").toLowerCase();
-          const bn = String(b.name || "").toLowerCase();
-          if (an < bn) return s === "asc" ? -1 : 1;
-          if (an > bn) return s === "asc" ? 1 : -1;
-          return 0;
-        });
-      }
-
-      const safeLimit = clampNumber(limit, 1, 8);
-      const start = (clampNumber(page, 1, 1) - 1) * safeLimit;
-      const pageItems = filtered.slice(start, start + safeLimit);
-
-      return {
-        artists: pageItems,
-        totalArtists: filtered.length,
-        page: clampNumber(page, 1, 1),
-        limit: safeLimit,
-      };
-    } catch {
-      toastError("Не удалось загрузить артистов. Попробуйте позже.");
-      return { artists: [], totalArtists: 0, page: 1, limit: clampNumber(limit, 1, 8) };
-    }
+  const g = String(genre || "").trim();
+  if (g && g !== "All Genres") {
+    filtered = filtered.filter((a) =>
+      Array.isArray(a.genres) ? a.genres.includes(g) : a.genre === g
+    );
   }
+
+  const n = String(name || "").trim().toLowerCase();
+  if (n) {
+    filtered = filtered.filter((a) =>
+      String(a.name || a.strArtist || "").toLowerCase().includes(n)
+    );
+  }
+
+  const s = String(sort || "").toLowerCase();
+  if (s === "asc" || s === "desc") {
+    filtered.sort((a, b) => {
+      const an = String(a.name || "").toLowerCase();
+      const bn = String(b.name || "").toLowerCase();
+      if (an < bn) return s === "asc" ? -1 : 1;
+      if (an > bn) return s === "asc" ? 1 : -1;
+      return 0;
+    });
+  }
+
+  const safeLimit = clampNumber(limit, 1, 8);
+  const currentPage = clampNumber(page, 1, 1);
+  const start = (currentPage - 1) * safeLimit;
+  const pageItems = filtered.slice(start, start + safeLimit);
+
+  return {
+    artists: pageItems,
+    totalArtists: filtered.length,
+    page: currentPage,
+    limit: safeLimit,
+  };
 }
 
 /* ----- кэш жанров (in-memory) на короткое время ----- */
@@ -157,41 +125,20 @@ const GENRES_TTL = 5 * 60 * 1000; // 5 минут
  * @returns {Promise<string[]>} — массив имён жанров (включая "All Genres" первым)
  */
 export async function fetchGenres() {
-  try {
-    const now = Date.now();
-    if (_genresCache.list.length && now - _genresCache.ts < GENRES_TTL) {
-      return _genresCache.list.slice(); // отдаём копию
-    }
-
-    const { data } = await api.get("/genres");
-    const raw = Array.isArray(data) ? data : (data?.genres || []);
-    const names = raw
-      .map((g) =>
-        typeof g === "string"
-          ? g
-          : g?.name || g?.title || g?.genre || g?.label || ""
-      )
-      .filter(Boolean);
-    const uniq = [...new Set(names)];
-    const out = ["All Genres", ...uniq];
-
-    _genresCache = { ts: now, list: out };
-    return out;
-  } catch (err) {
-    logWarn("[api] fetchGenres failed:", err?.message || err);
-    // Фолбек: жанри на основі локального списку артистів
-    try {
-      const base = Array.isArray(localArtists) ? localArtists : [];
-      const all = base.flatMap((a) =>
-        Array.isArray(a.genres) ? a.genres : a.genre ? [a.genre] : []
-      );
-      const uniq = [...new Set(all.filter(Boolean))];
-      return ["All Genres", ...uniq];
-    } catch {
-      toastError("Не удалось загрузить жанры.");
-      return ["All Genres"];
-    }
+  const now = Date.now();
+  if (_genresCache.list.length && now - _genresCache.ts < GENRES_TTL) {
+    return _genresCache.list.slice(); // отдаём копию
   }
+
+  const base = Array.isArray(localArtists) ? localArtists : [];
+  const all = base.flatMap((a) =>
+    Array.isArray(a.genres) ? a.genres : a.genre ? [a.genre] : []
+  );
+  const uniq = [...new Set(all.filter(Boolean))];
+  const out = ["All Genres", ...uniq];
+
+  _genresCache = { ts: now, list: out };
+  return out;
 }
 
 /**
@@ -201,18 +148,15 @@ export async function fetchGenres() {
  */
 export async function fetchArtist(id) {
   if (!id && id !== 0) return null;
-  try {
-    const { data } = await api.get(`/artists/${id}`);
-    // Возможные формы: объект, массив, { artists: [...] }
-    if (data && !Array.isArray(data)) return data;
-    if (Array.isArray(data) && data.length) return data[0];
-    if (Array.isArray(data?.artists) && data.artists.length) return data.artists[0];
-    return null;
-  } catch (err) {
-    logWarn("[api] fetchArtist failed:", err?.message || err);
-    toastError("Не удалось загрузить артиста.");
-    return null;
-  }
+  const list = Array.isArray(localArtists) ? localArtists : [];
+  const found =
+    list.find(
+      (a) =>
+        String(a.id) === String(id) ||
+        String(a.idArtist) === String(id) ||
+        String(a._id) === String(id)
+    ) || null;
+  return found;
 }
 
 /**
@@ -221,24 +165,9 @@ export async function fetchArtist(id) {
  * @returns {Promise<Array>}
  */
 export async function fetchArtistAlbums(id) {
-  if (!id && id !== 0) return [];
-  try {
-    const { data } = await api.get(`/artists/${id}/albums`);
-
-    // Возможные формы от API:
-    // - Array
-    // - { albumsList: [...] } / { albums: [...] } / { album: [...] }
-    if (Array.isArray(data)) return data;
-    if (Array.isArray(data?.albumsList)) return data.albumsList;
-    if (Array.isArray(data?.albums)) return data.albums;
-    if (Array.isArray(data?.album)) return data.album;
-
-    return [];
-  } catch (err) {
-    logWarn("[api] fetchArtistAlbums failed:", err?.message || err);
-    toastError("Не удалось загрузить альбомы.");
-    return [];
-  }
+  // В локальном режиме альбомы не подгружаем снаружи.
+  // Можно расширить later, если добавим локальный JSON с альбомами.
+  return [];
 }
 
 /* =========================

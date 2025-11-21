@@ -3,12 +3,11 @@ import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import { API_BASE } from './api.js';
 import fallbackFeedbacks from '../data/feedbacks.json';
 
 // ===== Constants / State =====
 const STORAGE_KEY = 'myFeedback';
-const FEEDBACKS_URL = `${API_BASE.replace(/\/$/, '')}/feedbacks`;
+// Полностью локальный список фидбеков — без сетевых запросов
 let localFeedbacks = Array.isArray(fallbackFeedbacks) ? [...fallbackFeedbacks] : [];
 let scrollY = 0;
 let swiper = null;
@@ -197,17 +196,6 @@ async function loadReviews() {
   if (!wrapper) return;
   wrapper.innerHTML = '';
 
-  try {
-    const res = await fetch(FEEDBACKS_URL);
-    const json = await res.json();
-    const feedbacks = (json?.data || []).slice(0, 10);
-    if (feedbacks.length) {
-      localFeedbacks = feedbacks;
-    }
-  } catch {
-    // якщо бекенд недоступний — використовуємо локальний JSON
-  }
-
   localFeedbacks.slice(0, 10).forEach((fb, index) => {
     const stars = Math.round(fb.rating || 0);
 
@@ -250,29 +238,9 @@ function attachSubmitHandler() {
       return;
     }
 
-    // Якщо бекенд недоступний — не ламаємо UX: додаємо фідбек локально
-    try {
-      const response = await fetch(FEEDBACKS_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({ name, descr: message, rating }),
-      });
-
-      if (response.ok) {
-        // бекенд працює
-        iziToast.success({ message: "Success! Your comment posted" });
-      } else {
-        // додаємо в локальний список
-        localFeedbacks.unshift({ name, descr: message, rating });
-        iziToast.success({ message: "Success! Your comment saved locally" });
-      }
-    } catch {
-      localFeedbacks.unshift({ name, descr: message, rating });
-      iziToast.success({ message: "Success! Your comment saved locally" });
-    }
+    // Працюємо повністю локально
+    localFeedbacks.unshift({ name, descr: message, rating });
+    iziToast.success({ message: "Success! Your comment saved locally" });
 
     resetLocalStorage();
     closeModal();

@@ -18,10 +18,10 @@ const logWarn = (...args) => { if (IS_DEV) console.warn(...args); };
    BASE URL (с возможностью переопределить)
    ========================= */
 // приоритет: <html data-api="..."> → VITE_API_BASE → дефолт (dev/prod)
-// В DEV ходим на относительный `/api`, который проксируется Vite → бэкенду,
+// В DEV ходим на относительный `/api/sound-wave`, который проксируется Vite → бэкенду,
 // чтобы обойти CORS и проблемный SSL‑сертификат.
-const DEFAULT_API_DEV = "/api";
-const DEFAULT_API_PROD = "https://sound-wave.b.goit.study/api";
+const DEFAULT_API_DEV = "/api/sound-wave";
+const DEFAULT_API_PROD = "/api/sound-wave";
 
 const API_BASE =
   document.documentElement.getAttribute("data-api") ||

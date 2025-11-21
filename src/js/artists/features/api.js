@@ -35,7 +35,16 @@ const normArtist = (o = {}) => ({
 const normTrack = (t = {}) => ({
   title: t.strTrack || t.title || t.name || "—",
   duration: Number(t.intDuration ?? t.duration ?? t.time ?? 0),
-  youtube: t.strMusicVid || t.youtube || t.youtube_url || t.url || t.movie || "",
+  // максимально вытягиваем ссылку именно из бэкенда
+  youtube:
+    t.strMusicVid ||
+    t.youtube ||
+    t.youtube_url ||
+    t.url ||
+    t.movie ||
+    t.link ||
+    t.href ||
+    "",
 });
 
 const normAlbum = (a = {}) => {

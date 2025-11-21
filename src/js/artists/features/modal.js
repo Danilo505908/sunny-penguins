@@ -72,10 +72,38 @@ function years(d = {}) {
   if (s) return `${s}–present`;
   return "information missing";
 }
-function trackRow(t = {}) {
+function isDirectYouTubeVideo(href = "") {
+  if (!href) return false;
+  try {
+    const u = new URL(href, location.href);
+    if (/youtu\.be$/.test(u.hostname)) return !!u.pathname.slice(1);
+    if (/[?&]v=/.test(u.search)) return true;
+    return /\/(embed|shorts|v)\//.test(u.pathname);
+  } catch {
+    return false;
+  }
+}
+function buildTrackLink(t = {}, artistName = "") {
+  const direct =
+    t.youtube ||
+    t.youtube_url ||
+    t.url ||
+    t.movie ||
+    t.strMusicVid ||
+    "";
+  if (direct) return direct;
+
+  // Фолбек: если у трека нет прямой ссылки, формируем YouTube‑поиск
+  const title = t.title || t.strTrack || t.name || "";
+  const q = [artistName, title].map((x) => String(x || "").trim()).filter(Boolean).join(" ");
+  if (!q) return "";
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`;
+}
+
+function trackRow(t = {}, artistName = "") {
   const title = t.title || t.strTrack || t.name || "—";
   const dur   = fmtTime(t.duration ?? t.intDuration ?? t.time);
-  const link  = t.youtube || t.youtube_url || t.url || t.movie || t.strMusicVid || "";
+  const link  = buildTrackLink(t, artistName);
   return `
     <li class="tr">
       <span>${title}</span>
@@ -201,12 +229,22 @@ export function createArtistModal(rootEl = document) {
   modal.addEventListener("click", (e) => {
     const a = e.target.closest("a.yt");
     if (a) {
+      const href = a.href || a.getAttribute("href") || "";
+      // Если это не прямое YouTube‑видео (например, страница поиска) —
+      // даём браузеру открыть ссылку как обычно в новой вкладке.
+      if (!isDirectYouTubeVideo(href)) {
+        return;
+      }
       e.preventDefault();
       try { UISound?.tap?.(); } catch {}
 
       // собираем ВСЕ треки в модалке, делаем очередь
       const links = Array.from(modal.querySelectorAll("a.yt"));
-      const hrefs = dedupe(links.map((x) => x.href).filter(Boolean));
+      const hrefs = dedupe(
+        links
+          .map((x) => x.href)
+          .filter((url) => url && isDirectYouTubeVideo(url))
+      );
       let start = hrefs.indexOf(a.href);
       if (start < 0) start = 0;
 
@@ -258,7 +296,7 @@ export function createArtistModal(rootEl = document) {
           <div class="am-album__title">${title}</div>
           <ul class="tbl">
             <li class="th"><span>Track</span><span>Time</span><span>Link</span></li>
-            ${tracks.map(trackRow).join("")}
+            ${tracks.map(tr => trackRow(tr, name)).join("")}
           </ul>
         </div>`;
     }).join("");

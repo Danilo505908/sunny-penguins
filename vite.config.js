@@ -44,5 +44,14 @@ export default defineConfig(({ command }) => {
         sort: 'mobile-first',
       }),
     ],
+    server: {
+      proxy: {
+        '/api': {
+          target: 'https://sound-wave.b.goit.study',
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
   };
 });

@@ -3,9 +3,11 @@ import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import { API_BASE } from './api.js';
 
 // ===== Constants / State =====
 const STORAGE_KEY = 'myFeedback';
+const FEEDBACKS_URL = `${API_BASE.replace(/\/$/, '')}/feedbacks`;
 let scrollY = 0;
 let swiper = null;
 
@@ -194,7 +196,7 @@ async function loadReviews() {
   wrapper.innerHTML = '';
 
   try {
-    const res = await fetch('https://sound-wave.b.goit.study/api/feedbacks');
+    const res = await fetch(FEEDBACKS_URL);
     const json = await res.json();
     const feedbacks = (json?.data || []).slice(0, 10);
 
@@ -244,7 +246,7 @@ function attachSubmitHandler() {
     }
 
     try {
-      const response = await fetch('https://sound-wave.b.goit.study/api/feedbacks', {
+      const response = await fetch(FEEDBACKS_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

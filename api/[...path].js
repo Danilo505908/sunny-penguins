@@ -2,11 +2,19 @@
 import app from '../server.js';
 
 export default (req, res) => {
-  // Виправляємо URL для Express - додаємо префікс /api якщо його немає
+  // Відновлюємо правильний URL для Express
+  // Vercel передає path в req.url без префіксу /api
+  const path = req.url || '';
+  const apiPath = path.startsWith('/api') ? path : '/api' + (path.startsWith('/') ? path : '/' + path);
+  
+  // Зберігаємо оригінальний URL
   const originalUrl = req.url;
-  if (!originalUrl.startsWith('/api')) {
-    req.url = '/api' + (originalUrl.startsWith('/') ? originalUrl : '/' + originalUrl);
-  }
+  const originalBaseUrl = req.baseUrl;
+  
+  // Встановлюємо правильний URL для Express
+  req.url = apiPath;
+  req.baseUrl = '/api';
+  req.originalUrl = apiPath;
   
   // Express app обробляє всі маршрути
   return app(req, res);

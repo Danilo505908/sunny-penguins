@@ -48,11 +48,10 @@ export default defineConfig(({ command }) => {
     ],
     server: {
       proxy: {
-        '/api/sound-wave': {
-          target: 'https://sound-wave.b.goit.study',
+        '/api': {
+          target: 'http://localhost:3000',
           changeOrigin: true,
           secure: false,
-          rewrite: path => path.replace(/^\/api\/sound-wave/, '/api'),
         },
       },
     },
